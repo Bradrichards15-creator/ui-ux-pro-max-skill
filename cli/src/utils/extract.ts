@@ -1,17 +1,26 @@
-import { mkdir } from 'node:fs/promises';
+import { mkdir, rm, access, cp } from 'node:fs/promises';
 import { join } from 'node:path';
+import { exec } from 'node:child_process';
+import { promisify } from 'node:util';
 import type { AIType } from '../types/index.js';
 import { AI_FOLDERS } from '../types/index.js';
 
-export async function extractZip(zipPath: string, destDir: string): Promise<void> {
-  const proc = Bun.spawn(['unzip', '-o', zipPath, '-d', destDir], {
-    stdout: 'pipe',
-    stderr: 'pipe',
-  });
+const execAsync = promisify(exec);
 
-  const exitCode = await proc.exited;
-  if (exitCode !== 0) {
-    throw new Error(`Failed to extract zip: exit code ${exitCode}`);
+export async function extractZip(zipPath: string, destDir: string): Promise<void> {
+  try {
+    await execAsync(`unzip -o "${zipPath}" -d "${destDir}"`);
+  } catch (error) {
+    throw new Error(`Failed to extract zip: ${error}`);
+  }
+}
+
+async function exists(path: string): Promise<boolean> {
+  try {
+    await access(path);
+    return true;
+  } catch {
+    return false;
   }
 }
 
@@ -34,29 +43,26 @@ export async function copyFolders(
     const targetPath = join(targetDir, folder);
 
     // Check if source folder exists
-    const sourceExists = await Bun.file(sourcePath).exists().catch(() => false);
+    const sourceExists = await exists(sourcePath);
     if (!sourceExists) {
-      // Try checking if it's a directory
-      try {
-        const proc = Bun.spawn(['test', '-d', sourcePath]);
-        await proc.exited;
-      } catch {
-        continue;
-      }
+      continue;
     }
 
     // Create target directory if needed
     await mkdir(targetPath, { recursive: true });
 
-    // Copy using cp -r
-    const proc = Bun.spawn(['cp', '-r', `${sourcePath}/.`, targetPath], {
-      stdout: 'pipe',
-      stderr: 'pipe',
-    });
-
-    const exitCode = await proc.exited;
-    if (exitCode === 0) {
+    // Copy recursively
+    try {
+      await cp(sourcePath, targetPath, { recursive: true });
       copiedFolders.push(folder);
+    } catch {
+      // Try shell fallback for older Node versions
+      try {
+        await execAsync(`cp -r "${sourcePath}/." "${targetPath}"`);
+        copiedFolders.push(folder);
+      } catch {
+        // Skip if copy fails
+      }
     }
   }
 
@@ -64,9 +70,9 @@ export async function copyFolders(
 }
 
 export async function cleanup(tempDir: string): Promise<void> {
-  const proc = Bun.spawn(['rm', '-rf', tempDir], {
-    stdout: 'pipe',
-    stderr: 'pipe',
-  });
-  await proc.exited;
+  try {
+    await rm(tempDir, { recursive: true, force: true });
+  } catch {
+    // Ignore cleanup errors
+  }
 }

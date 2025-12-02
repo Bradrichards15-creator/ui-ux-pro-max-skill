@@ -1,3 +1,4 @@
+import { writeFile } from 'node:fs/promises';
 import type { Release } from '../types/index.js';
 
 const REPO_OWNER = 'nextlevelbuilder';
@@ -50,7 +51,7 @@ export async function downloadRelease(url: string, dest: string): Promise<void> 
   }
 
   const buffer = await response.arrayBuffer();
-  await Bun.write(dest, buffer);
+  await writeFile(dest, Buffer.from(buffer));
 }
 
 export function getAssetUrl(release: Release): string | null {
