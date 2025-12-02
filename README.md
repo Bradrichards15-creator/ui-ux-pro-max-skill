@@ -75,39 +75,6 @@ sudo apt update && sudo apt install python3
 winget install Python.Python.3.12
 ```
 
-## Project Structure
-
-```
-ui-ux-pro-max-skill/
-├── cli/                              # CLI installer (uipro-cli)
-│   ├── package.json
-│   └── src/
-├── .claude/skills/ui-ux-pro-max/     # Claude Code skill
-│   ├── SKILL.md
-│   ├── scripts/
-│   │   ├── search.py
-│   │   └── core.py
-│   └── data/
-│       ├── styles.csv
-│       ├── colors.csv
-│       ├── typography.csv
-│       ├── charts.csv
-│       ├── products.csv
-│       ├── landing.csv
-│       ├── ux-guidelines.csv
-│       ├── prompts.csv
-│       └── stacks/
-├── .cursor/commands/                 # Cursor command
-│   └── ui-ux-pro-max.md
-├── .windsurf/workflows/              # Windsurf workflow
-│   └── ui-ux-pro-max.md
-├── .agent/workflows/                 # Antigravity workflow
-│   └── ui-ux-pro-max.md
-└── .shared/ui-ux-pro-max/            # Shared scripts & data
-    ├── scripts/
-    └── data/
-```
-
 ## Usage
 
 ### Claude Code
