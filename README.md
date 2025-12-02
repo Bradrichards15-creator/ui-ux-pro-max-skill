@@ -110,7 +110,21 @@ ui-ux-pro-max-skill/
 
 ## Usage
 
-After installation, just chat with your AI assistant naturally. The skill will automatically activate when you request UI/UX work.
+### Claude Code
+
+The skill activates automatically when you request UI/UX work. Just chat naturally:
+
+```
+Build a landing page for my SaaS product
+```
+
+### Cursor / Windsurf / Antigravity
+
+Use the slash command to invoke the skill:
+
+```
+/ui-ux-pro-max Build a landing page for my SaaS product
+```
 
 ### Example Prompts
 
