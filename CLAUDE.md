@@ -50,8 +50,9 @@ The search engine uses BM25 ranking combined with regex matching. Domain auto-de
 
 When modifying files, keep all agent workflows in sync:
 
-- **Data & Scripts** (`data/`, `scripts/`): Copy changes to `.shared/ui-ux-pro-max/`
+- **Data & Scripts** (`data/`, `scripts/`): Copy changes to `.shared/ui-ux-pro-max/` and `cli/assets/.shared/ui-ux-pro-max/`
 - **SKILL.md**: Update corresponding files in `.agent/`, `.cursor/`, `.windsurf/`
+- **CLI assets**: Copy all skill folders to `cli/assets/` (`.claude/`, `.cursor/`, `.windsurf/`, `.agent/`, `.shared/`)
 
 ## Prerequisites
 
