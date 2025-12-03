@@ -56,3 +56,12 @@ When modifying files, keep all agent workflows in sync:
 ## Prerequisites
 
 Python 3.x (no external dependencies required)
+
+## Git Workflow
+
+Never push directly to `main`. Always:
+
+1. Create a new branch: `git checkout -b feat/... ` or `fix/...`
+2. Commit changes
+3. Push branch: `git push -u origin <branch>`
+4. Create PR: `gh pr create`
