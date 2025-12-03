@@ -9,7 +9,12 @@ const execAsync = promisify(exec);
 
 export async function extractZip(zipPath: string, destDir: string): Promise<void> {
   try {
-    await execAsync(`unzip -o "${zipPath}" -d "${destDir}"`);
+    const isWindows = process.platform === 'win32';
+    if (isWindows) {
+      await execAsync(`powershell -Command "Expand-Archive -Path '${zipPath}' -DestinationPath '${destDir}' -Force"`);
+    } else {
+      await execAsync(`unzip -o "${zipPath}" -d "${destDir}"`);
+    }
   } catch (error) {
     throw new Error(`Failed to extract zip: ${error}`);
   }
@@ -58,7 +63,11 @@ export async function copyFolders(
     } catch {
       // Try shell fallback for older Node versions
       try {
-        await execAsync(`cp -r "${sourcePath}/." "${targetPath}"`);
+        if (process.platform === 'win32') {
+          await execAsync(`xcopy "${sourcePath}" "${targetPath}" /E /I /Y`);
+        } else {
+          await execAsync(`cp -r "${sourcePath}/." "${targetPath}"`);
+        }
         copiedFolders.push(folder);
       } catch {
         // Skip if copy fails
