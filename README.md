@@ -143,6 +143,10 @@ The skill provides stack-specific guidelines for:
 
 Just mention your preferred stack in the prompt, or let it default to HTML + Tailwind.
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=nextlevelbuilder/ui-ux-pro-max-skill&type=Date)](https://star-history.com/#nextlevelbuilder/ui-ux-pro-max-skill&Date)
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
