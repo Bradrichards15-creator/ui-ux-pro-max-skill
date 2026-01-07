@@ -30,8 +30,12 @@ export function detectAIType(cwd: string = process.cwd()): DetectionResult {
   }
   if (existsSync(join(cwd, '.codex'))) {
     detected.push('codex');
+  }
   if (existsSync(join(cwd, '.roo'))) {
     detected.push('roocode');
+  }
+  if (existsSync(join(cwd, '.qoder'))) {
+    detected.push('qoder');
   }
 
   // Suggest based on what's detected
@@ -63,6 +67,8 @@ export function getAITypeDescription(aiType: AIType): string {
       return 'Codex (.codex/skills/ + .shared/)';
     case 'roocode':
       return 'RooCode (.roo/commands/ + .shared/)';
+    case 'qoder':
+      return 'Qoder (.qoder/rules/ + .shared/)';
     case 'all':
       return 'All AI assistants';
   }
