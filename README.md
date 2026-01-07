@@ -8,7 +8,7 @@ An AI skill that provides design intelligence for building professional UI/UX ac
 
 ## Overview
 
-UI UX Pro Max is a searchable database of UI styles, color palettes, font pairings, chart types, product recommendations, UX guidelines, and stack-specific best practices. It works as a skill/workflow for AI coding assistants (Claude Code, Cursor, Windsurf, etc.).
+UI UX Pro Max is a searchable database of UI styles, color palettes, font pairings, chart types, product recommendations, UX guidelines, and stack-specific best practices. It works as a skill/workflow for AI coding assistants (Claude Code, Codex, Cursor, Windsurf, etc.).
 
 ## Features
 
@@ -37,6 +37,7 @@ uipro init --ai windsurf    # Windsurf
 uipro init --ai antigravity # Antigravity (.agent + .shared)
 uipro init --ai copilot     # GitHub Copilot
 uipro init --ai kiro        # Kiro
+uipro init --ai codex       # Codex (Skills)
 uipro init --ai all         # All assistants
 ```
 
@@ -60,6 +61,7 @@ Copy the appropriate folders to your project:
 | Antigravity    | `.agent/workflows/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`      |
 | GitHub Copilot | `.github/prompts/ui-ux-pro-max.prompt.md` + `.shared/ui-ux-pro-max/`|
 | Kiro           | `.kiro/steering/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`        |
+| Codex          | `.codex/skills/ui-ux-pro-max/` + `.shared/ui-ux-pro-max/`           |
 
 ## Prerequisites
 
@@ -111,6 +113,14 @@ In VS Code with Copilot, type `/` in chat to see available prompts, then select 
 
 ```
 /ui-ux-pro-max Build a landing page for my SaaS product
+```
+
+### Codex CLI
+
+The skill activates automatically for UI/UX requests. You can also invoke it explicitly:
+
+```
+$ui-ux-pro-max Build a landing page for my SaaS product
 ```
 
 ### Example Prompts

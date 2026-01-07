@@ -16,6 +16,7 @@ uipro init --ai claude      # Claude Code
 uipro init --ai cursor      # Cursor
 uipro init --ai windsurf    # Windsurf
 uipro init --ai antigravity # Antigravity
+uipro init --ai codex       # Codex (Skills)
 uipro init --ai all         # All assistants
 
 # Other commands

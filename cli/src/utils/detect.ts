@@ -28,6 +28,8 @@ export function detectAIType(cwd: string = process.cwd()): DetectionResult {
   if (existsSync(join(cwd, '.kiro'))) {
     detected.push('kiro');
   }
+  if (existsSync(join(cwd, '.codex'))) {
+    detected.push('codex');
   if (existsSync(join(cwd, '.roo'))) {
     detected.push('roocode');
   }
@@ -57,6 +59,8 @@ export function getAITypeDescription(aiType: AIType): string {
       return 'GitHub Copilot (.github/prompts/ + .shared/)';
     case 'kiro':
       return 'Kiro (.kiro/steering/ + .shared/)';
+    case 'codex':
+      return 'Codex (.codex/skills/ + .shared/)';
     case 'roocode':
       return 'RooCode (.roo/commands/ + .shared/)';
     case 'all':

@@ -39,7 +39,7 @@ export async function copyFolders(
   const copiedFolders: string[] = [];
 
   const foldersToCopy = aiType === 'all'
-    ? ['.claude', '.cursor', '.windsurf', '.agent', '.github', '.kiro', '.roo', '.shared']
+    ? ['.claude', '.cursor', '.windsurf', '.agent', '.github', '.kiro', '.roo','.codex', '.shared']
     : AI_FOLDERS[aiType];
 
   // Deduplicate folders (e.g., .shared might be listed multiple times)
