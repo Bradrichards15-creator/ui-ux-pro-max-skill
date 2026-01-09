@@ -37,6 +37,9 @@ export function detectAIType(cwd: string = process.cwd()): DetectionResult {
   if (existsSync(join(cwd, '.qoder'))) {
     detected.push('qoder');
   }
+  if (existsSync(join(cwd, '.gemini'))) {
+    detected.push('gemini');
+  }
 
   // Suggest based on what's detected
   let suggested: AIType | null = null;
@@ -69,6 +72,8 @@ export function getAITypeDescription(aiType: AIType): string {
       return 'RooCode (.roo/commands/ + .shared/)';
     case 'qoder':
       return 'Qoder (.qoder/rules/ + .shared/)';
+    case 'gemini':
+      return 'Gemini CLI (.gemini/skills/ + .shared/)';
     case 'all':
       return 'All AI assistants';
   }
