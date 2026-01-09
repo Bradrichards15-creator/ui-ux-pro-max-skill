@@ -38,6 +38,7 @@ uipro init --ai antigravity # Antigravity (.agent + .shared)
 uipro init --ai copilot     # GitHub Copilot
 uipro init --ai kiro        # Kiro
 uipro init --ai codex       # Codex (Skills)
+uipro init --ai gemini      # Gemini CLI
 uipro init --ai all         # All assistants
 ```
 
@@ -62,6 +63,7 @@ Copy the appropriate folders to your project:
 | GitHub Copilot | `.github/prompts/ui-ux-pro-max.prompt.md` + `.shared/ui-ux-pro-max/`|
 | Kiro           | `.kiro/steering/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`        |
 | Codex          | `.codex/skills/ui-ux-pro-max/`                                     |
+| Gemini CLI     | `.gemini/skills/ui-ux-pro-max/` + `.shared/ui-ux-pro-max/`         |
 
 ## Prerequisites
 
@@ -121,6 +123,14 @@ The skill activates automatically for UI/UX requests. You can also invoke it exp
 
 ```
 $ui-ux-pro-max Build a landing page for my SaaS product
+```
+
+### Gemini CLI
+
+The skill activates automatically when you request UI/UX work.
+
+```
+Build a landing page for my SaaS product
 ```
 
 ### Example Prompts
