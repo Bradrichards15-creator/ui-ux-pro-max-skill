@@ -34,6 +34,7 @@ cd /path/to/your/project
 uipro init --ai claude      # Claude Code
 uipro init --ai cursor      # Cursor
 uipro init --ai windsurf    # Windsurf
+uipro init --ai opencode    # OpenCode
 uipro init --ai antigravity # Antigravity (.agent + .shared)
 uipro init --ai copilot     # GitHub Copilot
 uipro init --ai kiro        # Kiro
@@ -60,6 +61,7 @@ Copy the appropriate folders to your project:
 | Claude Code    | `.claude/skills/ui-ux-pro-max/`                                      |
 | Cursor         | `.cursor/commands/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`       |
 | Windsurf       | `.windsurf/workflows/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`    |
+| OpenCode       | `.opencode/skills/ui-ux-pro-max/` + `.shared/ui-ux-pro-max/`         |
 | Antigravity    | `.agent/workflows/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`       |
 | GitHub Copilot | `.github/prompts/ui-ux-pro-max.prompt.md` + `.shared/ui-ux-pro-max/` |
 | Kiro           | `.kiro/steering/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`         |
@@ -94,6 +96,16 @@ The skill activates automatically when you request UI/UX work. Just chat natural
 ```
 Build a landing page for my SaaS product
 ```
+
+### OpenCode
+
+The skill is loaded automatically via the `use_skill` tool. Use it by invoking the skill:
+
+```
+Build a landing page for my SaaS product
+```
+
+The skill will guide you through the design process using its workflow.
 
 ### Cursor / Windsurf / Antigravity
 
