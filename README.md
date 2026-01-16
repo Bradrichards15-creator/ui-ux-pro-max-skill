@@ -1,23 +1,124 @@
 # UI UX Pro Max
 
+<p align="center">
+  <img src="https://img.shields.io/badge/version-2.0.0-blue?style=for-the-badge" alt="Version 2.0.0">
+  <img src="https://img.shields.io/badge/reasoning_rules-100-green?style=for-the-badge" alt="100 Reasoning Rules">
+  <img src="https://img.shields.io/badge/UI_styles-57-purple?style=for-the-badge" alt="57 UI Styles">
+  <img src="https://img.shields.io/badge/python-3.x-yellow?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.x">
+  <img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="MIT License">
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/uipro-cli"><img src="https://img.shields.io/npm/v/uipro-cli?style=flat-square&logo=npm&label=CLI" alt="npm"></a>
+  <a href="https://www.npmjs.com/package/uipro-cli"><img src="https://img.shields.io/npm/dm/uipro-cli?style=flat-square&label=downloads" alt="npm downloads"></a>
+  <a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/stargazers"><img src="https://img.shields.io/github/stars/nextlevelbuilder/ui-ux-pro-max-skill?style=flat-square&logo=github" alt="GitHub stars"></a>
+  <a href="https://paypal.me/uiuxpromax"><img src="https://img.shields.io/badge/PayPal-Support%20Development-00457C?style=flat-square&logo=paypal&logoColor=white" alt="PayPal"></a>
+</p>
+
 An AI skill that provides design intelligence for building professional UI/UX across multiple platforms and frameworks.
 
 <p align="center">
   <img src="screenshots/website.png" alt="UI UX Pro Max" width="800">
 </p>
 
-## Overview
+## What's New in v2.0
 
-UI UX Pro Max is a searchable database of UI styles, color palettes, font pairings, chart types, product recommendations, UX guidelines, and stack-specific best practices. It works as a skill/workflow for AI coding assistants (Claude Code, Codex, Cursor, Windsurf, etc.).
+### Intelligent Design System Generation
+
+The flagship feature of v2.0 is the **Design System Generator** - an AI-powered reasoning engine that analyzes your project requirements and generates a complete, tailored design system in seconds.
+
+```
++-----------------------------------------------------------------------------------------+
+|  TARGET: Serenity Spa - RECOMMENDED DESIGN SYSTEM                                       |
++-----------------------------------------------------------------------------------------+
+|                                                                                          |
+|  PATTERN: Hero-Centric + Social Proof                                                   |
+|     Sections: Hero > Services > Testimonials > Booking > Contact                        |
+|                                                                                          |
+|  STYLE: Soft UI Evolution + Neumorphism                                                 |
+|     Keywords: Soft shadows, subtle depth, calming, premium feel                         |
+|     Performance: Excellent | Accessibility: WCAG AA                                     |
+|                                                                                          |
+|  COLORS:                                                                                |
+|     Primary:    #E8B4B8    Secondary:  #A8D5BA    CTA:  #D4AF37                         |
+|     Background: #FFF5F5    Text:       #2D3436                                          |
+|                                                                                          |
+|  TYPOGRAPHY: Cormorant Garamond / Montserrat                                            |
+|     Google Fonts: https://fonts.google.com/share?selection.family=...                   |
+|                                                                                          |
+|  KEY EFFECTS: Soft shadows + Smooth transitions (200-300ms) + Gentle hover              |
+|                                                                                          |
+|  AVOID: Bright neon colors + Harsh animations + Dark mode + AI purple/pink gradients    |
+|                                                                                          |
++-----------------------------------------------------------------------------------------+
+```
+
+### How Design System Generation Works
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  1. USER REQUEST                                                │
+│     "Build a landing page for my beauty spa"                    │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  2. MULTI-DOMAIN SEARCH (5 parallel searches)                   │
+│     • Product type matching (100 categories)                    │
+│     • Style recommendations (57 styles)                         │
+│     • Color palette selection (95 palettes)                     │
+│     • Landing page patterns (24 patterns)                       │
+│     • Typography pairing (56 font combinations)                 │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  3. REASONING ENGINE                                            │
+│     • Match product → UI category rules                         │
+│     • Apply style priorities (BM25 ranking)                     │
+│     • Filter anti-patterns for industry                         │
+│     • Process decision rules (JSON conditions)                  │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  4. COMPLETE DESIGN SYSTEM OUTPUT                               │
+│     Pattern + Style + Colors + Typography + Effects             │
+│     + Anti-patterns to avoid + Pre-delivery checklist           │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 100 Industry-Specific Reasoning Rules
+
+The reasoning engine includes specialized rules for:
+
+| Category | Examples |
+|----------|----------|
+| **Tech & SaaS** | SaaS, Micro SaaS, B2B Enterprise, Developer Tools, AI/Chatbot Platform |
+| **Finance** | Fintech, Banking, Crypto, Insurance, Trading Dashboard |
+| **Healthcare** | Medical Clinic, Pharmacy, Dental, Veterinary, Mental Health |
+| **E-commerce** | General, Luxury, Marketplace, Subscription Box |
+| **Services** | Beauty/Spa, Restaurant, Hotel, Legal, Consulting |
+| **Creative** | Portfolio, Agency, Photography, Gaming, Music Streaming |
+| **Emerging Tech** | Web3/NFT, Spatial Computing, Quantum Computing, Autonomous Systems |
+
+Each rule includes:
+- **Recommended Pattern** - Landing page structure
+- **Style Priority** - Best matching UI styles
+- **Color Mood** - Industry-appropriate palettes
+- **Typography Mood** - Font personality matching
+- **Key Effects** - Animations and interactions
+- **Anti-Patterns** - What NOT to do (e.g., "AI purple/pink gradients" for banking)
 
 ## Features
 
-- **57 UI Styles** - Glassmorphism, Claymorphism, Minimalism, Brutalism, Neumorphism, Bento Grid, Dark Mode, and more
+- **57 UI Styles** - Glassmorphism, Claymorphism, Minimalism, Brutalism, Neumorphism, Bento Grid, Dark Mode, AI-Native UI, and more
 - **95 Color Palettes** - Industry-specific palettes for SaaS, E-commerce, Healthcare, Fintech, Beauty, etc.
 - **56 Font Pairings** - Curated typography combinations with Google Fonts imports
 - **24 Chart Types** - Recommendations for dashboards and analytics
 - **11 Tech Stacks** - React, Next.js, Vue, Nuxt.js, Nuxt UI, Svelte, SwiftUI, React Native, Flutter, HTML+Tailwind, shadcn/ui
 - **98 UX Guidelines** - Best practices, anti-patterns, and accessibility rules
+- **100 Reasoning Rules** - Industry-specific design system generation (NEW in v2.0)
 
 ## Installation
 
@@ -34,11 +135,12 @@ cd /path/to/your/project
 uipro init --ai claude      # Claude Code
 uipro init --ai cursor      # Cursor
 uipro init --ai windsurf    # Windsurf
-uipro init --ai opencode    # OpenCode
 uipro init --ai antigravity # Antigravity (.agent + .shared)
 uipro init --ai copilot     # GitHub Copilot
 uipro init --ai kiro        # Kiro
-uipro init --ai codex       # Codex (Skills)
+uipro init --ai codex       # Codex CLI
+uipro init --ai qoder       # Qoder
+uipro init --ai roocode     # Roo Code
 uipro init --ai gemini      # Gemini CLI
 uipro init --ai trae        # Trae
 uipro init --ai all         # All assistants
@@ -61,11 +163,12 @@ Copy the appropriate folders to your project:
 | Claude Code    | `.claude/skills/ui-ux-pro-max/`                                      |
 | Cursor         | `.cursor/commands/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`       |
 | Windsurf       | `.windsurf/workflows/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`    |
-| OpenCode       | `.opencode/skills/ui-ux-pro-max/` + `.shared/ui-ux-pro-max/`         |
 | Antigravity    | `.agent/workflows/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`       |
 | GitHub Copilot | `.github/prompts/ui-ux-pro-max.prompt.md` + `.shared/ui-ux-pro-max/` |
 | Kiro           | `.kiro/steering/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`         |
-| Codex          | `.codex/skills/ui-ux-pro-max/`                                       |
+| Codex CLI      | `.codex/skills/ui-ux-pro-max/`                                       |
+| Qoder          | `.qoder/skills/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`          |
+| Roo Code       | `.roo/rules/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`             |
 | Gemini CLI     | `.gemini/skills/ui-ux-pro-max/` + `.shared/ui-ux-pro-max/`           |
 | Trae           | `.trae/skills/ui-ux-pro-max/` + `.shared/ui-ux-pro-max/`             |
 
@@ -96,16 +199,6 @@ The skill activates automatically when you request UI/UX work. Just chat natural
 ```
 Build a landing page for my SaaS product
 ```
-
-### OpenCode
-
-The skill is loaded automatically via the `use_skill` tool. Use it by invoking the skill:
-
-```
-Build a landing page for my SaaS product
-```
-
-The skill will guide you through the design process using its workflow.
 
 ### Cursor / Windsurf / Antigravity
 
@@ -139,9 +232,25 @@ The skill activates automatically for UI/UX requests. You can also invoke it exp
 $ui-ux-pro-max Build a landing page for my SaaS product
 ```
 
+### Qoder
+
+The skill activates automatically when you request UI/UX work:
+
+```
+Build a landing page for my SaaS product
+```
+
+### Roo Code
+
+The skill activates automatically when you request UI/UX work:
+
+```
+Build a landing page for my SaaS product
+```
+
 ### Gemini CLI
 
-The skill activates automatically when you request UI/UX work.
+The skill activates automatically when you request UI/UX work:
 
 ```
 Build a landing page for my SaaS product
@@ -167,14 +276,17 @@ Create a dashboard for healthcare analytics
 Design a portfolio website with dark mode
 
 Make a mobile app UI for e-commerce
+
+Build a fintech banking app with dark theme
 ```
 
 ### How It Works
 
 1. **You ask** - Request any UI/UX task (build, design, create, implement, review, fix, improve)
-2. **Skill activates** - The AI automatically searches the design database for relevant styles, colors, typography, and guidelines
-3. **Smart recommendations** - Based on your product type and requirements, it finds the best matching design system
+2. **Design System Generated** - The AI automatically generates a complete design system using the reasoning engine
+3. **Smart recommendations** - Based on your product type and requirements, it finds the best matching styles, colors, and typography
 4. **Code generation** - Implements the UI with proper colors, fonts, spacing, and best practices
+5. **Pre-delivery checks** - Validates against common UI/UX anti-patterns
 
 ### Supported Stacks
 
@@ -186,6 +298,27 @@ The skill provides stack-specific guidelines for:
 - **SwiftUI** / **React Native** / **Flutter**
 
 Just mention your preferred stack in the prompt, or let it default to HTML + Tailwind.
+
+## Design System Command (Advanced)
+
+For direct access to the design system generator:
+
+```bash
+# Generate design system with ASCII output
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "beauty spa wellness" --design-system -p "Serenity Spa"
+
+# Generate with Markdown output
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "fintech banking" --design-system -f markdown
+
+# Domain-specific search
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "glassmorphism" --domain style
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "elegant serif" --domain typography
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "dashboard" --domain chart
+
+# Stack-specific guidelines
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "form validation" --stack react
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "responsive layout" --stack html-tailwind
+```
 
 ## Star History
 
