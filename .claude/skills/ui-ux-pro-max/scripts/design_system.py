@@ -479,7 +479,7 @@ def generate_design_system(query: str, project_name: str = None, output_format: 
     
     # Persist to files if requested
     if persist:
-        persist_design_system(design_system, page, output_dir)
+        persist_design_system(design_system, page, output_dir, query)
 
     if output_format == "markdown":
         return format_markdown(design_system)
@@ -487,20 +487,26 @@ def generate_design_system(query: str, project_name: str = None, output_format: 
 
 
 # ============ PERSISTENCE FUNCTIONS ============
-def persist_design_system(design_system: dict, page: str = None, output_dir: str = None) -> dict:
+def persist_design_system(design_system: dict, page: str = None, output_dir: str = None, page_query: str = None) -> dict:
     """
-    Persist design system to design-system/ folder using Master + Overrides pattern.
+    Persist design system to design-system/<project>/ folder using Master + Overrides pattern.
     
     Args:
         design_system: The generated design system dictionary
         page: Optional page name for page-specific override file
         output_dir: Optional output directory (defaults to current working directory)
+        page_query: Optional query string for intelligent page override generation
     
     Returns:
         dict with created file paths and status
     """
     base_dir = Path(output_dir) if output_dir else Path.cwd()
-    design_system_dir = base_dir / "design-system"
+    
+    # Use project name for project-specific folder
+    project_name = design_system.get("project_name", "default")
+    project_slug = project_name.lower().replace(' ', '-')
+    
+    design_system_dir = base_dir / "design-system" / project_slug
     pages_dir = design_system_dir / "pages"
     
     created_files = []
@@ -517,10 +523,10 @@ def persist_design_system(design_system: dict, page: str = None, output_dir: str
         f.write(master_content)
     created_files.append(str(master_file))
     
-    # If page is specified, create page override file
+    # If page is specified, create page override file with intelligent content
     if page:
         page_file = pages_dir / f"{page.lower().replace(' ', '-')}.md"
-        page_content = format_page_override_md(design_system, page)
+        page_content = format_page_override_md(design_system, page, page_query)
         with open(page_file, 'w', encoding='utf-8') as f:
             f.write(page_content)
         created_files.append(str(page_file))
@@ -795,11 +801,14 @@ def format_master_md(design_system: dict) -> str:
     return "\n".join(lines)
 
 
-def format_page_override_md(design_system: dict, page_name: str) -> str:
-    """Format a page-specific override file."""
+def format_page_override_md(design_system: dict, page_name: str, page_query: str = None) -> str:
+    """Format a page-specific override file with intelligent AI-generated content."""
     project = design_system.get("project_name", "PROJECT")
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     page_title = page_name.replace("-", " ").replace("_", " ").title()
+    
+    # Detect page type and generate intelligent overrides
+    page_overrides = _generate_intelligent_overrides(page_name, page_query, design_system)
     
     lines = []
     
@@ -807,6 +816,7 @@ def format_page_override_md(design_system: dict, page_name: str) -> str:
     lines.append("")
     lines.append(f"> **PROJECT:** {project}")
     lines.append(f"> **Generated:** {timestamp}")
+    lines.append(f"> **Page Type:** {page_overrides.get('page_type', 'General')}")
     lines.append("")
     lines.append("> ⚠️ **IMPORTANT:** Rules in this file **override** the Master file (`design-system/MASTER.md`).")
     lines.append("> Only deviations from the Master are documented here. For all other rules, refer to the Master.")
@@ -814,73 +824,231 @@ def format_page_override_md(design_system: dict, page_name: str) -> str:
     lines.append("---")
     lines.append("")
     
-    # Page-specific sections (template)
+    # Page-specific rules with actual content
     lines.append("## Page-Specific Rules")
     lines.append("")
-    lines.append("<!-- Document only the DEVIATIONS from MASTER.md for this page -->")
-    lines.append("")
+    
+    # Layout Overrides
     lines.append("### Layout Overrides")
     lines.append("")
-    lines.append("```")
-    lines.append("<!-- Example: This page uses a different max-width -->")
-    lines.append("max-width: 1400px (instead of default 1200px)")
-    lines.append("```")
+    layout = page_overrides.get("layout", {})
+    if layout:
+        for key, value in layout.items():
+            lines.append(f"- **{key}:** {value}")
+    else:
+        lines.append("- No overrides — use Master layout")
     lines.append("")
-    lines.append("### Color Overrides")
+    
+    # Spacing Overrides
+    lines.append("### Spacing Overrides")
     lines.append("")
-    lines.append("```")
-    lines.append("<!-- Example: This page uses a darker background -->")
-    lines.append("No overrides - use Master colors")
-    lines.append("```")
+    spacing = page_overrides.get("spacing", {})
+    if spacing:
+        for key, value in spacing.items():
+            lines.append(f"- **{key}:** {value}")
+    else:
+        lines.append("- No overrides — use Master spacing")
     lines.append("")
-    lines.append("### Component Overrides")
-    lines.append("")
-    lines.append("```")
-    lines.append("<!-- Example: Cards on this page have different padding -->")
-    lines.append("No overrides - use Master component specs")
-    lines.append("```")
-    lines.append("")
+    
+    # Typography Overrides
     lines.append("### Typography Overrides")
     lines.append("")
-    lines.append("```")
-    lines.append("<!-- Example: Hero heading uses larger font size -->")
-    lines.append("No overrides - use Master typography")
-    lines.append("```")
+    typography = page_overrides.get("typography", {})
+    if typography:
+        for key, value in typography.items():
+            lines.append(f"- **{key}:** {value}")
+    else:
+        lines.append("- No overrides — use Master typography")
     lines.append("")
     
-    # Page-specific patterns
-    lines.append("---")
+    # Color Overrides
+    lines.append("### Color Overrides")
     lines.append("")
-    lines.append("## Unique Page Elements")
-    lines.append("")
-    lines.append("<!-- Document any elements unique to this page -->")
-    lines.append("")
-    lines.append("### Hero Section")
-    lines.append("")
-    lines.append("```")
-    lines.append("<!-- Describe hero-specific styling if different from Master -->")
-    lines.append("```")
-    lines.append("")
-    lines.append("### Page-Specific Components")
-    lines.append("")
-    lines.append("```")
-    lines.append("<!-- List any components only used on this page -->")
-    lines.append("```")
+    colors = page_overrides.get("colors", {})
+    if colors:
+        for key, value in colors.items():
+            lines.append(f"- **{key}:** {value}")
+    else:
+        lines.append("- No overrides — use Master colors")
     lines.append("")
     
-    # Notes section
+    # Component Overrides
+    lines.append("### Component Overrides")
+    lines.append("")
+    components = page_overrides.get("components", [])
+    if components:
+        for comp in components:
+            lines.append(f"- {comp}")
+    else:
+        lines.append("- No overrides — use Master component specs")
+    lines.append("")
+    
+    # Page-Specific Components
     lines.append("---")
     lines.append("")
-    lines.append("## Notes")
+    lines.append("## Page-Specific Components")
     lines.append("")
-    lines.append("<!-- Add any additional context for AI or developers -->")
+    unique_components = page_overrides.get("unique_components", [])
+    if unique_components:
+        for comp in unique_components:
+            lines.append(f"- {comp}")
+    else:
+        lines.append("- No unique components for this page")
     lines.append("")
-    lines.append("- Refer to `design-system/MASTER.md` for all base rules")
-    lines.append("- Only add overrides here when this page deviates from the Master")
-    lines.append("- Delete placeholder sections if no overrides are needed")
+    
+    # Recommendations
+    lines.append("---")
+    lines.append("")
+    lines.append("## Recommendations")
+    lines.append("")
+    recommendations = page_overrides.get("recommendations", [])
+    if recommendations:
+        for rec in recommendations:
+            lines.append(f"- {rec}")
     lines.append("")
     
     return "\n".join(lines)
+
+
+def _generate_intelligent_overrides(page_name: str, page_query: str, design_system: dict) -> dict:
+    """
+    Generate intelligent overrides based on page type using layered search.
+    
+    Uses the existing search infrastructure to find relevant style, UX, and layout
+    data instead of hardcoded page types.
+    """
+    from core import search
+    
+    page_lower = page_name.lower()
+    query_lower = (page_query or "").lower()
+    combined_context = f"{page_lower} {query_lower}"
+    
+    # Search across multiple domains for page-specific guidance
+    style_search = search(combined_context, "style", max_results=1)
+    ux_search = search(combined_context, "ux", max_results=3)
+    landing_search = search(combined_context, "landing", max_results=1)
+    
+    # Extract results from search response
+    style_results = style_search.get("results", [])
+    ux_results = ux_search.get("results", [])
+    landing_results = landing_search.get("results", [])
+    
+    # Detect page type from search results or context
+    page_type = _detect_page_type(combined_context, style_results)
+    
+    # Build overrides from search results
+    layout = {}
+    spacing = {}
+    typography = {}
+    colors = {}
+    components = []
+    unique_components = []
+    recommendations = []
+    
+    # Extract style-based overrides
+    if style_results:
+        style = style_results[0]
+        style_name = style.get("Style Category", "")
+        keywords = style.get("Keywords", "")
+        best_for = style.get("Best For", "")
+        effects = style.get("Effects & Animation", "")
+        
+        # Infer layout from style keywords
+        if any(kw in keywords.lower() for kw in ["data", "dense", "dashboard", "grid"]):
+            layout["Max Width"] = "1400px or full-width"
+            layout["Grid"] = "12-column grid for data flexibility"
+            spacing["Content Density"] = "High — optimize for information display"
+        elif any(kw in keywords.lower() for kw in ["minimal", "simple", "clean", "single"]):
+            layout["Max Width"] = "800px (narrow, focused)"
+            layout["Layout"] = "Single column, centered"
+            spacing["Content Density"] = "Low — focus on clarity"
+        else:
+            layout["Max Width"] = "1200px (standard)"
+            layout["Layout"] = "Full-width sections, centered content"
+        
+        if effects:
+            recommendations.append(f"Effects: {effects}")
+    
+    # Extract UX guidelines as recommendations
+    for ux in ux_results:
+        category = ux.get("Category", "")
+        do_text = ux.get("Do", "")
+        dont_text = ux.get("Don't", "")
+        if do_text:
+            recommendations.append(f"{category}: {do_text}")
+        if dont_text:
+            components.append(f"Avoid: {dont_text}")
+    
+    # Extract landing pattern info for section structure
+    if landing_results:
+        landing = landing_results[0]
+        sections = landing.get("Section Order", "")
+        cta_placement = landing.get("Primary CTA Placement", "")
+        color_strategy = landing.get("Color Strategy", "")
+        
+        if sections:
+            layout["Sections"] = sections
+        if cta_placement:
+            recommendations.append(f"CTA Placement: {cta_placement}")
+        if color_strategy:
+            colors["Strategy"] = color_strategy
+    
+    # Add page-type specific defaults if no search results
+    if not layout:
+        layout["Max Width"] = "1200px"
+        layout["Layout"] = "Responsive grid"
+    
+    if not recommendations:
+        recommendations = [
+            "Refer to MASTER.md for all design rules",
+            "Add specific overrides as needed for this page"
+        ]
+    
+    return {
+        "page_type": page_type,
+        "layout": layout,
+        "spacing": spacing,
+        "typography": typography,
+        "colors": colors,
+        "components": components,
+        "unique_components": unique_components,
+        "recommendations": recommendations
+    }
+
+
+def _detect_page_type(context: str, style_results: list) -> str:
+    """Detect page type from context and search results."""
+    context_lower = context.lower()
+    
+    # Check for common page type patterns
+    page_patterns = [
+        (["dashboard", "admin", "analytics", "data", "metrics", "stats", "monitor", "overview"], "Dashboard / Data View"),
+        (["checkout", "payment", "cart", "purchase", "order", "billing"], "Checkout / Payment"),
+        (["settings", "profile", "account", "preferences", "config"], "Settings / Profile"),
+        (["landing", "marketing", "homepage", "hero", "home", "promo"], "Landing / Marketing"),
+        (["login", "signin", "signup", "register", "auth", "password"], "Authentication"),
+        (["pricing", "plans", "subscription", "tiers", "packages"], "Pricing / Plans"),
+        (["blog", "article", "post", "news", "content", "story"], "Blog / Article"),
+        (["product", "item", "detail", "pdp", "shop", "store"], "Product Detail"),
+        (["search", "results", "browse", "filter", "catalog", "list"], "Search Results"),
+        (["empty", "404", "error", "not found", "zero"], "Empty State"),
+    ]
+    
+    for keywords, page_type in page_patterns:
+        if any(kw in context_lower for kw in keywords):
+            return page_type
+    
+    # Fallback: try to infer from style results
+    if style_results:
+        style_name = style_results[0].get("Style Category", "").lower()
+        best_for = style_results[0].get("Best For", "").lower()
+        
+        if "dashboard" in best_for or "data" in best_for:
+            return "Dashboard / Data View"
+        elif "landing" in best_for or "marketing" in best_for:
+            return "Landing / Marketing"
+    
+    return "General"
 
 
 # ============ CLI SUPPORT ============
