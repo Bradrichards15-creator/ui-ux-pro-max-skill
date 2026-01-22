@@ -6,6 +6,7 @@ import prompts from 'prompts';
 import type { AIType } from '../types/index.js';
 import { AI_TYPES } from '../types/index.js';
 import { copyFolders, installFromZip, createTempDir, cleanup } from '../utils/extract.js';
+import { generatePlatformFiles, generateAllPlatformFiles } from '../utils/template.js';
 import { detectAIType, getAITypeDescription } from '../utils/detect.js';
 import { logger } from '../utils/logger.js';
 import {
@@ -24,10 +25,11 @@ interface InitOptions {
   ai?: AIType;
   force?: boolean;
   offline?: boolean;
+  legacy?: boolean; // Use old ZIP-based install
 }
 
 /**
- * Try to install from GitHub release
+ * Try to install from GitHub release (legacy method)
  * Returns the copied folders if successful, null if failed
  */
 async function tryGitHubInstall(
@@ -70,25 +72,42 @@ async function tryGitHubInstall(
     }
 
     if (error instanceof GitHubRateLimitError) {
-      spinner.warn('GitHub rate limit reached, using bundled assets...');
+      spinner.warn('GitHub rate limit reached, using template generation...');
       return null;
     }
 
     if (error instanceof GitHubDownloadError) {
-      spinner.warn('GitHub download failed, using bundled assets...');
+      spinner.warn('GitHub download failed, using template generation...');
       return null;
     }
 
     // Network errors or other fetch failures
     if (error instanceof TypeError && error.message.includes('fetch')) {
-      spinner.warn('Network error, using bundled assets...');
+      spinner.warn('Network error, using template generation...');
       return null;
     }
 
-    // Unknown errors - still fall back to bundled assets
-    spinner.warn('Download failed, using bundled assets...');
+    // Unknown errors - still fall back
+    spinner.warn('Download failed, using template generation...');
     return null;
   }
+}
+
+/**
+ * Install using template generation (new method)
+ */
+async function templateInstall(
+  targetDir: string,
+  aiType: AIType,
+  spinner: ReturnType<typeof ora>
+): Promise<string[]> {
+  spinner.text = 'Generating skill files from templates...';
+
+  if (aiType === 'all') {
+    return generateAllPlatformFiles(targetDir);
+  }
+
+  return generatePlatformFiles(targetDir, aiType);
 }
 
 export async function initCommand(options: InitOptions): Promise<void> {
@@ -128,25 +147,39 @@ export async function initCommand(options: InitOptions): Promise<void> {
   const spinner = ora('Installing files...').start();
   const cwd = process.cwd();
   let copiedFolders: string[] = [];
-  let usedGitHub = false;
+  let installMethod = 'template';
 
   try {
-    // Try GitHub download first (unless offline mode)
-    if (!options.offline) {
-      const githubResult = await tryGitHubInstall(cwd, aiType, spinner);
-      if (githubResult) {
-        copiedFolders = githubResult;
-        usedGitHub = true;
+    // Use legacy ZIP-based install if --legacy flag is set
+    if (options.legacy) {
+      // Try GitHub download first (unless offline mode)
+      if (!options.offline) {
+        const githubResult = await tryGitHubInstall(cwd, aiType, spinner);
+        if (githubResult) {
+          copiedFolders = githubResult;
+          installMethod = 'github';
+        }
       }
+
+      // Fall back to bundled assets if GitHub failed or offline mode
+      if (installMethod !== 'github') {
+        spinner.text = 'Installing from bundled assets...';
+        copiedFolders = await copyFolders(ASSETS_DIR, cwd, aiType);
+        installMethod = 'bundled';
+      }
+    } else {
+      // Use new template-based generation (default)
+      copiedFolders = await templateInstall(cwd, aiType, spinner);
+      installMethod = 'template';
     }
 
-    // Fall back to bundled assets if GitHub failed or offline mode
-    if (!usedGitHub) {
-      spinner.text = 'Installing from bundled assets...';
-      copiedFolders = await copyFolders(ASSETS_DIR, cwd, aiType);
-    }
+    const methodMessage = {
+      github: 'Installed from GitHub release!',
+      bundled: 'Installed from bundled assets!',
+      template: 'Generated from templates!',
+    }[installMethod];
 
-    spinner.succeed(usedGitHub ? 'Installed from GitHub release!' : 'Installed from bundled assets!');
+    spinner.succeed(methodMessage);
 
     // Summary
     console.log();

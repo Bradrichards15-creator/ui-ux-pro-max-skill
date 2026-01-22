@@ -3,7 +3,7 @@
 <p align="center">
   <a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/releases"><img src="https://img.shields.io/github/v/release/nextlevelbuilder/ui-ux-pro-max-skill?style=for-the-badge&color=blue" alt="GitHub Release"></a>
   <img src="https://img.shields.io/badge/reasoning_rules-100-green?style=for-the-badge" alt="100 Reasoning Rules">
-  <img src="https://img.shields.io/badge/UI_styles-57-purple?style=for-the-badge" alt="57 UI Styles">
+  <img src="https://img.shields.io/badge/UI_styles-67-purple?style=for-the-badge" alt="67 UI Styles">
   <img src="https://img.shields.io/badge/python-3.x-yellow?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.x">
   <a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/LICENSE"><img src="https://img.shields.io/github/license/nextlevelbuilder/ui-ux-pro-max-skill?style=for-the-badge&color=green" alt="License"></a>
 </p>
@@ -95,8 +95,8 @@ The flagship feature of v2.0 is the **Design System Generator** - an AI-powered 
 ┌─────────────────────────────────────────────────────────────────┐
 │  2. MULTI-DOMAIN SEARCH (5 parallel searches)                   │
 │     • Product type matching (100 categories)                    │
-│     • Style recommendations (57 styles)                         │
-│     • Color palette selection (95 palettes)                     │
+│     • Style recommendations (67 styles)                         │
+│     • Color palette selection (96 palettes)                     │
 │     • Landing page patterns (24 patterns)                       │
 │     • Typography pairing (56 font combinations)                 │
 └─────────────────────────────────────────────────────────────────┘
@@ -142,11 +142,11 @@ Each rule includes:
 
 ## Features
 
-- **57 UI Styles** - Glassmorphism, Claymorphism, Minimalism, Brutalism, Neumorphism, Bento Grid, Dark Mode, AI-Native UI, and more
-- **95 Color Palettes** - Industry-specific palettes for SaaS, E-commerce, Healthcare, Fintech, Beauty, etc.
+- **67 UI Styles** - Glassmorphism, Claymorphism, Minimalism, Brutalism, Neumorphism, Bento Grid, Dark Mode, AI-Native UI, and more
+- **96 Color Palettes** - Industry-specific palettes for SaaS, E-commerce, Healthcare, Fintech, Beauty, etc.
 - **56 Font Pairings** - Curated typography combinations with Google Fonts imports
-- **24 Chart Types** - Recommendations for dashboards and analytics
-- **11 Tech Stacks** - React, Next.js, Vue, Nuxt.js, Nuxt UI, Svelte, SwiftUI, React Native, Flutter, HTML+Tailwind, shadcn/ui
+- **25 Chart Types** - Recommendations for dashboards and analytics
+- **13 Tech Stacks** - React, Next.js, Astro, Vue, Nuxt.js, Nuxt UI, Svelte, SwiftUI, React Native, Flutter, HTML+Tailwind, shadcn/ui, Jetpack Compose
 - **98 UX Guidelines** - Best practices, anti-patterns, and accessibility rules
 - **100 Reasoning Rules** - Industry-specific design system generation (NEW in v2.0)
 
@@ -174,7 +174,7 @@ cd /path/to/your/project
 uipro init --ai claude      # Claude Code
 uipro init --ai cursor      # Cursor
 uipro init --ai windsurf    # Windsurf
-uipro init --ai antigravity # Antigravity (.agent + .shared)
+uipro init --ai antigravity # Antigravity
 uipro init --ai copilot     # GitHub Copilot
 uipro init --ai kiro        # Kiro
 uipro init --ai codex       # Codex CLI
@@ -183,7 +183,8 @@ uipro init --ai roocode     # Roo Code
 uipro init --ai gemini      # Gemini CLI
 uipro init --ai trae        # Trae
 uipro init --ai opencode    # OpenCode
-uipro init --ai continue    # Continue (Skills)
+uipro init --ai continue    # Continue
+uipro init --ai codebuddy   # CodeBuddy
 uipro init --ai all         # All assistants
 ```
 
@@ -204,15 +205,17 @@ Copy the appropriate folders to your project:
 | Claude Code    | `.claude/skills/ui-ux-pro-max/`                                      |
 | Cursor         | `.cursor/commands/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`       |
 | Windsurf       | `.windsurf/workflows/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`    |
-| Antigravity    | `.agent/workflows/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`       |
+| Antigravity    | `.agent/skills/ui-ux-pro-max/`                                       |
 | GitHub Copilot | `.github/prompts/ui-ux-pro-max.prompt.md` + `.shared/ui-ux-pro-max/` |
 | Kiro           | `.kiro/steering/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`         |
 | Codex CLI      | `.codex/skills/ui-ux-pro-max/`                                       |
 | Qoder          | `.qoder/skills/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`          |
 | Roo Code       | `.roo/rules/ui-ux-pro-max.md` + `.shared/ui-ux-pro-max/`             |
 | Gemini CLI     | `.gemini/skills/ui-ux-pro-max/` + `.shared/ui-ux-pro-max/`           |
-| Trae           | `.trae/skills/ui-ux-pro-max/` + `.shared/ui-ux-pro-max/`             |
-| Continue       | `.continue/skills/ui-ux-pro-max/`                                   |
+| Trae           | `.trae/skills/ui-ux-pro-max/`                                        |
+| OpenCode       | `.opencode/skills/ui-ux-pro-max/`                                    |
+| Continue       | `.continue/skills/ui-ux-pro-max/`                                    |
+| CodeBuddy      | `.codebuddy/skills/ui-ux-pro-max/`                                   |
 
 ## Prerequisites
 
@@ -314,6 +317,22 @@ To use Trae skill, you need to switch to **SOLO** mode. If your request is relat
 
 ```
 Build a landing page (frontend ONLY) for my SaaS product.
+```
+
+### OpenCode
+
+The skill activates automatically when you request UI/UX work:
+
+```
+Build a landing page for my SaaS product
+```
+
+### CodeBuddy
+
+The skill activates automatically when you request UI/UX work:
+
+```
+Build a landing page for my SaaS product
 ```
 
 ### Example Prompts

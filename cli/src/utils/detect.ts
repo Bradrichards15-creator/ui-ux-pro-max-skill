@@ -49,6 +49,9 @@ export function detectAIType(cwd: string = process.cwd()): DetectionResult {
   if (existsSync(join(cwd, '.continue'))) {
     detected.push('continue');
   }
+  if (existsSync(join(cwd, '.codebuddy'))) {
+    detected.push('codebuddy');
+  }
 
   // Suggest based on what's detected
   let suggested: AIType | null = null;
@@ -70,7 +73,7 @@ export function getAITypeDescription(aiType: AIType): string {
     case 'windsurf':
       return 'Windsurf (.windsurf/workflows/ + .shared/)';
     case 'antigravity':
-      return 'Antigravity (.agent/workflows/ + .shared/)';
+      return 'Antigravity (.agent/skills/)';
     case 'copilot':
       return 'GitHub Copilot (.github/prompts/ + .shared/)';
     case 'kiro':
@@ -84,11 +87,13 @@ export function getAITypeDescription(aiType: AIType): string {
     case 'gemini':
       return 'Gemini CLI (.gemini/skills/ + .shared/)';
     case 'trae':
-      return 'Trae (.trae/skills/ + .shared/)';
+      return 'Trae (.trae/skills/)';
     case 'opencode':
-      return 'OpenCode (.opencode/skills/ + .shared/)';
+      return 'OpenCode (.opencode/skills/)';
     case 'continue':
       return 'Continue (.continue/skills/)';
+    case 'codebuddy':
+      return 'CodeBuddy (.codebuddy/skills/)';
     case 'all':
       return 'All AI assistants';
   }
