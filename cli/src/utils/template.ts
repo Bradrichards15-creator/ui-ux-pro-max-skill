@@ -165,23 +165,8 @@ async function copyDataAndScripts(targetSkillDir: string): Promise<void> {
 }
 
 /**
- * Ensure .shared folder exists with data and scripts
- */
-async function ensureSharedExists(targetDir: string): Promise<boolean> {
-  const sharedDir = join(targetDir, '.shared', 'ui-ux-pro-max');
-
-  // Check if already exists
-  if (await exists(sharedDir)) {
-    return false; // Already exists, didn't create
-  }
-
-  await mkdir(sharedDir, { recursive: true });
-  await copyDataAndScripts(sharedDir);
-  return true; // Created new
-}
-
-/**
  * Generate platform files for a specific AI type
+ * All platforms use self-contained installation with data and scripts
  */
 export async function generatePlatformFiles(
   targetDir: string,
@@ -206,17 +191,8 @@ export async function generatePlatformFiles(
   await writeFile(skillFilePath, skillContent, 'utf-8');
   createdFolders.push(config.folderStructure.root);
 
-  // Handle data/scripts based on install type
-  if (config.installType === 'full') {
-    // Full install: copy data and scripts into the skill directory
-    await copyDataAndScripts(skillDir);
-  } else {
-    // Reference install: ensure .shared exists
-    const createdShared = await ensureSharedExists(targetDir);
-    if (createdShared) {
-      createdFolders.push('.shared');
-    }
-  }
+  // Copy data and scripts into the skill directory (self-contained)
+  await copyDataAndScripts(skillDir);
 
   return createdFolders;
 }

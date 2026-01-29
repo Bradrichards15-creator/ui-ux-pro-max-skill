@@ -1,13 +1,13 @@
 {
   "platform": "qoder",
   "displayName": "Qoder",
-  "installType": "reference",
+  "installType": "full",
   "folderStructure": {
     "root": ".qoder",
     "skillPath": "skills/ui-ux-pro-max",
     "filename": "SKILL.md"
   },
-  "scriptPath": ".shared/ui-ux-pro-max/scripts/search.py",
+  "scriptPath": "skills/ui-ux-pro-max/scripts/search.py",
   "frontmatter": {
     "name": "ui-ux-pro-max",
     "description": "UI/UX design intelligence with searchable database"
