@@ -1,13 +1,13 @@
 {
   "platform": "copilot",
   "displayName": "GitHub Copilot",
-  "installType": "reference",
+  "installType": "full",
   "folderStructure": {
     "root": ".github",
-    "skillPath": "prompts",
-    "filename": "ui-ux-pro-max.prompt.md"
+    "skillPath": "prompts/ui-ux-pro-max",
+    "filename": "PROMPT.md"
   },
-  "scriptPath": ".shared/ui-ux-pro-max/scripts/search.py",
+  "scriptPath": "prompts/ui-ux-pro-max/scripts/search.py",
   "frontmatter": null,
   "sections": {
     "quickReference": false

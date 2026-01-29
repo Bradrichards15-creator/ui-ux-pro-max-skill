@@ -1,13 +1,13 @@
 {
   "platform": "kiro",
   "displayName": "Kiro",
-  "installType": "reference",
+  "installType": "full",
   "folderStructure": {
     "root": ".kiro",
-    "skillPath": "steering",
-    "filename": "ui-ux-pro-max.md"
+    "skillPath": "steering/ui-ux-pro-max",
+    "filename": "SKILL.md"
   },
-  "scriptPath": ".shared/ui-ux-pro-max/scripts/search.py",
+  "scriptPath": "steering/ui-ux-pro-max/scripts/search.py",
   "frontmatter": null,
   "sections": {
     "quickReference": false

@@ -1,13 +1,13 @@
 {
   "platform": "windsurf",
   "displayName": "Windsurf",
-  "installType": "reference",
+  "installType": "full",
   "folderStructure": {
     "root": ".windsurf",
-    "skillPath": "skills",
-    "filename": "ui-ux-pro-max.md"
+    "skillPath": "skills/ui-ux-pro-max",
+    "filename": "SKILL.md"
   },
-  "scriptPath": ".shared/ui-ux-pro-max/scripts/search.py",
+  "scriptPath": "skills/ui-ux-pro-max/scripts/search.py",
   "frontmatter": null,
   "sections": {
     "quickReference": false

@@ -311,7 +311,7 @@ winget install Python.Python.3.12
 
 ### Skill Mode (Auto-activate)
 
-**Supported:** Claude Code, Windsurf, Antigravity, Codex CLI, Continue, Gemini CLI, OpenCode, Qoder, CodeBuddy
+**Supported:** Claude Code, Cursor, Windsurf, Antigravity, Codex CLI, Continue, Gemini CLI, OpenCode, Qoder, CodeBuddy
 
 The skill activates automatically when you request UI/UX work. Just chat naturally:
 
@@ -323,7 +323,7 @@ Build a landing page for my SaaS product
 
 ### Workflow Mode (Slash Command)
 
-**Supported:** Cursor, Kiro, GitHub Copilot, Roo Code
+**Supported:** Kiro, GitHub Copilot, Roo Code
 
 Use the slash command to invoke the skill:
 

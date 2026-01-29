@@ -69,23 +69,23 @@ export function getAITypeDescription(aiType: AIType): string {
     case 'claude':
       return 'Claude Code (.claude/skills/)';
     case 'cursor':
-      return 'Cursor (.cursor/commands/ + .shared/)';
+      return 'Cursor (.cursor/skills/)';
     case 'windsurf':
-      return 'Windsurf (.windsurf/skills/ + .shared/)';
+      return 'Windsurf (.windsurf/skills/)';
     case 'antigravity':
       return 'Antigravity (.agent/skills/)';
     case 'copilot':
-      return 'GitHub Copilot (.github/prompts/ + .shared/)';
+      return 'GitHub Copilot (.github/prompts/)';
     case 'kiro':
-      return 'Kiro (.kiro/steering/ + .shared/)';
+      return 'Kiro (.kiro/steering/)';
     case 'codex':
       return 'Codex (.codex/skills/)';
     case 'roocode':
-      return 'RooCode (.roo/commands/ + .shared/)';
+      return 'RooCode (.roo/skills/)';
     case 'qoder':
-      return 'Qoder (.qoder/rules/ + .shared/)';
+      return 'Qoder (.qoder/skills/)';
     case 'gemini':
-      return 'Gemini CLI (.gemini/skills/ + .shared/)';
+      return 'Gemini CLI (.gemini/skills/)';
     case 'trae':
       return 'Trae (.trae/skills/)';
     case 'opencode':
