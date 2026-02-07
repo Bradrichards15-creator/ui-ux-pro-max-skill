@@ -1,4 +1,4 @@
-# UI UX Pro Max
+# UI UX Pro Max - [www.uupm.cc](https://uupm.cc)
  
 <p align="center">
   <a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/releases"><img src="https://img.shields.io/github/v/release/nextlevelbuilder/ui-ux-pro-max-skill?style=for-the-badge&color=blue" alt="GitHub Release"></a>
@@ -18,7 +18,9 @@
 An AI skill that provides design intelligence for building professional UI/UX across multiple platforms and frameworks.
 
 <p align="center">
-  <img src="screenshots/website.png" alt="UI UX Pro Max" width="800">
+  <a href="https://uupm.cc">
+    <img src="screenshots/website.png" alt="UI UX Pro Max" width="800">
+  </a>
 </p>
 
 <p align="center">
