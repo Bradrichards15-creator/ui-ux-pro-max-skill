@@ -52,6 +52,9 @@ export function detectAIType(cwd: string = process.cwd()): DetectionResult {
   if (existsSync(join(cwd, '.codebuddy'))) {
     detected.push('codebuddy');
   }
+  if (existsSync(join(cwd, '.factory'))) {
+    detected.push('droid');
+  }
 
   // Suggest based on what's detected
   let suggested: AIType | null = null;
@@ -94,6 +97,8 @@ export function getAITypeDescription(aiType: AIType): string {
       return 'Continue (.continue/skills/)';
     case 'codebuddy':
       return 'CodeBuddy (.codebuddy/skills/)';
+    case 'droid':
+      return 'Droid (Factory) (.factory/skills/)';
     case 'all':
       return 'All AI assistants';
   }
