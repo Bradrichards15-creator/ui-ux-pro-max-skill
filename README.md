@@ -29,8 +29,8 @@ An AI skill that provides design intelligence for building professional UI/UX ac
 </p>
 
 <p align="center">
-  <i>A product of</i><br>
-  <a href="https://nextlevelbuilder.com">Next Level Builder</a> | <a href="https://claudekit.cc">ClaudeKit</a>
+  <i>Other projects</i><br>
+  <a href="https://nextlevelbuilder.io">Next Level Builder</a> | <a href="https://claudekit.cc">ClaudeKit</a>
 </p>
 
 ## What's New in v2.0
