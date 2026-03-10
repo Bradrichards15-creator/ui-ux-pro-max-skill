@@ -103,7 +103,7 @@ The flagship feature of v2.0 is the **Design System Generator** - an AI-powered 
 │  2. MULTI-DOMAIN SEARCH (5 parallel searches)                   │
 │     • Product type matching (161 categories)                    │
 │     • Style recommendations (67 styles)                         │
-│     • Color palette selection (178 palettes)                    │
+│     • Color palette selection (161 palettes)                    │
 │     • Landing page patterns (24 patterns)                       │
 │     • Typography pairing (57 font combinations)                 │
 └─────────────────────────────────────────────────────────────────┘
@@ -151,7 +151,7 @@ Each rule includes:
 ## Features
 
 - **67 UI Styles** - Glassmorphism, Claymorphism, Minimalism, Brutalism, Neumorphism, Bento Grid, Dark Mode, AI-Native UI, and more
-- **178 Color Palettes** - Industry-specific palettes for SaaS, E-commerce, Healthcare, Fintech, Beauty, and 161 product types + 17 mobile styles
+- **161 Color Palettes** - Industry-specific palettes aligned 1:1 with the 161 product types
 - **57 Font Pairings** - Curated typography combinations with Google Fonts imports
 - **25 Chart Types** - Recommendations for dashboards and analytics
 - **13 Tech Stacks** - React, Next.js, Astro, Vue, Nuxt.js, Nuxt UI, Svelte, SwiftUI, React Native, Flutter, HTML+Tailwind, shadcn/ui, Jetpack Compose

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
 Sync colors.csv and ui-reasoning.csv with the updated products.csv (161 entries).
-- Remove 6 deleted product types
+- Remove deleted product types
 - Rename mismatched entries
 - Add new entries for missing product types
-- Keep Mobile style entries in colors.csv
+- Keep colors.csv aligned 1:1 with products.csv
 - Renumber everything
 """
 import csv, os, json
@@ -194,14 +194,9 @@ def rebuild_colors():
 
     # Build lookup: Product Type -> row data
     color_map = {}
-    mobile_rows = []
     for row in existing:
         pt = row.get("Product Type", "").strip()
         if not pt:
-            continue
-        # Check if it's a Mobile style entry (not a product type)
-        if pt.endswith("Mobile") or pt.endswith("Mobile App") or pt.endswith("Mobile HUD") or pt.endswith("Mobile High-Tech Boutique"):
-            mobile_rows.append(row)
             continue
         # Remove deleted types
         if pt in REMOVE_TYPES:
@@ -241,12 +236,6 @@ def rebuild_colors():
             final_rows.append(d)
             added += 1
 
-    # Append Mobile style rows at the end
-    start_mobile = len(final_rows) + 1
-    for i, row in enumerate(mobile_rows, start_mobile):
-        row["No"] = str(i)
-        final_rows.append(row)
-
     # Write
     with open(src, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=headers)
@@ -254,8 +243,7 @@ def rebuild_colors():
         writer.writerows(final_rows)
 
     product_count = len(products)
-    mobile_count = len(mobile_rows)
-    print(f"\n  ✅ colors.csv: {len(final_rows)} rows ({product_count} products + {mobile_count} mobile styles)")
+    print(f"\n  ✅ colors.csv: {len(final_rows)} rows ({product_count} products)")
     print(f"     Added: {added} new color rows")
 
 # ─── 2. REBUILD ui-reasoning.csv ─────────────────────────────────────────────
