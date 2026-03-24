@@ -26,8 +26,9 @@ async function removeSkillDir(baseDir: string, aiType: Exclude<AIType, 'all'>): 
     try {
       await rm(skillDir, { recursive: true, force: true });
       removed.push(`${folder}/skills/ui-ux-pro-max`);
-    } catch {
-      // Directory doesn't exist, skip
+    } catch (err: unknown) {
+      // Re-throw permission errors; force:true already handles ENOENT
+      if ((err as NodeJS.ErrnoException).code !== 'ENOENT') throw err;
     }
   }
 
@@ -42,10 +43,11 @@ export async function uninstallCommand(options: UninstallOptions): Promise<void>
   const locationLabel = isGlobal ? '~/ (global)' : process.cwd();
 
   let aiType = options.ai;
+  const { detected: initialDetected } = detectAIType(baseDir);
 
   // Auto-detect or prompt for AI type
   if (!aiType) {
-    const { detected } = detectAIType(baseDir);
+    const detected = initialDetected;
 
     if (detected.length === 0) {
       logger.warn('No installed AI skill directories detected.');
@@ -97,8 +99,7 @@ export async function uninstallCommand(options: UninstallOptions): Promise<void>
 
     if (aiType === 'all') {
       // Remove for all detected platforms
-      const { detected } = detectAIType(baseDir);
-      for (const type of detected) {
+      for (const type of initialDetected) {
         const removed = await removeSkillDir(baseDir, type);
         allRemoved.push(...removed);
       }

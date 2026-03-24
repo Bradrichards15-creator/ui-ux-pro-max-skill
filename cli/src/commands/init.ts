@@ -158,6 +158,9 @@ export async function initCommand(options: InitOptions): Promise<void> {
   try {
     // Use legacy ZIP-based install if --legacy flag is set
     if (options.legacy) {
+      if (isGlobal) {
+        spinner.warn('--global is not supported with --legacy mode, installing locally instead');
+      }
       // Try GitHub download first (unless offline mode)
       if (!options.offline) {
         const githubResult = await tryGitHubInstall(cwd, aiType, spinner);

@@ -43,7 +43,9 @@ export interface PlatformConfig {
 
 export const AI_TYPES: AIType[] = ['claude', 'cursor', 'windsurf', 'antigravity', 'copilot', 'roocode', 'kiro', 'codex', 'qoder', 'gemini', 'trae', 'opencode', 'continue', 'codebuddy', 'droid', 'kilocode', 'warp', 'augment', 'all'];
 
-// Legacy folder mapping for backward compatibility with ZIP-based installs
+// Legacy folder mapping for backward compatibility with ZIP-based installs.
+// Note: .shared is included for platforms that used ZIP installs. Post-ZIP platforms
+// (kilocode, warp, augment) include .shared as a no-op for consistent uninstall behavior.
 export const AI_FOLDERS: Record<Exclude<AIType, 'all'>, string[]> = {
   claude: ['.claude'],
   cursor: ['.cursor', '.shared'],
