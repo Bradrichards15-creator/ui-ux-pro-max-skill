@@ -74,6 +74,8 @@ CSV_CONFIG = {
 
 STACK_CONFIG = {
     "react-native": {"file": "stacks/react-native.csv"},
+    "angular": {"file": "stacks/angular.csv"},
+    "laravel": {"file": "stacks/laravel.csv"},
 }
 
 # Common columns for all stacks
