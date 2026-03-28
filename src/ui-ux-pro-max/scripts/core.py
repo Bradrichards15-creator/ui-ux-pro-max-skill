@@ -87,6 +87,8 @@ STACK_CONFIG = {
     "shadcn":           {"file": "stacks/shadcn.csv"},
     "jetpack-compose":  {"file": "stacks/jetpack-compose.csv"},
     "threejs":          {"file": "stacks/threejs.csv"},
+    "angular":          {"file": "stacks/angular.csv"},
+    "laravel":          {"file": "stacks/laravel.csv"},
 }
 
 # Common columns for all stacks

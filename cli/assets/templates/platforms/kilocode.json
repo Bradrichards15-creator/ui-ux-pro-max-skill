@@ -1,9 +1,9 @@
 {
-  "platform": "windsurf",
-  "displayName": "Windsurf",
+  "platform": "kilocode",
+  "displayName": "KiloCode",
   "installType": "full",
   "folderStructure": {
-    "root": ".windsurf",
+    "root": ".kilocode",
     "skillPath": "skills/ui-ux-pro-max",
     "filename": "SKILL.md"
   },
