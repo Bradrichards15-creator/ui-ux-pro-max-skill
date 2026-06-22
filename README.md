@@ -508,6 +508,24 @@ gh pr create
 
 See [CLAUDE.md](CLAUDE.md) for detailed development guidelines.
 
+
+## Automated Releases
+
+This repository uses semantic-release with Conventional Commits to create GitHub releases automatically:
+
+- `dev` branch creates beta GitHub prereleases such as `2.6.0-beta.1`.
+- `main` branch creates official stable GitHub releases such as `2.6.0`.
+
+Release notes and `CHANGELOG.md` are generated from Conventional Commit messages. Version numbers are synchronized across `skill.json`, `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `cli/package.json`, and `cli/package-lock.json` during release preparation.
+
+Use these commit types for correct version bumps:
+
+- `fix:` -> patch release
+- `feat:` -> minor release
+- `feat!:` or `BREAKING CHANGE:` -> major release
+
+The release workflow only needs the default `GITHUB_TOKEN`; it does not publish to npm.
+
 ## Troubleshooting
 
 ### `uipro: unknown command 'uninstall'` or `unknown command 'update'`
