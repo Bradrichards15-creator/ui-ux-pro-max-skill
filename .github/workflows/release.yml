@@ -52,13 +52,14 @@ jobs:
       - name: Run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx --yes \
-          -p semantic-release \
-          -p @semantic-release/commit-analyzer \
-          -p @semantic-release/release-notes-generator \
-          -p @semantic-release/changelog \
-          -p @semantic-release/exec \
-          -p @semantic-release/git \
-          -p @semantic-release/github \
-          -p conventional-changelog-conventionalcommits \
-          semantic-release
+        run: |
+          npx --yes \
+            -p semantic-release \
+            -p @semantic-release/commit-analyzer \
+            -p @semantic-release/release-notes-generator \
+            -p @semantic-release/changelog \
+            -p @semantic-release/exec \
+            -p @semantic-release/git \
+            -p @semantic-release/github \
+            -p conventional-changelog-conventionalcommits \
+            semantic-release
