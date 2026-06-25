@@ -35,7 +35,7 @@ export async function versionsCommand(options: VersionsOptions = {}): Promise<vo
     });
 
     console.log();
-    logger.dim('Use: uipro init --version <tag> to install a specific version');
+    logger.dim('Update the CLI package first, then run: uipro init --ai <platform>');
   } catch (error) {
     spinner.fail('Failed to fetch versions');
     if (error instanceof Error) {

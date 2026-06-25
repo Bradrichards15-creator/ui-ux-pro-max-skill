@@ -27,7 +27,7 @@ program
   .description('Install UI/UX Pro Max skill to current project')
   .option('-a, --ai <type>', `AI assistant type (${AI_TYPES.join(', ')})`)
   .option('-f, --force', 'Overwrite existing files')
-  .option('-o, --offline', 'Skip GitHub download, use bundled assets only')
+  .option('-o, --offline', 'Compatibility flag; template installs use bundled assets')
   .option('-g, --global', 'Install globally to home directory (~/) instead of current project')
   .option('-t, --token <token>', 'GitHub Personal Access Token for higher API rate limits')
   .action(async (options) => {

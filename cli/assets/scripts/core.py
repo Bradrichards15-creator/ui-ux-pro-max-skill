@@ -73,7 +73,20 @@ CSV_CONFIG = {
 }
 
 STACK_CONFIG = {
+    "react":            {"file": "stacks/react.csv"},
+    "nextjs":           {"file": "stacks/nextjs.csv"},
+    "vue":              {"file": "stacks/vue.csv"},
+    "svelte":           {"file": "stacks/svelte.csv"},
+    "astro":            {"file": "stacks/astro.csv"},
+    "swiftui":          {"file": "stacks/swiftui.csv"},
     "react-native":     {"file": "stacks/react-native.csv"},
+    "flutter":          {"file": "stacks/flutter.csv"},
+    "nuxtjs":           {"file": "stacks/nuxtjs.csv"},
+    "nuxt-ui":          {"file": "stacks/nuxt-ui.csv"},
+    "html-tailwind":    {"file": "stacks/html-tailwind.csv"},
+    "shadcn":           {"file": "stacks/shadcn.csv"},
+    "jetpack-compose":  {"file": "stacks/jetpack-compose.csv"},
+    "threejs":          {"file": "stacks/threejs.csv"},
     "angular":          {"file": "stacks/angular.csv"},
     "laravel":          {"file": "stacks/laravel.csv"},
     "javafx":           {"file": "stacks/javafx.csv"},
@@ -105,7 +118,7 @@ class BM25:
     def tokenize(self, text):
         """Lowercase, split, remove punctuation, filter short words"""
         text = re.sub(r'[^\w\s]', ' ', str(text).lower())
-        return [w for w in text.split() if len(w) > 2]
+        return [w for w in text.split() if len(w) >= 2]
 
     def fit(self, documents):
         """Build BM25 index from documents"""
