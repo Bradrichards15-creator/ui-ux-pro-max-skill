@@ -245,10 +245,12 @@ class DesignSystemGenerator:
         best_typography = typography_results[0] if typography_results else {}
         best_landing = landing_results[0] if landing_results else {}
 
-        # MOTION_INTENSITY dial: pull a matching GSAP skeleton from motion.csv.
+        # MOTION_INTENSITY dial: pull a matching GSAP skeleton from motion.csv
+        # (domain key is "gsap", not "motion" - PR #296 already owns the "motion"
+        # domain for Emil Kowalski's motion-design principles, motion-principles.csv).
         motion_snippet = {}
         if motion_info:
-            motion_result = search(f"{query} {motion_info['tier']}", "motion", 5)
+            motion_result = search(f"{query} {motion_info['tier']}", "gsap", 5)
             motion_matches = motion_result.get("results", [])
             tiered = [m for m in motion_matches if m.get("Intensity Tier") == motion_info["tier"]]
             if tiered:
