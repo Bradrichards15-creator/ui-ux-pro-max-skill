@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start a conversation — The Tender Specialist</title>
+  <meta name="description" content="No forms, no pitch. Tell me what you're dealing with and I'll come back to you within one working day.">
+  <link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    /* Self-hosted variable fonts (latin subsets) — no third-party requests */
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url('assets/fonts/fraunces-latin.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url('assets/fonts/inter-latin.woff2') format('woff2');
+    }
+
+    :root {
+      --paper: #FBFAF7;
+      --surface: #FFFFFF;
+      --ink: #23272A;
+      --muted: #5D6167;
+      --faint: #8A8E93;
+      --line: #E8E4DC;
+      --accent: #1D5B4B;
+      --accent-deep: #14453A;
+      --accent-wash: #EEF3F0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    ::selection { background: var(--accent); color: #fff; }
+
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    .skip-link {
+      position: absolute; left: -999px; top: 0.75rem;
+      background: var(--ink); color: #fff; padding: 0.6rem 1rem;
+      border-radius: 4px; z-index: 200; text-decoration: none; font-size: 0.9rem;
+    }
+    .skip-link:focus { left: 0.75rem; }
+
+    header.site {
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      max-width: 68rem; margin: 0 auto; padding: 1.1rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .wordmark {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.15rem; font-weight: 560; letter-spacing: -0.01em;
+      text-decoration: none; color: var(--ink);
+    }
+    .wordmark span { color: var(--accent); }
+    .back-link {
+      font-size: 0.9375rem; font-weight: 500; color: var(--muted);
+      text-decoration: none; transition: color 0.2s ease;
+    }
+    .back-link:hover { color: var(--ink); }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 4.5rem 1.5rem 6rem;
+    }
+    .conversation {
+      width: 100%;
+      max-width: 40rem;
+    }
+
+    /* ---------- Progress ---------- */
+    .progress {
+      display: flex; gap: 0.5rem; margin-bottom: 3rem;
+    }
+    .progress i {
+      display: block; height: 2px; flex: 1;
+      background: var(--line); border-radius: 2px;
+      transition: background 0.4s ease;
+    }
+    .progress i.done { background: var(--accent); }
+
+    /* ---------- Steps ---------- */
+    .step { display: none; }
+    .step.active { display: block; }
+
+    .q-eyebrow {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .q {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 480;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+    }
+    .q-hint { color: var(--muted); margin-top: 0.9rem; font-size: 1rem; }
+
+    .options { display: grid; gap: 0.75rem; margin-top: 2.25rem; }
+    .option {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      width: 100%; text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.15rem 1.4rem;
+      font-family: inherit; font-size: 1.0325rem; color: var(--ink);
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+      min-height: 44px;
+    }
+    .option:hover { border-color: var(--accent); background: var(--accent-wash); transform: translateY(-1px); }
+    .option svg { flex: none; opacity: 0; transform: translateX(-4px); transition: opacity 0.2s ease, transform 0.2s ease; }
+    .option:hover svg { opacity: 1; transform: translateX(0); }
+    .option small { display: block; color: var(--muted); font-size: 0.9rem; margin-top: 0.15rem; }
+
+    /* ---------- Inputs ---------- */
+    .field { margin-top: 2.25rem; }
+    .field + .field { margin-top: 1.5rem; }
+    label {
+      display: block; font-size: 0.9375rem; font-weight: 500; margin-bottom: 0.5rem;
+    }
+    label .opt { color: var(--faint); font-weight: 400; }
+    input[type="text"], input[type="email"], input[type="tel"], textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.9rem 1.1rem;
+      font-family: inherit; font-size: 1rem; color: var(--ink);
+      transition: border-color 0.2s ease;
+      min-height: 44px;
+    }
+    input:focus, textarea:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--accent-wash); }
+    textarea { min-height: 8.5rem; resize: vertical; line-height: 1.6; }
+    .error-msg {
+      display: none; color: #B4372E; font-size: 0.9rem; margin-top: 0.5rem;
+    }
+    .field.has-error .error-msg { display: block; }
+    .field.has-error input { border-color: #B4372E; }
+
+    /* ---------- Step controls ---------- */
+    .controls {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 2.5rem; gap: 1rem;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent); color: #fff;
+      font-family: inherit; font-size: 1rem; font-weight: 500;
+      padding: 0.9rem 1.8rem; border-radius: 999px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.25s ease, transform 0.25s ease;
+      min-height: 44px;
+    }
+    .btn:hover { background: var(--accent-deep); transform: translateY(-1px); }
+    .btn-back {
+      background: none; border: none; cursor: pointer;
+      font-family: inherit; font-size: 0.9375rem; font-weight: 500;
+      color: var(--muted); padding: 0.75rem 0.25rem;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: color 0.2s ease;
+      min-height: 44px;
+    }
+    .btn-back:hover { color: var(--ink); }
+    .btn-back[hidden] { display: none; }
+
+    /* ---------- Summary ---------- */
+    .summary-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.75rem;
+      margin-top: 2.25rem;
+    }
+    .summary-row { display: flex; gap: 1rem; padding: 0.65rem 0; font-size: 0.975rem; }
+    .summary-row + .summary-row { border-top: 1px solid var(--line); }
+    .summary-row dt { flex: 0 0 9rem; color: var(--faint); }
+    .summary-row dd { color: var(--ink); }
+
+    /* ---------- Done ---------- */
+    .done-mark {
+      width: 4rem; height: 4rem; border-radius: 999px;
+      background: var(--accent-wash);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.75rem;
+    }
+
+    footer.site {
+      border-top: 1px solid var(--line);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.9rem; color: var(--faint);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site">
+    <div class="nav">
+      <a class="wordmark" href="index.html" aria-label="The Tender Specialist — home">The Tender<span> Specialist</span></a>
+      <a class="back-link" href="index.html">&larr; Back to the site</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="conversation">
+      <div class="progress" aria-hidden="true" id="progress">
+        <i></i><i></i><i></i><i></i><i></i>
+      </div>
+
+      <form id="convo" novalidate>
+
+        <!-- STEP 1 -->
+        <section class="step active" data-step="1" aria-labelledby="q1">
+          <p class="q-eyebrow">Let's keep this simple</p>
+          <h1 class="q" id="q1">What brings you here today?</h1>
+          <p class="q-hint">Pick whichever is closest. There are no wrong answers.</p>
+          <div class="options" role="group" aria-labelledby="q1">
+            <button type="button" class="option" data-answer="reason" data-value="A live tender with a deadline">
+              <span>A tender's just landed<small>There's a live deadline and it matters.</small></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <button type="button" class="option" data-answer="reason" data-value="Keep losing bids and want to know why">
+              <span>We keep coming second<small>Bids go in, results come back — and it's always a near miss.</small></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <button type="button" class="option" data-answer="reason" data-value="Want to get tender-ready before the next opportunity">
+              <span>We want to get tender-ready<small>Nothing live yet — but the next one shouldn't be a scramble.</small></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <button type="button" class="option" data-answer="reason" data-value="Something else">
+              <span>Something else<small>Not quite any of these — you can explain in a moment.</small></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="step" data-step="2" aria-labelledby="q2" hidden>
+          <p class="q-eyebrow">Good — that helps</p>
+          <h2 class="q" id="q2">What does the situation look like?</h2>
+          <p class="q-hint">A couple of sentences is plenty. What's the contract, who's it with, what's on your mind?</p>
+          <div class="field">
+            <label for="situation">In your own words <span class="opt">(optional)</span></label>
+            <textarea id="situation" name="situation" autocomplete="off" placeholder="e.g. A council cleaning contract, worth around £400k a year. Deadline in three weeks and we've never bid for something this size."></textarea>
+          </div>
+          <div class="controls">
+            <button type="button" class="btn-back" data-back>&larr; Back</button>
+            <button type="button" class="btn" data-next>Continue
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="step" data-step="3" aria-labelledby="q3" hidden>
+          <p class="q-eyebrow">Nearly there</p>
+          <h2 class="q" id="q3">When do you need help?</h2>
+          <div class="options" role="group" aria-labelledby="q3">
+            <button type="button" class="option" data-answer="timing" data-value="This week — deadline looming">
+              <span>This week<small>The deadline is close. I'll prioritise getting back to you.</small></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <button type="button" class="option" data-answer="timing" data-value="In the next month or so">
+              <span>In the next month or so<small>There's a bit of runway, but not forever.</small></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <button type="button" class="option" data-answer="timing" data-value="No rush — planning ahead">
+              <span>No rush — planning ahead<small>Thinking about the bigger picture.</small></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <div class="controls">
+            <button type="button" class="btn-back" data-back>&larr; Back</button>
+            <span></span>
+          </div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="step" data-step="4" aria-labelledby="q4" hidden>
+          <p class="q-eyebrow">Last practical bit</p>
+          <h2 class="q" id="q4">Where should I reach you?</h2>
+          <p class="q-hint">A name and one way to get hold of you — whichever you prefer.</p>
+          <div class="field" data-field="name">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+            <p class="error-msg" role="alert">A first name is all I need — just so I know who I'm writing to.</p>
+          </div>
+          <div class="field" data-field="contact">
+            <label for="contactDetail">Email or phone number</label>
+            <input type="text" id="contactDetail" name="contactDetail" autocomplete="email" inputmode="email" required>
+            <p class="error-msg" role="alert">I'll need an email or a number to come back to you on.</p>
+          </div>
+          <div class="field">
+            <label for="company">Your business <span class="opt">(optional)</span></label>
+            <input type="text" id="company" name="company" autocomplete="organization" placeholder="Company name, and what you do">
+          </div>
+          <div class="controls">
+            <button type="button" class="btn-back" data-back>&larr; Back</button>
+            <button type="button" class="btn" data-next>Continue
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </section>
+
+        <!-- STEP 5: summary -->
+        <section class="step" data-step="5" aria-labelledby="q5" hidden>
+          <p class="q-eyebrow">One last look</p>
+          <h2 class="q" id="q5">Here's what you're sending.</h2>
+          <p class="q-hint">If anything's not right, step back and change it.</p>
+          <div class="summary-card">
+            <dl>
+              <div class="summary-row"><dt>Reason</dt><dd id="sumReason">—</dd></div>
+              <div class="summary-row"><dt>Situation</dt><dd id="sumSituation">—</dd></div>
+              <div class="summary-row"><dt>Timing</dt><dd id="sumTiming">—</dd></div>
+              <div class="summary-row"><dt>Name</dt><dd id="sumName">—</dd></div>
+              <div class="summary-row"><dt>Contact</dt><dd id="sumContact">—</dd></div>
+              <div class="summary-row"><dt>Business</dt><dd id="sumCompany">—</dd></div>
+            </dl>
+          </div>
+          <div class="controls">
+            <button type="button" class="btn-back" data-back>&larr; Back</button>
+            <button type="submit" class="btn">Send it over
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+          </div>
+        </section>
+
+        <!-- STEP 6: done -->
+        <section class="step" data-step="6" aria-labelledby="q6" hidden>
+          <div class="done-mark" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h2 class="q" id="q6">Thanks — it's with me.</h2>
+          <p class="q-hint" style="max-width: 30rem;">I read every message personally and I'll come back to you within one working day. If your deadline is this week, sooner.</p>
+          <p class="q-hint" style="max-width: 30rem;">In the meantime, put the kettle on. The tender can wait an hour.</p>
+          <div class="controls" style="justify-content: flex-start;">
+            <a class="btn" href="index.html" style="background: var(--ink);">Back to the site</a>
+          </div>
+        </section>
+
+      </form>
+    </div>
+  </main>
+
+  <footer class="site">
+    <p>&copy; 2026 The Tender Specialist &nbsp;&middot;&nbsp; Usually a reply within one working day.</p>
+  </footer>
+
+  <script src="assets/gsap.min.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById('convo');
+      var steps = Array.prototype.slice.call(form.querySelectorAll('.step'));
+      var bars = document.querySelectorAll('#progress i');
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var hasGsap = typeof gsap !== 'undefined' && !reduceMotion;
+      var current = 0;
+      var history = [];
+      var answers = { reason: '', situation: '', timing: '', name: '', contact: '', company: '' };
+
+      function updateProgress(index) {
+        bars.forEach(function (bar, i) {
+          bar.classList.toggle('done', i < Math.min(index + 1, bars.length));
+        });
+      }
+
+      function show(index, goingBack) {
+        var from = steps[current];
+        var to = steps[index];
+        if (from === to) return;
+
+        var swap = function () {
+          from.classList.remove('active');
+          from.hidden = true;
+          to.hidden = false;
+          to.classList.add('active');
+          updateProgress(index);
+          current = index;
+          // Move focus to the step heading for screen readers / keyboard users
+          var heading = to.querySelector('.q');
+          if (heading) {
+            heading.setAttribute('tabindex', '-1');
+            heading.focus({ preventScroll: true });
+          }
+          window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+          if (hasGsap) {
+            gsap.fromTo(to, { autoAlpha: 0, y: goingBack ? -18 : 24 },
+              { autoAlpha: 1, y: 0, duration: 0.55, ease: 'power2.out' });
+          }
+        };
+
+        if (hasGsap) {
+          gsap.to(from, {
+            autoAlpha: 0, y: goingBack ? 14 : -18, duration: 0.3, ease: 'power2.in',
+            onComplete: function () { gsap.set(from, { clearProps: 'all' }); swap(); }
+          });
+        } else {
+          swap();
+        }
+      }
+
+      function next(index) {
+        history.push(current);
+        show(index, false);
+      }
+
+      // Option buttons advance automatically — one tap, no "continue" needed
+      form.addEventListener('click', function (e) {
+        var opt = e.target.closest('.option');
+        if (opt) {
+          answers[opt.getAttribute('data-answer')] = opt.getAttribute('data-value');
+          next(current + 1);
+          return;
+        }
+        if (e.target.closest('[data-back]')) {
+          var prev = history.pop();
+          if (typeof prev === 'number') show(prev, true);
+          return;
+        }
+        var nextBtn = e.target.closest('[data-next]');
+        if (nextBtn) {
+          var stepEl = steps[current];
+          // Step 2: free text, always valid
+          if (stepEl.dataset.step === '2') {
+            answers.situation = document.getElementById('situation').value.trim();
+            next(current + 1);
+          }
+          // Step 4: needs a name and a way to reply
+          if (stepEl.dataset.step === '4') {
+            var ok = true;
+            var nameField = stepEl.querySelector('[data-field="name"]');
+            var contactField = stepEl.querySelector('[data-field="contact"]');
+            var nameVal = document.getElementById('name').value.trim();
+            var contactVal = document.getElementById('contactDetail').value.trim();
+            nameField.classList.toggle('has-error', !nameVal);
+            contactField.classList.toggle('has-error', !contactVal);
+            if (!nameVal) { document.getElementById('name').focus(); ok = false; }
+            else if (!contactVal) { document.getElementById('contactDetail').focus(); ok = false; }
+            if (!ok) return;
+            answers.name = nameVal;
+            answers.contact = contactVal;
+            answers.company = document.getElementById('company').value.trim();
+            fillSummary();
+            next(current + 1);
+          }
+        }
+      });
+
+      // Clear inline errors as the visitor types
+      ['name', 'contactDetail'].forEach(function (id) {
+        document.getElementById(id).addEventListener('input', function () {
+          this.closest('.field').classList.remove('has-error');
+        });
+      });
+
+      function fillSummary() {
+        document.getElementById('sumReason').textContent = answers.reason || '—';
+        document.getElementById('sumSituation').textContent = answers.situation || 'Left blank — we’ll cover it when we talk.';
+        document.getElementById('sumTiming').textContent = answers.timing || '—';
+        document.getElementById('sumName').textContent = answers.name || '—';
+        document.getElementById('sumContact').textContent = answers.contact || '—';
+        document.getElementById('sumCompany').textContent = answers.company || '—';
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        // Wire this to your form backend (Formspree, Netlify Forms, or your own
+        // endpoint). The mailto below is a working fallback so nothing is lost.
+        var body = [
+          'Reason: ' + answers.reason,
+          'Situation: ' + (answers.situation || '(left blank)'),
+          'Timing: ' + answers.timing,
+          'Name: ' + answers.name,
+          'Contact: ' + answers.contact,
+          'Business: ' + (answers.company || '(left blank)')
+        ].join('\n');
+        var link = 'mailto:hello@thetenderspecialist.co.uk'
+          + '?subject=' + encodeURIComponent('Enquiry from ' + answers.name)
+          + '&body=' + encodeURIComponent(body);
+        window.location.href = link;
+        next(current + 1);
+      });
+
+      updateProgress(0);
+    })();
+  </script>
+</body>
+</html>

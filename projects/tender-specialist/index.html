@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Tender Specialist — Win the tenders your work deserves</title>
+  <meta name="description" content="Bid writing and tender support for UK construction, FM, cleaning and engineering businesses. You already know how to deliver the work. I help you say it the way evaluation panels score it.">
+  <meta property="og:title" content="The Tender Specialist — Win the tenders your work deserves">
+  <meta property="og:description" content="Bid writing and tender support for busy UK businesses. Clear, calm, and written the way evaluators score.">
+  <meta property="og:type" content="website">
+  <link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    /* Self-hosted variable fonts (latin subsets) — no third-party requests */
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url('assets/fonts/fraunces-latin.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url('assets/fonts/inter-latin.woff2') format('woff2');
+    }
+
+    :root {
+      --paper: #FBFAF7;
+      --surface: #FFFFFF;
+      --ink: #23272A;
+      --muted: #5D6167;
+      --faint: #8A8E93;
+      --line: #E8E4DC;
+      --accent: #1D5B4B;
+      --accent-deep: #14453A;
+      --accent-wash: #EEF3F0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    ::selection { background: var(--accent); color: #fff; }
+
+    h1, h2, h3, .serif {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 480;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    a { color: inherit; }
+
+    .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+    .wrap-narrow { max-width: 44rem; margin: 0 auto; padding: 0 1.5rem; }
+
+    .label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .lede { font-size: 1.1875rem; color: var(--muted); }
+
+    /* ---------- Skip link ---------- */
+    .skip-link {
+      position: absolute; left: -999px; top: 0.75rem;
+      background: var(--ink); color: #fff; padding: 0.6rem 1rem;
+      border-radius: 4px; z-index: 200; text-decoration: none; font-size: 0.9rem;
+    }
+    .skip-link:focus { left: 0.75rem; }
+
+    /* ---------- Focus ---------- */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* ---------- Nav ---------- */
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(251, 250, 247, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    header.site.scrolled { border-bottom-color: var(--line); }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 1.5rem;
+    }
+    .wordmark {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.15rem; font-weight: 560; letter-spacing: -0.01em;
+      text-decoration: none; white-space: nowrap;
+    }
+    .wordmark span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.9375rem; font-weight: 500;
+      color: var(--muted); transition: color 0.2s ease; padding: 0.5rem 0;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .btn {
+      display: inline-block;
+      background: var(--ink); color: #fff;
+      font-size: 0.9375rem; font-weight: 500;
+      padding: 0.75rem 1.5rem; border-radius: 999px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+    .btn:hover { background: var(--accent-deep); transform: translateY(-1px); }
+    .btn-accent { background: var(--accent); }
+    .btn-accent:hover { background: var(--accent-deep); }
+    .btn-lg { padding: 1rem 2rem; font-size: 1rem; }
+    .btn .label-short { display: none; }
+    @media (max-width: 720px) {
+      .nav-links li.link-item { display: none; }
+      .wordmark { font-size: 1rem; }
+      .nav .btn { padding: 0.6rem 1.1rem; font-size: 0.875rem; white-space: nowrap; }
+      .nav .btn .label-full { display: none; }
+      .nav .btn .label-short { display: inline; }
+    }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: 5.5rem 0 4rem; }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+      max-width: 17ch;
+      margin: 1.25rem auto 0;
+      text-align: center;
+    }
+    .hero .lede {
+      max-width: 38rem; margin: 1.75rem auto 0; text-align: center;
+    }
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; margin-top: 2.5rem; flex-wrap: wrap; }
+    .btn-quiet {
+      display: inline-block; font-size: 1rem; font-weight: 500;
+      color: var(--ink); text-decoration: none;
+      padding: 1rem 0.5rem;
+      border-bottom: 1px solid var(--line);
+      transition: border-color 0.25s ease;
+    }
+    .btn-quiet:hover { border-color: var(--ink); }
+    .hero-eyebrow { text-align: center; }
+
+    /* ---------- Hero illustration ---------- */
+    .hero-stage { max-width: 46rem; margin: 4rem auto 0; position: relative; }
+    .hero-stage svg { width: 100%; height: auto; display: block; }
+    .stage-caption {
+      position: relative; height: 2.5rem; margin-top: 1.25rem; text-align: center;
+    }
+    .stage-caption span {
+      position: absolute; left: 0; right: 0;
+      font-size: 0.9375rem; color: var(--faint); font-style: italic;
+      font-family: 'Fraunces', Georgia, serif;
+      opacity: 0;
+    }
+    .stage-caption span:last-child { opacity: 1; }
+
+    /* Illustration line style */
+    /* Stress-scene props (questions, ringing) stay hidden unless the
+       animation runs — the static fallback shows only the calm ending */
+    #questions, .ring-arc { opacity: 0; }
+    .ill { stroke: var(--ink); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .ill-soft { stroke: #B9B4AA; }
+    .ill-accent { stroke: var(--accent); }
+    .ill-fill { fill: var(--surface); stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
+
+    /* ---------- Sections ---------- */
+    section { padding: 6.5rem 0; }
+    .section-line { border-top: 1px solid var(--line); }
+
+    .section-head { max-width: 44rem; }
+    .section-head h2 { font-size: clamp(1.9rem, 3.4vw, 2.75rem); margin-top: 1.1rem; }
+    .section-head p { margin-top: 1.4rem; color: var(--muted); }
+
+    /* ---------- Familiar (empathy) ---------- */
+    .familiar { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .familiar-quote {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.5rem, 3vw, 2.15rem);
+      font-weight: 420;
+      line-height: 1.45;
+      max-width: 46rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .familiar-quote em { font-style: italic; color: var(--accent); }
+    .familiar-follow {
+      max-width: 34rem; margin: 2.5rem auto 0; text-align: center; color: var(--muted);
+    }
+
+    /* ---------- Truth section ---------- */
+    .truths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem 2.5rem; margin-top: 4rem; }
+    .truth h3 { font-size: 1.35rem; margin-top: 1.1rem; }
+    .truth p { margin-top: 0.75rem; color: var(--muted); font-size: 1rem; }
+    .truth-num {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 0.95rem; color: var(--accent);
+      border: 1px solid var(--line);
+      width: 2.4rem; height: 2.4rem; border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--surface);
+    }
+    @media (max-width: 860px) { .truths { grid-template-columns: 1fr; gap: 2.75rem; } }
+
+    /* ---------- Services ---------- */
+    .service {
+      display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: 2rem 4rem;
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .service:last-of-type { border-bottom: 1px solid var(--line); }
+    .service-kicker { font-size: 0.875rem; color: var(--faint); font-weight: 500; }
+    .service h3 { font-size: clamp(1.5rem, 2.6vw, 2rem); margin-top: 0.6rem; max-width: 16ch; }
+    .service-body p { color: var(--muted); }
+    .service-body p + p { margin-top: 1.1rem; }
+    .service-after {
+      margin-top: 1.6rem; padding-left: 1.25rem;
+      border-left: 2px solid var(--accent);
+      font-size: 1rem; color: var(--ink);
+    }
+    .service-after strong { font-weight: 600; color: var(--accent); font-size: 0.8125rem; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 0.35rem; }
+    @media (max-width: 800px) { .service { grid-template-columns: 1fr; gap: 1.25rem; padding: 2.75rem 0; } }
+
+    /* ---------- Process ---------- */
+    .process { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .steps { counter-reset: step; margin-top: 4rem; }
+    .step {
+      display: grid; grid-template-columns: 5rem minmax(0, 1fr);
+      gap: 1.5rem; padding: 2.5rem 0; border-top: 1px solid var(--line);
+      align-items: baseline;
+    }
+    .step:first-child { border-top: none; padding-top: 0; }
+    .step-num {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 2rem; color: var(--accent); font-weight: 420;
+    }
+    .step h3 { font-size: 1.4rem; }
+    .step p { margin-top: 0.6rem; color: var(--muted); max-width: 38rem; }
+    @media (max-width: 640px) { .step { grid-template-columns: 3rem 1fr; gap: 1rem; } }
+
+    /* ---------- Trust ---------- */
+    .trust-grid {
+      display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+      gap: 4rem; align-items: start;
+    }
+    .trust-copy p { color: var(--muted); }
+    .trust-copy p + p { margin-top: 1.2rem; }
+    .trust-copy .pull {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.4rem; line-height: 1.5; color: var(--ink);
+      margin-top: 2rem; padding-left: 1.4rem;
+      border-left: 2px solid var(--accent);
+    }
+    .trust-points { display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .trust-point { padding: 1.6rem 0; border-bottom: 1px solid var(--line); display: flex; gap: 1.1rem; align-items: flex-start; }
+    .trust-point svg { flex: none; margin-top: 0.3rem; }
+    .trust-point h3 { font-size: 1.1rem; font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0; }
+    .trust-point p { color: var(--muted); font-size: 0.975rem; margin-top: 0.3rem; }
+    @media (max-width: 860px) { .trust-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+    /* ---------- Final CTA ---------- */
+    .cta-final { text-align: center; }
+    .cta-final h2 {
+      font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+      max-width: 18ch; margin: 1.1rem auto 0;
+    }
+    .cta-final p { max-width: 32rem; margin: 1.6rem auto 0; color: var(--muted); }
+    .cta-final .btn { margin-top: 2.5rem; }
+    .cta-note { font-size: 0.9rem; color: var(--faint); margin-top: 1.1rem; }
+
+    /* ---------- Footer ---------- */
+    footer.site {
+      border-top: 1px solid var(--line);
+      padding: 3rem 0 3.5rem;
+      font-size: 0.9rem; color: var(--faint);
+    }
+    .foot { display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap; align-items: baseline; }
+    .foot a { color: var(--muted); text-decoration: none; }
+    .foot a:hover { color: var(--ink); }
+    .foot-links { display: flex; gap: 1.75rem; list-style: none; }
+
+    /* ---------- Reveal defaults (progressive enhancement) ---------- */
+    .reveal { opacity: 1; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site" id="siteHeader">
+    <div class="wrap nav">
+      <a class="wordmark" href="#top" aria-label="The Tender Specialist — home">The Tender<span> Specialist</span></a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li class="link-item"><a href="#help">How I help</a></li>
+          <li class="link-item"><a href="#process">How it works</a></li>
+          <li class="link-item"><a href="#trust">Why me</a></li>
+          <li><a class="btn" href="contact.html"><span class="label-full">Start a conversation</span><span class="label-short">Let's talk</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top" aria-labelledby="hero-heading">
+      <div class="wrap">
+        <p class="label hero-eyebrow reveal">Bid writing &amp; tender support for busy UK businesses</p>
+        <h1 id="hero-heading" class="reveal">Win the tenders your work already deserves.</h1>
+        <p class="lede reveal">You know how to deliver the job. I know how evaluation panels score it. Together, that wins contracts — without the late nights.</p>
+        <div class="hero-cta reveal">
+          <a class="btn btn-accent btn-lg" href="contact.html">Start a conversation</a>
+          <a class="btn-quiet" href="#help">See how it works</a>
+        </div>
+
+        <!-- Animated story: chaos → order → submitted -->
+        <div class="hero-stage reveal" role="img" aria-label="Illustration of a business owner's desk. Scattered tender documents gradually become organised, questions turn into ticks, and the submission is completed with time to spare.">
+          <svg viewBox="0 0 720 440" aria-hidden="true" id="heroScene">
+            <!-- desk -->
+            <line class="ill ill-soft" x1="40" y1="392" x2="680" y2="392"/>
+
+            <!-- clock -->
+            <g id="clock">
+              <circle class="ill" cx="96" cy="96" r="34"/>
+              <line class="ill" id="clockHour" x1="96" y1="96" x2="96" y2="78"/>
+              <line class="ill" id="clockMin" x1="96" y1="96" x2="110" y2="96"/>
+            </g>
+
+            <!-- laptop -->
+            <g id="laptop">
+              <rect class="ill-fill" x="472" y="270" width="176" height="106" rx="6"/>
+              <path class="ill" d="M452 392 L668 392 L648 376 L472 376 Z"/>
+              <line class="ill ill-soft" x1="496" y1="298" x2="590" y2="298"/>
+              <line class="ill ill-soft" x1="496" y1="318" x2="624" y2="318"/>
+              <line class="ill ill-soft" x1="496" y1="338" x2="560" y2="338"/>
+              <!-- progress bar on screen -->
+              <rect class="ill ill-soft" x="496" y="352" width="128" height="8" rx="4"/>
+              <rect id="progressFill" x="496" y="352" width="128" height="8" rx="4" fill="var(--accent)" stroke="none"/>
+            </g>
+
+            <!-- coffee -->
+            <g id="coffee">
+              <path class="ill" d="M404 358 h44 v24 a12 12 0 0 1 -12 12 h-20 a12 12 0 0 1 -12 -12 Z"/>
+              <path class="ill" d="M448 362 h8 a9 9 0 0 1 0 18 h-8"/>
+              <path class="ill ill-soft" id="steam1" d="M418 344 q4 -8 0 -16"/>
+              <path class="ill ill-soft" id="steam2" d="M434 344 q-4 -8 0 -16"/>
+            </g>
+
+            <!-- phone with ring arcs -->
+            <g id="phone">
+              <rect class="ill-fill" x="128" y="316" width="44" height="72" rx="8"/>
+              <line class="ill" x1="144" y1="376" x2="156" y2="376"/>
+              <path class="ill ill-soft ring-arc" d="M182 320 q10 10 0 20" transform="translate(0 -6)"/>
+              <path class="ill ill-soft ring-arc" d="M192 312 q18 18 0 36" transform="translate(0 -6)"/>
+            </g>
+
+            <!-- papers: markup = final tidy state; JS scatters then resolves -->
+            <g id="papers">
+              <g class="paper" id="paperA">
+                <rect class="ill-fill" x="236" y="196" width="120" height="152" rx="4"/>
+                <line class="ill ill-soft" x1="254" y1="224" x2="338" y2="224"/>
+                <line class="ill ill-soft" x1="254" y1="246" x2="322" y2="246"/>
+                <line class="ill ill-soft" x1="254" y1="268" x2="338" y2="268"/>
+                <line class="ill ill-soft" x1="254" y1="290" x2="306" y2="290"/>
+                <path class="tick ill-accent ill" d="M254 318 l8 8 l16 -16"/>
+              </g>
+              <g class="paper" id="paperB">
+                <rect class="ill-fill" x="222" y="182" width="120" height="152" rx="4"/>
+                <line class="ill ill-soft" x1="240" y1="210" x2="324" y2="210"/>
+                <line class="ill ill-soft" x1="240" y1="232" x2="308" y2="232"/>
+                <line class="ill ill-soft" x1="240" y1="254" x2="324" y2="254"/>
+                <line class="ill ill-soft" x1="240" y1="276" x2="292" y2="276"/>
+                <path class="tick ill-accent ill" d="M240 304 l8 8 l16 -16"/>
+              </g>
+              <g class="paper" id="paperC">
+                <rect class="ill-fill" x="208" y="168" width="120" height="152" rx="4"/>
+                <line class="ill ill-soft" x1="226" y1="196" x2="310" y2="196"/>
+                <line class="ill ill-soft" x1="226" y1="218" x2="294" y2="218"/>
+                <line class="ill ill-soft" x1="226" y1="240" x2="310" y2="240"/>
+                <line class="ill ill-soft" x1="226" y1="262" x2="278" y2="262"/>
+                <path class="tick ill-accent ill" d="M226 290 l8 8 l16 -16"/>
+              </g>
+            </g>
+
+            <!-- floating question marks (chaos only) -->
+            <g id="questions" font-family="Fraunces, Georgia, serif" font-size="30" fill="#B9B4AA">
+              <text class="qmark" x="200" y="130">?</text>
+              <text class="qmark" x="340" y="96">?</text>
+              <text class="qmark" x="410" y="170">?</text>
+            </g>
+
+            <!-- submitted seal (resolution) -->
+            <g id="seal">
+              <circle class="ill ill-accent" id="sealRing" cx="392" cy="128" r="34"/>
+              <path class="ill ill-accent" id="sealTick" d="M376 128 l12 12 l22 -24" stroke-width="3"/>
+            </g>
+          </svg>
+          <div class="stage-caption" aria-hidden="true">
+            <span>Tuesday, 9:48pm. The deadline is Friday.</span>
+            <span>Piece by piece, it comes together.</span>
+            <span>Submitted — with a day to spare.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAMILIAR ============ -->
+    <section class="familiar" aria-labelledby="familiar-heading">
+      <div class="wrap">
+        <h2 id="familiar-heading" class="sr-only" style="position:absolute;left:-999px;">Sound familiar?</h2>
+        <p class="familiar-quote reveal">&ldquo;We've been doing this work for twenty years. We're good at it. So why does the tender always go to <em>someone else</em>?&rdquo;</p>
+        <p class="familiar-follow reveal">If you've ever asked that question — usually late at night, halfway through a quality response — you're in the right place. And the answer usually has nothing to do with how good you are at the job.</p>
+      </div>
+    </section>
+
+    <!-- ============ THE TRUTH ============ -->
+    <section aria-labelledby="truth-heading">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="label">The part nobody tells you</p>
+          <h2 id="truth-heading">Tenders aren't won by the best business. They're won by the best answer.</h2>
+          <p>Evaluators never visit your sites. They never meet your team. They score what's on the page — against a marking scheme, under time pressure, alongside a pile of other bids. That changes everything about how a response should be written.</p>
+        </div>
+        <div class="truths">
+          <div class="truth reveal">
+            <span class="truth-num" aria-hidden="true">1</span>
+            <h3>Evaluators score, they don't read.</h3>
+            <p>They're working through a marking scheme with a deadline of their own. If the points aren't easy to find, they aren't awarded — no matter how good the work behind them is.</p>
+          </div>
+          <div class="truth reveal">
+            <span class="truth-num" aria-hidden="true">2</span>
+            <h3>Knowing the job isn't the same as evidencing it.</h3>
+            <p>You carry twenty years of know-how in your head. The panel can only score what makes it onto the page, in the shape the question asked for.</p>
+          </div>
+          <div class="truth reveal">
+            <span class="truth-num" aria-hidden="true">3</span>
+            <h3>10pm is no time to write your best work.</h3>
+            <p>Most SME bids are written after hours, around the day job. Tired writing reads as tired thinking — and it scores that way too.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="section-line" id="help" aria-labelledby="help-heading">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="label">How I help</p>
+          <h2 id="help-heading">Four ways to take the weight off.</h2>
+          <p>Every business arrives in a different place. Some have a deadline this Friday. Some are tired of near-misses. Some just want to be ready for the next opportunity before it lands.</p>
+        </div>
+
+        <div style="margin-top: 4rem;">
+          <article class="service reveal">
+            <div>
+              <p class="service-kicker">01 — When the deadline is real</p>
+              <h3>Bid &amp; tender writing</h3>
+            </div>
+            <div class="service-body">
+              <p>A tender has landed. It matters. And it's competing with everything else on your desk. I take the questions, sit down with the people who actually do the work, and write the response — in your voice, built around what the marking scheme rewards.</p>
+              <p>You stay across it without carrying it. Every draft comes back to you with time to review, not at midnight before the deadline.</p>
+              <div class="service-after">
+                <strong>What changes</strong>
+                The submission goes in on time, reads like your best day, and you get your evenings back.
+              </div>
+            </div>
+          </article>
+
+          <article class="service reveal">
+            <div>
+              <p class="service-kicker">02 — When you keep coming second</p>
+              <h3>Bid reviews &amp; scoring</h3>
+            </div>
+            <div class="service-body">
+              <p>You're already writing bids — and losing by a mark or two. Before your next submission goes in, I score it the way a panel would: question by question, against the criteria, with no politeness.</p>
+              <p>You'll see exactly where points are leaking — the assumed knowledge, the buried evidence, the answers that describe the work instead of answering the question.</p>
+              <div class="service-after">
+                <strong>What changes</strong>
+                You stop guessing why you lost. The next bid goes in knowing where every mark comes from.
+              </div>
+            </div>
+          </article>
+
+          <article class="service reveal">
+            <div>
+              <p class="service-kicker">03 — Before the next one lands</p>
+              <h3>Tender readiness</h3>
+            </div>
+            <div class="service-body">
+              <p>The worst time to gather policies, case studies and evidence is the week a tender arrives. I build your bid library in the quiet weeks — accreditations, social value, case studies written up properly, answers to the questions that appear in every tender.</p>
+              <p>It's the difference between starting from a blank page and starting from eighty per cent done.</p>
+              <div class="service-after">
+                <strong>What changes</strong>
+                The next opportunity is a decision, not a scramble. You bid because it's right for the business — not because there's just enough time.
+              </div>
+            </div>
+          </article>
+
+          <article class="service reveal">
+            <div>
+              <p class="service-kicker">04 — When bidding becomes regular</p>
+              <h3>Ongoing bid support</h3>
+            </div>
+            <div class="service-body">
+              <p>Growing businesses reach a point where tenders arrive monthly, not yearly — but not the point where a full-time bid team makes sense. I become that team: watching frameworks, qualifying opportunities honestly, and writing when it's worth writing.</p>
+              <p>Including telling you when a tender isn't winnable. Your time matters more than my invoice.</p>
+              <div class="service-after">
+                <strong>What changes</strong>
+                Bidding becomes a steady, deliberate part of how the business grows — not an emergency that hijacks a fortnight.
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS ============ -->
+    <section class="process" id="process" aria-labelledby="process-heading">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="label">How it works</p>
+          <h2 id="process-heading">Simple on purpose.</h2>
+          <p>You're busy. The process respects that. Most clients spend a few hours across the whole thing — the rest is mine to carry.</p>
+        </div>
+        <div class="steps">
+          <div class="step reveal">
+            <span class="step-num" aria-hidden="true">1</span>
+            <div>
+              <h3>We talk.</h3>
+              <p>A straightforward conversation about the tender, the business, and whether it's genuinely worth bidding. If it isn't, I'll say so — that advice is free.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <span class="step-num" aria-hidden="true">2</span>
+            <div>
+              <h3>I dig in.</h3>
+              <p>Short calls with the people who know the work — the contracts manager, the supervisor, whoever holds the detail. I turn what's in their heads into evidence a panel can score.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <span class="step-num" aria-hidden="true">3</span>
+            <div>
+              <h3>You review, I refine.</h3>
+              <p>Drafts arrive early enough to actually read. You mark up what's not quite right; I fix it. Nothing goes out the door until it sounds like you on your best day.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <span class="step-num" aria-hidden="true">4</span>
+            <div>
+              <h3>Submitted — with room to breathe.</h3>
+              <p>Complete, compliant, uploaded ahead of the deadline. And after the result, a proper debrief either way — because every tender should make the next one easier.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TRUST ============ -->
+    <section id="trust" aria-labelledby="trust-heading">
+      <div class="wrap">
+        <div class="trust-grid">
+          <div class="trust-copy reveal">
+            <p class="label">Why listen to me</p>
+            <h2 id="trust-heading" style="font-size: clamp(1.9rem, 3.4vw, 2.75rem); margin-top: 1.1rem;">I've sat on the other side of the table.</h2>
+            <p style="margin-top: 1.4rem;">Before I wrote bids, I evaluated them — thousands of them, across construction, facilities management, cleaning and engineering contracts. I've seen brilliant businesses lose to average ones, over and over, for the same fixable reasons.</p>
+            <p>That's the perspective behind every response I write. Not what sounds impressive — what actually gets scored.</p>
+            <p class="pull">The businesses that win aren't the ones that shout the loudest. They're the ones that make the evaluator's job easy.</p>
+          </div>
+          <div class="trust-points reveal">
+            <div class="trust-point">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <div>
+                <h3>Fixed, honest pricing</h3>
+                <p>A clear quote before anything starts. No day rates that drift, no surprises at invoice time.</p>
+              </div>
+            </div>
+            <div class="trust-point">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <div>
+                <h3>Your voice, not consultant-speak</h3>
+                <p>Panels can smell a templated bid. Yours will sound like your business — because it's built from conversations with your people.</p>
+              </div>
+            </div>
+            <div class="trust-point">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <div>
+                <h3>Straight answers, early</h3>
+                <p>If a tender isn't winnable, you'll hear it in the first conversation — not after you've paid for a lost cause.</p>
+              </div>
+            </div>
+            <div class="trust-point">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <div>
+                <h3>Built for SMEs</h3>
+                <p>No big-consultancy process, no jargon, no six-week onboarding. Just the work, done properly, around how your business actually runs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="cta-final section-line" aria-labelledby="cta-heading">
+      <div class="wrap-narrow">
+        <p class="label reveal">No forms. No pitch. Just a conversation.</p>
+        <h2 id="cta-heading" class="reveal">Got a tender on your desk right now?</h2>
+        <p class="reveal">Tell me what you're looking at. I'll tell you honestly whether it's worth bidding, what it would take to win, and whether I'm the right person to help.</p>
+        <a class="btn btn-accent btn-lg reveal" href="contact.html">Start a conversation</a>
+        <p class="cta-note reveal">Usually a reply within one working day.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site">
+    <div class="wrap foot">
+      <div>
+        <a class="wordmark" href="#top" style="font-size: 1rem;">The Tender<span> Specialist</span></a>
+        <p style="margin-top: 0.5rem;">Bid writing &amp; tender support for UK businesses.</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="#help">How I help</a></li>
+        <li><a href="#process">How it works</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p>&copy; 2026 The Tender Specialist</p>
+    </div>
+  </footer>
+
+  <script src="assets/gsap.min.js"></script>
+  <script src="assets/ScrollTrigger.min.js"></script>
+  <script>
+    (function () {
+      var header = document.getElementById('siteHeader');
+      var onScroll = function () {
+        header.classList.toggle('scrolled', window.scrollY > 8);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion || typeof gsap === 'undefined') return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      /* ---------- Scroll reveals: quiet, consistent rhythm ---------- */
+      gsap.utils.toArray('.reveal').forEach(function (el) {
+        gsap.fromTo(el,
+          { autoAlpha: 0, y: 26 },
+          {
+            autoAlpha: 1, y: 0,
+            duration: 0.9, ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+          }
+        );
+      });
+
+      /* ---------- Hero story: chaos → order → submitted ----------
+         Markup holds the calm end state, so with JS off or reduced
+         motion the visitor simply sees the resolution. */
+      var scene = document.getElementById('heroScene');
+      if (!scene) return;
+
+      var captions = document.querySelectorAll('.stage-caption span');
+      var papers = [
+        { el: '#paperA', x: 148, y: 36, r: -14 },
+        { el: '#paperB', x: -96, y: 58, r: 9 },
+        { el: '#paperC', x: 36, y: 96, r: -6 }
+      ];
+
+      // Scene one: scatter the desk before first paint of the animation
+      papers.forEach(function (p) {
+        gsap.set(p.el, { x: p.x, y: p.y, rotation: p.r, transformOrigin: '50% 50%' });
+      });
+      gsap.set('.tick', { autoAlpha: 0, scale: 0.4, transformOrigin: '50% 50%' });
+      gsap.set('#seal', { autoAlpha: 0 });
+      gsap.set('#questions', { autoAlpha: 1 });
+      gsap.set('.ring-arc', { autoAlpha: 1 });
+      gsap.set('#progressFill', { scaleX: 0.12, transformOrigin: 'left center' });
+      gsap.set(captions, { autoAlpha: 0 });
+
+      // Ambient stress: ringing phone, drifting questions, ticking clock
+      var ringTween = gsap.to('.ring-arc', {
+        autoAlpha: 0.15, duration: 0.45, repeat: -1, yoyo: true, ease: 'sine.inOut', stagger: 0.15
+      });
+      var qTween = gsap.to('.qmark', {
+        y: -8, duration: 1.6, repeat: -1, yoyo: true, ease: 'sine.inOut', stagger: 0.4
+      });
+      gsap.to('#clockMin', {
+        rotation: 360, transformOrigin: '96px 96px', duration: 24, repeat: -1, ease: 'none'
+      });
+      gsap.to(['#steam1', '#steam2'], {
+        y: -5, autoAlpha: 0.35, duration: 1.8, repeat: -1, yoyo: true, ease: 'sine.inOut', stagger: 0.5
+      });
+
+      var tl = gsap.timeline({ delay: 0.6, defaults: { ease: 'power2.inOut' } });
+
+      // Scene one caption
+      tl.to(captions[0], { autoAlpha: 1, duration: 0.6 })
+        .to(captions[0], { autoAlpha: 0, duration: 0.5 }, '+=1.6')
+
+        // Scene two: order emerges
+        .to(captions[1], { autoAlpha: 1, duration: 0.6 })
+        .to('#paperA', { x: 0, y: 0, rotation: 0, duration: 1.1 }, '<')
+        .to('#paperB', { x: 0, y: 0, rotation: 0, duration: 1.1 }, '<0.18')
+        .to('#paperC', { x: 0, y: 0, rotation: 0, duration: 1.1 }, '<0.18')
+        .to('.qmark', { autoAlpha: 0, y: -16, duration: 0.5, stagger: 0.1,
+            onComplete: function () { qTween.kill(); } }, '<0.3')
+        .to('.tick', { autoAlpha: 1, scale: 1, duration: 0.45, ease: 'back.out(2)', stagger: 0.16 }, '-=0.5')
+        .to('#progressFill', { scaleX: 1, duration: 1.4, ease: 'power1.inOut' }, '<')
+        .to('.ring-arc', { autoAlpha: 0, duration: 0.4,
+            onComplete: function () { ringTween.kill(); } }, '<')
+        .to(captions[1], { autoAlpha: 0, duration: 0.5 }, '+=0.9')
+
+        // Scene three: submitted, calm
+        .to(captions[2], { autoAlpha: 1, duration: 0.6 })
+        .fromTo('#seal', { autoAlpha: 0, scale: 0.7, transformOrigin: '392px 128px' },
+                { autoAlpha: 1, scale: 1, duration: 0.7, ease: 'back.out(1.6)' }, '<');
+    })();
+  </script>
+</body>
+</html>
