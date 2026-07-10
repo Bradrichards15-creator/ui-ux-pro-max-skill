@@ -1,82 +1,93 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Reveal, Btn, BaselineLine } from "./motion";
+import { vimeoIntroUrl } from "@/lib/config";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-40 -top-40 h-[34rem] w-[34rem] animate-breathe rounded-blob bg-amber-100/70"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-48 -left-48 h-[28rem] w-[28rem] animate-breathe rounded-blob bg-sage-50"
-        style={{ animationDelay: "-3.5s" }}
-      />
-
-      <div className="relative mx-auto grid max-w-content items-center gap-12 px-5 pb-20 pt-16 md:grid-cols-[1.1fr_0.9fr] md:px-8 md:pb-28 md:pt-24">
-        <div className="animate-fade-up">
-          <p className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-1.5 text-sm font-medium text-amber-700">
-            <span
-              aria-hidden="true"
-              className="h-1.5 w-1.5 rounded-full bg-amber-500"
-            />
-            Anxiety coaching with Amber Perry
-          </p>
-
-          <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-            You&apos;re not broken.
-            <br />
-            Your anxiety makes sense —{" "}
-            <span className="text-amber-500">and it can change.</span>
-          </h1>
-
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
-            I help overthinkers, worriers and quiet panickers understand what
-            their anxiety is actually doing — and build a life where it stops
-            calling the shots. No &ldquo;just breathe&rdquo;. No pretending
-            it&apos;s simple. Just honest, practical work, together.
-          </p>
-
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <Link
-              href="#programmes"
-              className="rounded-full bg-amber-500 px-7 py-3.5 font-medium text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-600 hover:shadow-md"
-            >
-              See the programmes
-            </Link>
-            <Link
-              href="/stories"
-              className="rounded-full border border-ink/15 px-7 py-3.5 font-medium text-ink transition-colors duration-200 hover:border-ink/30 hover:bg-cream-50"
-            >
-              Read Becky&apos;s story
-            </Link>
-          </div>
-
-          <p className="mt-7 text-sm text-ink-muted">
-            Trusted by 200+ clients · {`4.9/5 average from client reviews`}
-          </p>
+    <header className="px-[6vw] pb-0 pt-[18vh]">
+      <div className="mx-auto grid max-w-[1180px] items-center gap-12 md:grid-cols-2">
+        <div>
+          <Reveal>
+            <p className="mb-6 text-xs uppercase tracking-[0.2em] text-teal-deep">
+              Anxiety coaching · nervous system regulation
+            </p>
+          </Reveal>
+          <Reveal as="h1" delay={0.08}>
+            <span className="block text-[clamp(2.4rem,5.4vw,4.4rem)] leading-[1.05] text-ink">
+              You were never
+              <br />
+              broken.
+            </span>
+            <span className="mt-1 block font-display text-[clamp(2.4rem,5.4vw,4.4rem)] italic leading-[1.05] text-teal-deep">
+              Just never taught.
+            </span>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-7 max-w-[480px] text-[clamp(1.05rem,1.4vw,1.25rem)] leading-[1.65] text-ink-soft">
+              You&apos;ve tried the therapy, the apps, the breathing, the
+              books — and still feel like you&apos;re managing something that
+              never quite lets go.
+              <br />
+              <br />
+              There&apos;s a reason for that. It isn&apos;t that something&apos;s
+              wrong with you.
+            </p>
+          </Reveal>
+          <Reveal delay={0.32}>
+            <div className="mt-9 flex flex-wrap gap-4">
+              <Btn href="#programmes">See how we&apos;d work together</Btn>
+              <Btn variant="ghost" href="#contact">
+                Just say hello
+              </Btn>
+            </div>
+          </Reveal>
+          <Reveal delay={0.44}>
+            <div className="mt-10 flex flex-wrap items-center gap-6 text-sm text-teal-deep">
+              <span>
+                <strong className="text-ink">5 years</strong> coaching
+              </span>
+              <span className="opacity-40">·</span>
+              <span>
+                <strong className="text-ink">250+</strong> people helped
+              </span>
+              <span className="opacity-40">·</span>
+              <span>Lived it, not just studied it</span>
+            </div>
+          </Reveal>
         </div>
 
-        <div className="relative mx-auto w-full max-w-md animate-fade-up md:max-w-none">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-blob shadow-lg">
+        <Reveal delay={0.24}>
+          <div className="relative mx-auto aspect-[1200/1380] w-full max-w-sm overflow-hidden rounded-[22px] shadow-[0_20px_44px_rgba(32,48,46,0.10)] md:max-w-none">
             <Image
               src="/images/amber-hero.jpg"
-              alt="Amber Perry, anxiety coach, smiling warmly"
+              alt="Amber Perry smiling, holding her laptop"
               fill
               priority
-              sizes="(max-width: 768px) 90vw, 40vw"
+              sizes="(max-width: 768px) 90vw, 45vw"
               className="object-cover"
             />
+            {/* [VIMEO_INTRO] — autoplay-muted welcome video goes here once hosted. */}
+            {!vimeoIntroUrl && (
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/50 to-transparent p-5">
+                <span className="rounded-full bg-paper/90 px-3.5 py-1.5 text-xs font-medium text-ink-soft">
+                  Welcome video coming soon
+                </span>
+              </div>
+            )}
           </div>
-          <div className="absolute -bottom-5 -left-4 rounded-2xl border border-cream-200 bg-cream-50 px-5 py-4 shadow-md sm:-left-8">
-            <p className="font-display text-sm italic text-ink">
-              &ldquo;Anxiety is a messenger, not a life sentence.&rdquo;
-            </p>
-            <p className="mt-1 text-xs text-ink-muted">— Amber</p>
-          </div>
+          <p className="mt-3 text-center font-display text-sm italic text-teal-deep">
+            Hi, I&apos;m Amber — press play.
+          </p>
+        </Reveal>
+      </div>
+
+      <div className="mx-auto mt-[70px] max-w-[1180px]">
+        <BaselineLine />
+        <div className="mt-2 flex justify-between text-xs tracking-wide text-teal-deep">
+          <span>a system stuck on alert</span>
+          <span>a system that feels safe</span>
         </div>
       </div>
-    </section>
+    </header>
   );
 }

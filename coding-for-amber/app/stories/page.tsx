@@ -1,147 +1,129 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import Reveal from "@/components/Reveal";
-import { stories } from "@/lib/site";
+import { Reveal, Section, Label, Btn } from "@/components/motion";
+import { testimonialFeed, beckyVideoUrl } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Client stories — Amber Perry, Anxiety Coach",
+  title: "Client stories — Words of Amber",
   description:
-    "Real stories from people who worked with Amber Perry: panic, overthinking and avoidance — and what changed.",
+    "Becky's story and real transformations from people who worked with Amber Perry.",
 };
 
-function PlayBadge({ available }: { available: boolean }) {
-  return (
-    <div className="absolute inset-0 flex items-center justify-center bg-ink/20">
-      {available ? (
-        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-cream-50/95 shadow-md">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="ml-0.5 h-5 w-5 text-amber-600">
-            <path d="M8 5.5v13l11-6.5-11-6.5Z" />
-          </svg>
-        </span>
-      ) : (
-        <span className="rounded-full bg-cream-50/95 px-4 py-1.5 text-xs font-medium text-ink-soft shadow-sm">
-          Video coming soon
-        </span>
-      )}
-    </div>
-  );
-}
-
 export default function StoriesPage() {
-  const becky = stories.find((s) => s.featured)!;
-  const rest = stories.filter((s) => !s.featured);
-
   return (
     <>
       <Nav />
       <main>
-        <section className="mx-auto max-w-content px-5 pb-16 pt-16 md:px-8 md:pt-24">
+        <Section className="!pb-0 !pt-[18vh]">
           <Reveal>
-            <p className="text-sm font-semibold uppercase tracking-widest text-amber-500">
-              Client stories
-            </p>
-            <h1 className="mt-3 max-w-2xl font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
-              Proof it changes — from people who were sure it wouldn&apos;t
+            <Label>Client stories</Label>
+            <h1 className="mt-3 max-w-[820px] text-[clamp(2.2rem,4.8vw,3.6rem)] leading-[1.08] text-ink">
+              Real transformations, in their own words.
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
-              Every one of these people once believed their anxiety was
-              permanent. Shared with their permission, in their own words.
+            <p className="mt-5 max-w-[600px] text-[17px] leading-[1.7] text-ink-soft">
+              Every person here once believed their anxiety was permanent.
+              Shared with their permission.
             </p>
           </Reveal>
-        </section>
+        </Section>
 
-        {/* Becky — featured */}
-        <section className="bg-sage-50/70">
-          <div className="mx-auto max-w-content px-5 py-16 md:px-8 md:py-20">
-            <div className="grid items-center gap-10 md:grid-cols-[1.15fr_0.85fr]">
-              <Reveal>
-                <div className="relative aspect-video overflow-hidden rounded-3xl shadow-lg">
-                  <Image
-                    src={becky.poster}
-                    alt={`${becky.name} — ${becky.headline}`}
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 90vw, 55vw"
-                    className="object-cover"
-                  />
-                  <PlayBadge available={Boolean(becky.videoUrl)} />
+        {/* Becky — full written story */}
+        <Section bg="mist">
+          <div className="grid items-center gap-11 md:grid-cols-2">
+            <Reveal>
+              <Label>A real transformation</Label>
+              <h2 className="my-3 text-[clamp(1.8rem,3.6vw,2.7rem)] leading-[1.15] text-ink">
+                This is Becky.
+              </h2>
+              <p className="max-w-[480px] text-[17px] leading-[1.72] text-ink-soft">
+                When Becky started, she felt stuck in a cycle of anxiety and
+                panic, especially anywhere unfamiliar. Every trip was
+                negotiated with her nervous system before it was negotiated
+                with anyone else — could she cope, could she get out if she
+                needed to, was it worth the risk.
+              </p>
+              <p className="mt-4 max-w-[480px] text-[17px] leading-[1.72] text-ink-soft">
+                Eight months on, she takes solo trips, enjoys the theatre,
+                and trusts she can handle whatever comes. Not because the
+                anxiety vanished overnight, but because her baseline changed.
+              </p>
+              <p className="mt-5 text-[13.5px] italic text-teal-deep">
+                Shared with Becky&apos;s permission.
+              </p>
+            </Reveal>
+            <Reveal delay={0.12}>
+              {/* [BECKY_VIDEO] */}
+              <div className="relative aspect-video overflow-hidden rounded-[22px] bg-gradient-to-br from-[#E8DFD0] via-[#D9C9AE] to-[#C9B896]">
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-5 text-center text-ink/35">
+                  <span className="flex h-[46px] w-[46px] items-center justify-center rounded-full border-2 border-ink/25">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+                      <rect x="3" y="5" width="18" height="14" rx="2" />
+                      <circle cx="9" cy="10" r="2" />
+                      <path d="M21 15l-4-4-8 8" />
+                    </svg>
+                  </span>
+                  <p className="text-[12.5px] leading-[1.4]">
+                    {beckyVideoUrl
+                      ? "Becky's transformation call"
+                      : "Becky's transformation call — video coming soon"}
+                  </p>
                 </div>
-              </Reveal>
-              <Reveal delay={120}>
-                <p className="text-sm font-semibold uppercase tracking-widest text-sage-600">
-                  Becky&apos;s story
-                </p>
-                <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-                  {becky.headline}
-                </h2>
-                <blockquote className="mt-5 border-l-2 border-amber-300 pl-5 font-display italic leading-relaxed text-ink-soft">
-                  &ldquo;{becky.quote}&rdquo;
-                </blockquote>
-                <p className="mt-4 text-sm text-ink-muted">
-                  — Becky, worked with Amber for 6 months
-                </p>
-              </Reveal>
-            </div>
+              </div>
+            </Reveal>
           </div>
-        </section>
+        </Section>
 
-        {/* Grid of further stories */}
-        <section className="mx-auto max-w-content px-5 py-16 md:px-8 md:py-20">
+        {/* Testimonial feed grid */}
+        <Section>
           <Reveal>
-            <h2 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-              More stories
+            <Label>More stories</Label>
+            <h2 className="mt-3 text-[clamp(1.7rem,3.4vw,2.4rem)] leading-[1.15] text-ink">
+              From Reels, TikTok and client calls.
             </h2>
           </Reveal>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {rest.map((s, i) => (
-              <Reveal key={s.id} delay={(i % 3) * 80} className="h-full">
-                <article className="flex h-full flex-col overflow-hidden rounded-3xl border border-cream-300/70 bg-cream-50 transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
-                  <div className="relative aspect-video">
-                    <Image
-                      src={s.poster}
-                      alt={`${s.name} — ${s.headline}`}
-                      fill
-                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
-                      className="object-cover"
-                    />
-                    <PlayBadge available={Boolean(s.videoUrl)} />
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {testimonialFeed.map((clip, i) => (
+              <Reveal key={clip.id} delay={(i % 4) * 0.08}>
+                <div className="overflow-hidden rounded-[18px] border border-line bg-paper transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[0_20px_44px_rgba(32,48,46,0.10)]">
+                  {/* [TESTIMONIAL_FEED] */}
+                  <div className="relative aspect-[9/16] bg-gradient-to-br from-[#C9E8E5] via-[#9FD6D0] to-[#71CDC7]">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2.5 p-4 text-center text-ink/40">
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-ink/25">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                          <path d="M8 5.5v13l11-6.5-11-6.5Z" />
+                        </svg>
+                      </span>
+                      <p className="text-[11px] leading-[1.4]">
+                        {clip.videoUrl ? clip.name : "Video coming soon"}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <h3 className="font-display text-lg font-semibold text-ink">
-                      {s.headline}
-                    </h3>
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-soft">
-                      &ldquo;{s.quote}&rdquo;
-                    </p>
-                    <p className="mt-4 text-sm font-medium text-ink-muted">
-                      — {s.name}
-                    </p>
+                  <div className="p-4">
+                    <p className="text-sm text-ink">{clip.name}</p>
+                    <p className="mt-1 text-xs text-ink-soft">{clip.caption}</p>
                   </div>
-                </article>
+                </div>
               </Reveal>
             ))}
           </div>
+        </Section>
 
+        <Section bg="mist">
           <Reveal>
-            <div className="mt-16 rounded-3xl bg-cream-200/60 p-8 text-center md:p-12">
-              <h2 className="font-display text-2xl font-semibold text-ink">
-                Your story could be next
+            <div className="mx-auto max-w-[560px] text-center">
+              <h2 className="text-[clamp(1.7rem,3.4vw,2.4rem)] leading-[1.15] text-ink">
+                Your story could be next.
               </h2>
-              <p className="mx-auto mt-3 max-w-md leading-relaxed text-ink-soft">
+              <p className="mx-auto mt-4 max-w-[420px] text-[16px] leading-[1.65] text-ink-soft">
                 Every person on this page started with one small step.
               </p>
-              <Link
-                href="/#programmes"
-                className="mt-7 inline-block rounded-full bg-amber-500 px-7 py-3.5 font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-600 hover:shadow-md"
-              >
-                See how we&apos;d work together
-              </Link>
+              <div className="mt-8">
+                <Btn href="/#programmes">See how we&apos;d work together</Btn>
+              </div>
             </div>
           </Reveal>
-        </section>
+        </Section>
       </main>
       <Footer />
     </>

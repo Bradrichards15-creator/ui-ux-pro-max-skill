@@ -1,56 +1,48 @@
-import Reveal from "./Reveal";
+import { Reveal, Section, Label } from "./motion";
 
 const steps = [
   {
     n: "1",
-    title: "A personal welcome within 24 hours",
-    body: "Not an automated receipt — a real message from Amber, so you know you've landed somewhere human.",
+    h: "A personal welcome within 24 hours",
+    b: "Not an automated receipt — a real message from Amber, so you know you've landed somewhere human.",
   },
   {
     n: "2",
-    title: "We book your first session together",
-    body: "You pick a time that genuinely works. No pressure to be 'ready' — showing up is the whole job.",
+    h: "We book your first session together",
+    b: "You pick a time that genuinely works. Showing up is the whole job.",
   },
   {
     n: "3",
-    title: "You get full app access",
-    body: "Exercises, audio and check-ins unlocked from day one, so the work starts before the first call.",
+    h: "You get full app access",
+    b: "Tools, frameworks and exercises unlocked from day one, so the work starts before the first call.",
   },
 ];
 
+// Placed right after Programmes, per request.
 export default function AfterSignup() {
   return (
-    <section id="after-signup" className="scroll-mt-20">
-      <div className="mx-auto max-w-content px-5 py-20 md:px-8 md:py-24">
-        <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              What happens after you sign up
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-              No forms, no waiting rooms, no wondering if it went through.
-            </p>
-          </div>
-        </Reveal>
-
-        <ol className="mt-12 grid gap-6 md:grid-cols-3">
-          {steps.map((s, i) => (
-            <Reveal key={s.n} as="li" delay={i * 100} className="h-full">
-              <div className="h-full rounded-3xl border border-cream-300/70 bg-cream-50 p-8 text-center">
-                <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 font-display text-xl font-semibold text-amber-600">
-                  {s.n}
-                </span>
-                <h3 className="mt-5 font-display text-lg font-semibold text-ink">
-                  {s.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                  {s.body}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </ol>
+    <Section>
+      <Reveal>
+        <Label>What happens next</Label>
+        <h2 className="mt-3 max-w-[620px] text-[clamp(1.9rem,4vw,2.8rem)] leading-[1.12] text-ink">
+          What happens after you sign up
+        </h2>
+      </Reveal>
+      <div className="mt-11 grid gap-5 sm:grid-cols-3">
+        {steps.map((s, i) => (
+          <Reveal key={s.n} delay={i * 0.1}>
+            <div className="h-full rounded-[18px] border border-line bg-paper p-7 text-center">
+              <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-mist font-display text-lg text-teal-deep">
+                {s.n}
+              </span>
+              <h3 className="mt-4 text-[17px] text-ink">{s.h}</h3>
+              <p className="mt-2.5 text-sm leading-[1.6] text-ink-soft">
+                {s.b}
+              </p>
+            </div>
+          </Reveal>
+        ))}
       </div>
-    </section>
+    </Section>
   );
 }

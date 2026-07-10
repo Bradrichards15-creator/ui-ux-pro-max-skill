@@ -1,100 +1,62 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
-import { site } from "@/lib/site";
+import { useEffect, useState } from "react";
 
 const links = [
-  { href: "/#meet-them", label: "Is this you?" },
-  { href: "/stories", label: "Stories" },
-  { href: "/#about", label: "Meet Amber" },
-  { href: "/#programmes", label: "Programmes" },
+  { id: "method", label: "The work" },
+  { id: "programmes", label: "Coaching" },
+  { id: "stories", label: "Becky's story" },
+  { id: "about", label: "Amber" },
+  { id: "contact", label: "Say hello" },
 ];
 
 export default function Nav() {
-  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 40);
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(h > 0 ? Math.min(y / h, 1) : 0);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const go = (id: string) =>
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <header className="sticky top-0 z-50 border-b border-cream-200/80 bg-cream-100/90 backdrop-blur-sm">
+    <>
+      <div
+        className="fixed left-0 top-0 z-[100] h-[3px] bg-teal transition-[width] duration-150"
+        style={{ width: `${progress * 100}%` }}
+      />
       <nav
-        className="mx-auto flex h-16 max-w-content items-center justify-between px-5 md:px-8"
-        aria-label="Main"
+        className={`fixed inset-x-0 top-0 z-90 flex items-center justify-between border-b transition-all duration-[400ms] ${
+          scrolled
+            ? "border-line bg-paper/90 px-[6vw] py-3.5 backdrop-blur-md"
+            : "border-transparent bg-transparent px-[6vw] py-[22px]"
+        }`}
       >
-        <Link
-          href="/"
-          className="font-display text-lg font-semibold tracking-tight text-ink"
-        >
-          Amber Perry
-          <span className="ml-2 hidden text-sm font-normal text-ink-muted sm:inline">
-            {site.handle}
-          </span>
-        </Link>
-
-        <div className="hidden items-center gap-7 md:flex">
+        <a href="#" className="font-display text-xl text-ink">
+          Words of <span className="font-display italic text-teal-deep">Amber</span>
+        </a>
+        <div className="hidden gap-7 text-sm text-ink-soft md:flex">
           {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="text-sm text-ink-soft transition-colors duration-200 hover:text-ink"
+            <button
+              key={l.id}
+              onClick={() => go(l.id)}
+              className="nav-link cursor-pointer bg-transparent"
             >
               {l.label}
-            </Link>
+            </button>
           ))}
-          <Link
-            href="/#programmes"
-            className="rounded-full bg-amber-500 px-5 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-amber-600"
-          >
-            Work with me
-          </Link>
         </div>
-
-        <button
-          type="button"
-          className="flex h-11 w-11 items-center justify-center rounded-full text-ink md:hidden"
-          aria-expanded={open}
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen(!open)}
-        >
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            aria-hidden="true"
-          >
-            {open ? (
-              <path d="M6 6l12 12M18 6L6 18" />
-            ) : (
-              <path d="M4 7h16M4 12h16M4 17h16" />
-            )}
-          </svg>
-        </button>
       </nav>
-
-      {open && (
-        <div className="border-t border-cream-200 bg-cream-100 px-5 pb-5 pt-2 md:hidden">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="block py-3 text-ink-soft"
-              onClick={() => setOpen(false)}
-            >
-              {l.label}
-            </Link>
-          ))}
-          <Link
-            href="/#programmes"
-            className="mt-2 block rounded-full bg-amber-500 px-5 py-3 text-center font-medium text-white"
-            onClick={() => setOpen(false)}
-          >
-            Work with me
-          </Link>
-        </div>
-      )}
-    </header>
+    </>
   );
 }

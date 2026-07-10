@@ -1,34 +1,32 @@
 import Link from "next/link";
-import { site } from "@/lib/site";
+import { site, social, appLink, legal } from "@/lib/config";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-cream-200 bg-cream-200/60">
-      <div className="mx-auto max-w-content px-5 py-14 md:px-8">
+    <footer className="border-t border-line bg-cream">
+      <div className="mx-auto max-w-[1120px] px-[6vw] py-14">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
-            <p className="font-display text-xl font-semibold text-ink">
-              Amber Perry
+            <p className="font-display text-xl text-ink">
+              Words of <span className="italic text-teal-deep">Amber</span>
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-              Anxiety coaching that meets you where you are. Coaching is not a
-              substitute for therapy or medical care — if you&apos;re in
-              crisis, please contact your GP or call Samaritans on 116 123.
+            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+              {legal.crisisDisclaimer}
             </p>
           </div>
 
-          <div className="flex gap-16">
+          <div className="flex gap-14">
             <div>
-              <p className="text-sm font-semibold text-ink">Explore</p>
+              <p className="text-sm font-medium text-ink">Explore</p>
               <ul className="mt-3 space-y-2 text-sm text-ink-soft">
                 <li>
                   <Link href="/#programmes" className="hover:text-ink">
-                    Programmes
+                    Coaching
                   </Link>
                 </li>
                 <li>
                   <Link href="/stories" className="hover:text-ink">
-                    Stories
+                    Client stories
                   </Link>
                 </li>
                 <li>
@@ -36,19 +34,21 @@ export default function Footer() {
                     Meet Amber
                   </Link>
                 </li>
-                <li>
-                  <Link href="/#free-guide" className="hover:text-ink">
-                    Free guide
-                  </Link>
-                </li>
+                {appLink ? (
+                  <li>
+                    <a href={appLink} className="hover:text-ink">
+                      The app
+                    </a>
+                  </li>
+                ) : null}
               </ul>
             </div>
             <div>
-              <p className="text-sm font-semibold text-ink">Say hello</p>
+              <p className="text-sm font-medium text-ink">Say hello</p>
               <ul className="mt-3 space-y-2 text-sm text-ink-soft">
                 <li>
                   <a
-                    href={site.instagram}
+                    href={social.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-ink"
@@ -56,19 +56,21 @@ export default function Footer() {
                     Instagram {site.handle}
                   </a>
                 </li>
+                {social.tiktok ? (
+                  <li>
+                    <a
+                      href={social.tiktok}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-ink"
+                    >
+                      TikTok
+                    </a>
+                  </li>
+                ) : null}
                 <li>
-                  <a
-                    href={site.tiktok}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-ink"
-                  >
-                    TikTok
-                  </a>
-                </li>
-                <li>
-                  <a href={`mailto:${site.email}`} className="hover:text-ink">
-                    {site.email}
+                  <a href={`mailto:${site.contactEmail}`} className="hover:text-ink">
+                    {site.contactEmail}
                   </a>
                 </li>
               </ul>
@@ -76,10 +78,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-cream-300/60 pt-6 text-xs text-ink-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-3 border-t border-line pt-6 text-xs text-ink-soft sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Amber Perry. All rights reserved.</p>
+          {/* [LEGAL] — required before taking payments. */}
           <div className="flex gap-5">
-            {/* TODO: legal pages need real content before launch */}
             <Link href="/privacy" className="hover:text-ink">
               Privacy
             </Link>

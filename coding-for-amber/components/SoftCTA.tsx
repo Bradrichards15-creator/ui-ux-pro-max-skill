@@ -1,31 +1,38 @@
-import Link from "next/link";
-import Reveal from "./Reveal";
+import { Reveal, Section, Btn } from "./motion";
+import { calendlyUrl, social } from "@/lib/config";
 
-/**
- * Gentle mid-page bridge to the programmes section — used after the
- * "meet them" and "why the usual advice keeps people stuck" sections.
- */
+// DESIGN.md §8 item 8 — distinct from the InlineCTA bridges elsewhere.
 export default function SoftCTA() {
   return (
-    <div className="mx-auto max-w-content px-5 md:px-8">
-      <Reveal>
-        <div className="flex justify-center py-10 md:py-14">
-          <Link
-            href="/#programmes"
-            className="group inline-flex items-center gap-3 rounded-full border border-amber-200 bg-amber-50 px-6 py-3.5 text-amber-700 transition-all duration-200 hover:border-amber-300 hover:bg-amber-100"
-          >
-            <span className="font-medium">
-              This sound familiar? Here&apos;s how we&apos;d work together
-            </span>
-            <span
-              aria-hidden="true"
-              className="transition-transform duration-200 group-hover:translate-x-1"
+    <Section bg="mist">
+      <div className="mx-auto max-w-[640px] text-center">
+        <Reveal>
+          <h2 className="text-[clamp(1.7rem,3.6vw,2.4rem)] leading-[1.15] text-ink">
+            Not sure where to start?
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="mx-auto mt-4 max-w-[480px] text-[16px] leading-[1.68] text-ink-soft">
+            Book a free call, no pitch attached — or drop me a message on
+            Instagram if that feels easier.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Btn href={calendlyUrl || "#contact"} target={calendlyUrl ? "_blank" : undefined}>
+              Book a free call
+            </Btn>
+            <Btn
+              variant="ghost"
+              href={social.instagram}
+              target="_blank"
             >
-              →
-            </span>
-          </Link>
-        </div>
-      </Reveal>
-    </div>
+              Message on Instagram
+            </Btn>
+          </div>
+          <p className="mt-6 font-display text-[15px] italic text-teal-deep">
+            Or, you know… if you&apos;re ready, dive in above.
+          </p>
+        </Reveal>
+      </div>
+    </Section>
   );
 }

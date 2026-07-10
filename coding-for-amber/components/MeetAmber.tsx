@@ -1,68 +1,55 @@
 import Image from "next/image";
-import Reveal from "./Reveal";
-import { site } from "@/lib/site";
+import { Reveal, Section, Label, CountUp } from "./motion";
 
-const credentials = [
-  "Certified anxiety & mindset coach",
-  "200+ clients coached 1:1",
-  "Lived it — recovered from panic disorder herself",
-];
-
+// Moved ahead of Programmes per request — trust before price.
 export default function MeetAmber() {
   return (
-    <section id="about" className="scroll-mt-20">
-      <div className="mx-auto max-w-content px-5 py-20 md:px-8 md:py-28">
-        <div className="grid items-center gap-12 md:grid-cols-[0.9fr_1.1fr]">
-          <Reveal>
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl shadow-lg md:max-w-none">
-              <Image
-                src="/images/amber-about.jpg"
-                alt="Amber Perry sitting with a cup of tea, mid-conversation"
-                fill
-                sizes="(max-width: 768px) 90vw, 40vw"
-                className="object-cover"
-              />
-            </div>
-          </Reveal>
+    <Section id="about">
+      <div className="grid items-center gap-12 md:grid-cols-2">
+        <Reveal>
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[22px] shadow-[0_20px_44px_rgba(32,48,46,0.10)] md:max-w-none">
+            <Image
+              src="/images/amber-about.jpg"
+              alt="Amber Perry writing at her desk"
+              fill
+              sizes="(max-width: 768px) 90vw, 40vw"
+              className="object-cover"
+            />
+          </div>
+        </Reveal>
 
-          <Reveal delay={120}>
-            <p className="text-sm font-semibold uppercase tracking-widest text-amber-500">
-              Meet Amber
-            </p>
-            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              I&apos;m not going to coach you from a pedestal.
-              <br />
-              I&apos;ve sat where you&apos;re sitting.
-            </h2>
-            <div className="mt-6 space-y-4 text-lg leading-relaxed text-ink-soft">
-              <p>
-                Ten years ago I was the one cancelling plans, googling
-                symptoms at 2am and quietly building a life around my anxiety.
-                What finally changed things wasn&apos;t willpower or a
-                miracle technique — it was understanding what my anxiety was
-                actually doing, and having someone patient in my corner while
-                I retrained it.
-              </p>
-              <p>
-                That&apos;s what I do now, as {site.handle} — for the
-                overthinkers, the worriers and the quiet panickers. No jargon,
-                no judgement, no pretending it&apos;s linear. Just the work
-                that actually moves the needle, done together.
-              </p>
+        <Reveal delay={0.12}>
+          <Label>Meet Amber</Label>
+          <h2 className="my-3 text-[clamp(1.9rem,4vw,3rem)] leading-[1.15] text-ink">
+            I&apos;m not someone who studied anxiety from the outside.
+          </h2>
+          <p className="text-[17px] leading-[1.72] text-ink-soft">
+            I lived with chronic anxiety and panic for over ten years. What
+            changed everything was nervous system regulation. Last year I
+            drove over a thousand miles across Europe. I wasn&apos;t
+            anxious. I was free.
+          </p>
+
+          <div className="mt-8 grid max-w-xs grid-cols-2 gap-6 rounded-[22px] bg-cream p-8">
+            <div>
+              <div className="font-display text-4xl text-teal-deep">
+                <CountUp to={5} />
+              </div>
+              <div className="mt-2 text-[13px] text-ink-soft">
+                years coaching
+              </div>
             </div>
-            <ul className="mt-7 space-y-3">
-              {credentials.map((c) => (
-                <li key={c} className="flex items-start gap-3 text-ink">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-sage-500">
-                    <path d="M20 6 9 17l-5-5" />
-                  </svg>
-                  {c}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
+            <div>
+              <div className="font-display text-4xl text-teal-deep">
+                <CountUp to={250} suffix="+" />
+              </div>
+              <div className="mt-2 text-[13px] text-ink-soft">
+                people helped
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }

@@ -4,25 +4,27 @@ import "./globals.css";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["400", "500", "600"],
+  variable: "--font-fraunces",
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-inter",
+  weight: ["400", "500"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Amber Perry — Anxiety Coach | @wordsofamber",
+  title: "Words of Amber — Anxiety Coaching with Amber Perry",
   description:
-    "Anxiety coaching that meets you where you are. 1:1 programmes, practical tools built around how your anxiety actually works — with Amber Perry.",
+    "You were never broken. Just never taught. Anxiety coaching and nervous system regulation with Amber Perry (@wordsofamber).",
   openGraph: {
-    title: "Amber Perry — Anxiety Coach",
+    title: "Words of Amber — Anxiety Coaching",
     description:
-      "You're not broken. Your anxiety makes sense — and it can change. 1:1 anxiety coaching with Amber Perry.",
+      "You were never broken. Just never taught. Anxiety coaching and nervous system regulation with Amber Perry.",
     type: "website",
   },
 };
@@ -32,7 +34,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-GB" className={`${fraunces.variable} ${inter.variable}`}>
-      <body className="font-body">{children}</body>
+      <body className="font-body overflow-x-hidden">{children}</body>
     </html>
   );
 }
