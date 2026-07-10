@@ -30,7 +30,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#about" className="hover:text-ink">
+                  <Link href="/about" className="hover:text-ink">
                     Meet Amber
                   </Link>
                 </li>
