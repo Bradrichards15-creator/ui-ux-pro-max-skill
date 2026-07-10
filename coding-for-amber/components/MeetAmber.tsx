@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal, Section, Label, CountUp } from "./motion";
 
 // Moved ahead of Programmes per request — trust before price.
@@ -48,6 +49,19 @@ export default function MeetAmber() {
               </div>
             </div>
           </div>
+
+          <Link
+            href="/about"
+            className="group mt-7 inline-flex items-center gap-2 font-medium text-teal-deep transition-colors hover:text-teal-ink"
+          >
+            Read Amber&apos;s full story
+            <span
+              aria-hidden="true"
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </Link>
         </Reveal>
       </div>
     </Section>

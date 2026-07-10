@@ -1,18 +1,22 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const links = [
-  { id: "method", label: "The work" },
-  { id: "programmes", label: "Coaching" },
-  { id: "stories", label: "Becky's story" },
-  { id: "about", label: "Amber" },
-  { id: "contact", label: "Say hello" },
+  { href: "/#method", label: "The work", anchorId: "method" },
+  { href: "/#programmes", label: "Coaching", anchorId: "programmes" },
+  { href: "/stories", label: "Stories" },
+  { href: "/about", label: "Amber" },
+  { href: "/#contact", label: "Say hello", anchorId: "contact" },
 ];
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
+  const pathname = usePathname();
+  const onHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => {
@@ -26,8 +30,12 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const go = (id: string) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  function handleClick(e: React.MouseEvent, anchorId?: string) {
+    if (onHome && anchorId) {
+      e.preventDefault();
+      document.getElementById(anchorId)?.scrollIntoView({ behavior: "smooth" });
+    }
+  }
 
   return (
     <>
@@ -42,18 +50,19 @@ export default function Nav() {
             : "border-transparent bg-transparent px-[6vw] py-[22px]"
         }`}
       >
-        <a href="#" className="font-display text-xl text-ink">
+        <Link href="/" className="font-display text-xl text-ink">
           Words of <span className="font-display italic text-teal-deep">Amber</span>
-        </a>
+        </Link>
         <div className="hidden gap-7 text-sm text-ink-soft md:flex">
           {links.map((l) => (
-            <button
-              key={l.id}
-              onClick={() => go(l.id)}
+            <Link
+              key={l.label}
+              href={l.href}
+              onClick={(e) => handleClick(e, l.anchorId)}
               className="nav-link cursor-pointer bg-transparent"
             >
               {l.label}
-            </button>
+            </Link>
           ))}
         </div>
       </nav>

@@ -166,6 +166,7 @@ export function BaselineLine({
   height?: number;
   calmOnly?: boolean;
 }) {
+  const reduceMotion = useReducedMotion();
   const w = 1200;
   const mid = height / 2;
   let d = `M0 ${mid}`;
@@ -185,7 +186,9 @@ export function BaselineLine({
       preserveAspectRatio="none"
       aria-hidden="true"
     >
-      <path
+      {/* Draws left-to-right on scroll into view — the line settling from
+          alert into safe is the animation, not just decoration. */}
+      <motion.path
         d={d}
         fill="none"
         stroke="#71CDC7"
@@ -193,6 +196,11 @@ export function BaselineLine({
         strokeLinecap="round"
         strokeLinejoin="round"
         opacity={0.85}
+        initial={reduceMotion ? false : { pathLength: 0 }}
+        whileInView={reduceMotion ? undefined : { pathLength: 1 }}
+        animate={reduceMotion ? { pathLength: 1 } : undefined}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 1.8, ease: EASE }}
       />
     </svg>
   );

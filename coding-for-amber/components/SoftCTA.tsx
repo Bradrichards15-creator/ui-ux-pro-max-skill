@@ -1,5 +1,5 @@
 import { Reveal, Section, Btn } from "./motion";
-import { calendlyUrl, social } from "@/lib/config";
+import { discoveryCallUrl, social } from "@/lib/config";
 
 // DESIGN.md §8 item 8 — distinct from the InlineCTA bridges elsewhere.
 export default function SoftCTA() {
@@ -17,7 +17,7 @@ export default function SoftCTA() {
             Instagram if that feels easier.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Btn href={calendlyUrl || "#contact"} target={calendlyUrl ? "_blank" : undefined}>
+            <Btn href={discoveryCallUrl || "#contact"} target={discoveryCallUrl ? "_blank" : undefined}>
               Book a free call
             </Btn>
             <Btn

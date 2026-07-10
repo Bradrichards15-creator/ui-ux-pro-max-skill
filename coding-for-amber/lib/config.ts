@@ -1,7 +1,7 @@
 /**
  * Single source of truth for every plug-in point that isn't decided yet.
  * Per DESIGN.md §9 — search this file for the bracketed tags before launch:
- * [VIMEO_INTRO] [BECKY_VIDEO] [STRIPE_LINKS] [CALENDLY_URL] [SOCIAL_LINKS]
+ * [VIMEO_INTRO] [BECKY_VIDEO] [DISCOVERY_CALL_URL] [SOCIAL_LINKS]
  * [APP_LINK] [CONTACT_ROUTE] [TESTIMONIAL_FEED] [LEGAL]
  */
 
@@ -24,8 +24,12 @@ export const social = {
 // [APP_LINK] — Amber's client app (referenced throughout programmes copy).
 export const appLink = "";
 
-// [CALENDLY_URL] — free "not sure where to start" call.
-export const calendlyUrl = "";
+// [DISCOVERY_CALL_URL] — Amber books everyone onto a discovery call rather
+// than taking instant payment; she wants control over who starts and when.
+// Used for the "not sure where to start?" CTA and every programme's primary
+// button. Same link across all three programmes unless Amber wants separate
+// Calendly event types per programme later.
+export const discoveryCallUrl = "";
 
 // [VIMEO_INTRO] — Amber's autoplay-muted vertical welcome video for the hero.
 export const vimeoIntroUrl = "";
@@ -63,8 +67,6 @@ export type Programme = {
   featured?: boolean;
   limited?: boolean;
   features: { title: string; body: string }[];
-  // [STRIPE_LINKS]
-  checkoutUrl: string;
 };
 
 export const programmes: Programme[] = [
@@ -90,7 +92,6 @@ export const programmes: Programme[] = [
         body: "A curated library of tools, practical exercises, emotional regulation frameworks and educational content to support your growth between sessions and beyond.",
       },
     ],
-    checkoutUrl: process.env.NEXT_PUBLIC_STRIPE_LINK_PROGRAMME_1 ?? "",
   },
   {
     id: "programme-2",
@@ -119,7 +120,6 @@ export const programmes: Programme[] = [
         body: "A private client community and exclusive masterclasses — a space to keep learning, share your progress and feel genuinely supported by people on a similar path.",
       },
     ],
-    checkoutUrl: process.env.NEXT_PUBLIC_STRIPE_LINK_PROGRAMME_2 ?? "",
   },
   {
     id: "programme-3",
@@ -148,7 +148,6 @@ export const programmes: Programme[] = [
         body: "Complete access to all resources, content and community spaces within the coaching experience.",
       },
     ],
-    checkoutUrl: process.env.NEXT_PUBLIC_STRIPE_LINK_PROGRAMME_3 ?? "",
   },
 ];
 
