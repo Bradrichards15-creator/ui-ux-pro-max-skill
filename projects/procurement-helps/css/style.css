@@ -549,7 +549,7 @@ p {
 /* ===== Footer — plain, no colour block ===== */
 footer.site-footer {
   background: #fafafa;
-  border-top: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
   margin-top: 40px;
   padding: 48px 20px 24px;
 }
