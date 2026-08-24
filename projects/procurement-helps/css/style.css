@@ -197,6 +197,15 @@ p {
 }
 .grid-2 > div h3 { margin-top: 0; }
 
+/* SPEND — Beyond cost reduction cards */
+.grid-3.card-grid > div {
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #fafafa;
+}
+.grid-3.card-grid > div h3 { margin-top: 0; }
+
 /* ===== Stamped document card — the site's one signature container ===== */
 .stamp-card {
   background: #ffffff;
