@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Procurement Helps</title>
+<meta name="description" content="Tell me what you're working on — message on WhatsApp, leave your details, or book a 20-minute call.">
+<link rel="canonical" href="https://procurementhelps.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Procurement Helps">
+<meta property="og:title" content="Contact — Procurement Helps">
+<meta property="og:description" content="Tell me what you're working on — message on WhatsApp, leave your details, or book a 20-minute call.">
+<meta property="og:url" content="https://procurementhelps.com/contact.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact — Procurement Helps">
+<meta name="twitter:description" content="Tell me what you're working on — message on WhatsApp, leave your details, or book a 20-minute call.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="favicon-180.png" sizes="180x180">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand">Procurement Helps</a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="tenders.html">Tenders</a>
+      <a href="spend.html">Spend</a>
+      <a href="guides.html">Guides</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+    <a href="contact.html" class="nav-cta">Book a call</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="padding-top:52px; padding-bottom:48px;">
+
+    <h1 style="font-size:26px; text-align:center; margin-bottom:8px;">Tell me what you're working on</h1>
+    <p style="max-width:480px; margin-left:auto; margin-right:auto; text-align:center; margin-bottom:32px;">Whether you've got a tender coming up, lost a recent bid or want to look at your supplier costs, start by telling me what's going on.</p>
+
+    <div class="stamp-card contact-merged" style="margin:20px 0 24px;">
+
+      <div class="cm-section cm-warm">
+        <div class="chat-preview">
+          <div class="chat-bubble in">Hi, I've got a tender closing Friday and could use a second pair of eyes</div>
+          <div class="chat-bubble out">Send it over — I'll have thoughts back to you today</div>
+        </div>
+      </div>
+
+      <div class="cm-section">
+        <!-- Step 1: choose method -->
+        <div id="method-choice">
+          <div style="font-size:13px; color:var(--ink); margin-bottom:14px;">How would you rather get in touch?</div>
+          <div class="contact-option" tabindex="0" role="button" onclick="showWhatsApp()">
+            <div class="label">Message me on WhatsApp</div>
+            <div class="desc">Opens with a short note already started — just add your details and send.</div>
+          </div>
+          <div class="contact-option" tabindex="0" role="button" onclick="showForm()">
+            <div class="label">Leave a few details</div>
+            <div class="desc">Your phone number and a line about what's going on — I'll get back to you.</div>
+          </div>
+        </div>
+
+        <!-- WhatsApp topic picker -->
+        <div id="whatsapp-panel" style="display:none;">
+          <a onclick="backToChoice()" class="text-link-quiet" style="cursor:pointer;">&larr; Back</a>
+          <div style="font-size:13px; color:var(--ink); margin:14px 0 12px;">What's going on?</div>
+          <div class="contact-option" onclick="openWhatsApp('tender')">
+            <div class="label" style="font-weight:500;">I've got a tender coming up</div>
+          </div>
+          <div class="contact-option" onclick="openWhatsApp('spend')">
+            <div class="label" style="font-weight:500;">I think I'm paying too much</div>
+          </div>
+          <div class="contact-option" onclick="openWhatsApp('unsure')">
+            <div class="label" style="font-weight:500;">Not sure yet — just want to talk</div>
+          </div>
+        </div>
+
+        <!-- Netlify form -->
+        <div id="form-panel" style="display:none;">
+          <a onclick="backToChoice()" class="text-link-quiet" style="cursor:pointer;">&larr; Back</a>
+          <div style="font-size:13px; color:var(--ink); margin:14px 0 12px;">Leave a few details</div>
+
+          <form name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="enquiry">
+            <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+            <input class="form-field" type="tel" name="phone" placeholder="Phone number*" required>
+            <input class="form-field" type="text" name="name" placeholder="Name">
+            <input class="form-field" type="email" name="email" placeholder="Email">
+            <textarea class="form-field" name="message" placeholder="What's going on? (a line or two)" rows="3"></textarea>
+
+            <div class="form-note">* Only required field — everything else is optional.</div>
+            <button type="submit" class="btn-pill" style="margin-top:14px;">Send &rarr;</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="cm-section">
+        <div style="font-size:11px; color:var(--muted-2); margin-bottom:10px;">Prefer to talk?</div>
+        <p style="font-size:13px; margin-bottom:14px;">Book a 20-minute conversation and tell me what you're working on. There's no need to prepare anything beforehand.</p>
+        <a href="https://calendly.com/procurementhelps" class="text-link-quiet" target="_blank" rel="noopener" style="color:var(--accent-dark); border-color:var(--accent-dark);">Book a 20-minute call &rarr;</a>
+      </div>
+
+    </div>
+
+    <!-- Other channels -->
+    <div style="margin-top:32px; padding-top:24px; border-top:1px solid var(--line);">
+      <div style="font-size:11px; color:var(--muted-2); margin-bottom:10px;">Other ways to reach me</div>
+      <div class="channels">
+        <a href="mailto:brad@procurementhelps.com">Email</a>
+        <a href="#" onclick="showWhatsApp(); return false;">WhatsApp</a>
+        <a href="https://www.linkedin.com/in/bradprocurementhelps" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://tiktok.com/@brad.procurementhelps" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.instagram.com/bradprocurementhelps/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+
+    <div class="bio-block" style="margin-top:44px; margin-bottom:0; padding-top:44px; border-bottom:none; border-top:1px solid var(--line);">
+      <div class="photo" style="width:96px; height:120px;">
+        <picture>
+          <source srcset="images/cheesy-grin.webp" type="image/webp">
+          <img src="images/cheesy-grin.png" alt="Brad Richards, Owner and Lead Bid Writer at Procurement Helps" width="96" height="120">
+        </picture>
+      </div>
+      <div>
+        <div class="name">Brad Richards</div>
+        <div class="eyebrow" style="color:var(--muted); margin-bottom:8px;">Owner &amp; lead bid writer, Procurement Helps</div>
+        <p>I've spent years in procurement, reading and scoring tender responses from the evaluator's side of the table — helping businesses put together bids that score well and stand out.</p>
+        <p>I also review supplier spend: sourcing, negotiation, benchmarking. Over my career I've delivered more than £5 million in savings through consolidation, negotiation and competitive tendering.</p>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="col-title">Services</div>
+      <div class="col-links">
+        <a href="tenders.html">Tenders</a>
+        <a href="spend.html">Spend</a>
+        <a href="guides.html">Guides</a>
+      </div>
+    </div>
+    <div>
+      <div class="col-title">Company</div>
+      <div class="col-links">
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="col-title">Get in touch</div>
+      <div class="col-links">
+        <a href="mailto:brad@procurementhelps.com">Email</a>
+        <a href="https://calendly.com/procurementhelps" target="_blank" rel="noopener">Book a call</a>
+        <a href="https://www.linkedin.com/in/bradprocurementhelps" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-newsletter">
+      <p>Get new posts and guides by email.</p>
+      <form name="footer-newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="newsletter-row">
+        <input type="hidden" name="form-name" value="footer-newsletter">
+        <input type="email" name="email" placeholder="Your email" required>
+        <button type="submit" aria-label="Subscribe">&rarr;</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="brand">Procurement Helps</span>
+    <div style="display:flex; gap:16px;">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="cookie-policy.html">Cookies</a>
+      <a href="https://www.instagram.com/bradprocurementhelps/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://tiktok.com/@brad.procurementhelps" target="_blank" rel="noopener">TikTok</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function showWhatsApp() {
+  document.getElementById('method-choice').style.display = 'none';
+  document.getElementById('whatsapp-panel').style.display = 'block';
+}
+function showForm() {
+  document.getElementById('method-choice').style.display = 'none';
+  document.getElementById('form-panel').style.display = 'block';
+}
+function backToChoice() {
+  document.getElementById('whatsapp-panel').style.display = 'none';
+  document.getElementById('form-panel').style.display = 'none';
+  document.getElementById('method-choice').style.display = 'block';
+}
+function openWhatsApp(topic) {
+  // Routes through a Netlify server-side redirect (see _redirects) so the
+  // real WhatsApp number is never present in the page source.
+  window.open("/wa/" + topic, "_blank");
+}
+</script>
+<style>
+  #cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #161513;
+    color: #f5f5f5;
+    padding: 20px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    z-index: 9999;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.15);
+  }
+  #cookie-banner p { margin: 0; max-width: 640px; line-height: 1.5; }
+  #cookie-banner a { color: #ffffff; text-decoration: underline; }
+  #cookie-banner .cookie-actions { display: flex; gap: 12px; flex-shrink: 0; }
+  #cookie-banner button {
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  #cookie-accept { background: #2E7DE1; color: #ffffff; }
+  #cookie-reject { background: transparent; color: #f5f5f5; border: 1px solid #454a5c !important; }
+</style>
+
+<div id="cookie-banner" style="display:none;">
+  <p>We use cookies to understand how visitors use this site. We won't set analytics cookies unless you accept. See our <a href="cookie-policy.html">Cookie Policy</a> for details.</p>
+  <div class="cookie-actions">
+    <button id="cookie-reject">Reject</button>
+    <button id="cookie-accept">Accept</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var CONSENT_KEY = "ph_cookie_consent";
+  var banner = document.getElementById("cookie-banner");
+  var existing = localStorage.getItem(CONSENT_KEY);
+
+  function loadGoogleAnalytics() {
+    var GA_ID = "G-3C4PRMENGS";
+    if (!GA_ID) return;
+    var script = document.createElement("script");
+    script.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+    script.async = true;
+    document.head.appendChild(script);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", GA_ID);
+  }
+
+  if (existing === "accepted") {
+    loadGoogleAnalytics();
+  } else if (existing === null) {
+    banner.style.display = "flex";
+  }
+
+  document.getElementById("cookie-accept").addEventListener("click", function () {
+    localStorage.setItem(CONSENT_KEY, "accepted");
+    banner.style.display = "none";
+    loadGoogleAnalytics();
+  });
+  document.getElementById("cookie-reject").addEventListener("click", function () {
+    localStorage.setItem(CONSENT_KEY, "rejected");
+    banner.style.display = "none";
+  });
+})();
+</script>
+
+</body>
+</html>

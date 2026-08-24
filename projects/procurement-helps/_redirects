@@ -1,0 +1,4 @@
+# WhatsApp deep links — kept server-side so the real number never ships in page source.
+/wa/tender  https://wa.me/447958145110?text=Hi%2C%20I%27ve%20got%20a%20tender%20coming%20up%20and%20I%27d%20like%20some%20help...  302
+/wa/spend   https://wa.me/447958145110?text=Hi%2C%20I%20think%20I%20might%20be%20overpaying%20a%20supplier...  302
+/wa/unsure  https://wa.me/447958145110?text=Hi%2C%20I%27m%20not%20sure%20exactly%20what%20I%20need%20yet%2C%20but...  302
