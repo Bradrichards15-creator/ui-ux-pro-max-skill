@@ -7,9 +7,14 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  --font-sans: var(--font-plus-jakarta-sans), "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-heading: var(--font-sans);
+  --color-brand-green: var(--brand-green);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-pink: var(--brand-pink);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-black: var(--brand-black);
+  --color-brand-ink: var(--brand-ink);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -49,38 +54,46 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  /* Marino-derived palette (design tokens only — no copied copy/imagery) */
+  --brand-green: #82ffcd; /* primary accent */
+  --brand-purple: #e2cbff; /* secondary accent */
+  --brand-pink: #fab8d7; /* tertiary accent */
+  --brand-blue: #28c6ff; /* quaternary accent */
+  --brand-black: #000000;
+  --brand-ink: #231f20; /* body text */
+
+  --background: #f3f3f3; /* site background-gray */
+  --foreground: var(--brand-ink);
+  --card: #ffffff;
+  --card-foreground: var(--brand-ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--brand-ink);
+  --primary: var(--brand-black);
+  --primary-foreground: var(--brand-green);
+  --secondary: var(--brand-green);
+  --secondary-foreground: var(--brand-black);
+  --muted: #e9e9e9;
+  --muted-foreground: #6b6b6b;
+  --accent: var(--brand-purple);
+  --accent-foreground: var(--brand-black);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --border: #d9d9d9;
+  --input: #d9d9d9;
+  --ring: var(--brand-black);
+  --chart-1: var(--brand-green);
+  --chart-2: var(--brand-purple);
+  --chart-3: var(--brand-pink);
+  --chart-4: var(--brand-blue);
+  --chart-5: var(--brand-ink);
+  --radius: 1.375rem; /* 22px card radius */
+  --sidebar: #ffffff;
+  --sidebar-foreground: var(--brand-ink);
+  --sidebar-primary: var(--brand-black);
+  --sidebar-primary-foreground: var(--brand-green);
+  --sidebar-accent: var(--brand-purple);
+  --sidebar-accent-foreground: var(--brand-black);
+  --sidebar-border: #d9d9d9;
+  --sidebar-ring: var(--brand-black);
 }
 
 .dark {
@@ -117,14 +130,71 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+@keyframes ticker {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes glow-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(130, 255, 205, 0);
+  }
+  50% {
+    box-shadow: 0 0 60px 0 var(--brand-green);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(130, 255, 205, 0);
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+    font-size: 14px;
+    line-height: 1.55;
   }
   html {
     @apply font-sans;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-weight: 500;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+  @media (min-width: 768px) {
+    body {
+      font-size: 15px;
+    }
+  }
+}
+
+/* Marino-derived button primitive: pill shape, green-to-black hover swap */
+@utility btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  min-width: 150px;
+  padding: 16px 34px;
+  transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--brand-green);
+  color: var(--brand-black);
+  &:hover {
+    background: var(--brand-black);
+    color: #fff;
   }
 }
