@@ -8,8 +8,10 @@ import { KineticHeading } from "@/components/kinetic-heading";
  */
 export function Hero() {
   return (
-    <section className="bg-background px-6 pt-32 pb-14 md:pt-44 md:pb-20">
-      <div className="mx-auto max-w-3xl text-center">
+    <section className="relative overflow-hidden bg-background px-6 pt-32 pb-14 md:pt-44 md:pb-20">
+      <div className="hero-glow-bg" />
+      <div className="hero-grid-bg" />
+      <div className="relative z-10 mx-auto max-w-3xl text-center">
         <KineticHeading
           className="mx-auto"
           lines={[
