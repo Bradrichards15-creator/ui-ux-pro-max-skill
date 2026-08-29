@@ -17,28 +17,29 @@ const CARDS = [
 
 /**
  * TwoWaysToHelp — homepage "two ways to get more from your procurement"
- * section: two large cards linking to /tenders and /spend.
+ * section, styled to match the black "Where I write" section on the
+ * Tenders page: dark background, white text, dark cards.
  */
 export function TwoWaysToHelp() {
   return (
-    <section id="services" className="bg-background px-6 py-14 md:py-20">
+    <section id="services" className="bg-black px-6 py-14 text-white md:py-20">
       <div className="mx-auto max-w-5xl">
         <h2 className="text-2xl font-medium md:text-3xl">
           Two ways to get more from your procurement
         </h2>
-        <p className="mt-3 max-w-xl text-sm text-foreground/80">
+        <p className="mt-3 max-w-xl text-sm text-white/70">
           A good business doesn&apos;t automatically make a good tender response - and supplier
           costs have a habit of creeping up unnoticed. Here&apos;s where I help.
         </p>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           {CARDS.map((card) => (
-            <article key={card.title} className="rounded-[22px] bg-white p-8">
-              <h3 className="text-xl font-medium md:text-2xl">{card.title}</h3>
-              <p className="mt-3 text-sm text-foreground/75">{card.text}</p>
+            <article key={card.title} className="rounded-[22px] bg-[#231F20] p-8">
+              <h3 className="text-xl font-medium text-white md:text-2xl">{card.title}</h3>
+              <p className="mt-3 text-sm text-white/70">{card.text}</p>
               <a
                 href={card.href}
-                className="mt-6 inline-flex items-center gap-2 text-sm font-bold"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-brand-green"
               >
                 {card.link}
                 <ArrowRight size={14} />
