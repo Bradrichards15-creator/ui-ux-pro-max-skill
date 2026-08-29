@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { CookieBanner } from "@/components/cookie-banner";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -26,6 +27,7 @@ export default function RootLayout({
       className={`${plusJakartaSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <SmoothScroll />
         {children}
         <CookieBanner />
       </body>

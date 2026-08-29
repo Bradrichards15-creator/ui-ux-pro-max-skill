@@ -5,6 +5,7 @@ import { ComparisonTable } from "@/components/sections/comparison-table";
 import { TwoWaysToHelp } from "@/components/sections/two-ways-to-help";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { ClosingCta } from "@/components/sections/closing-cta";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export default function Home() {
   return (
@@ -12,10 +13,18 @@ export default function Home() {
       <SiteHeader />
       <main className="flex-1 overflow-hidden">
         <Hero />
-        <ComparisonTable />
-        <TwoWaysToHelp />
-        <FaqAccordion />
-        <ClosingCta />
+        <ScrollReveal>
+          <ComparisonTable />
+        </ScrollReveal>
+        <ScrollReveal>
+          <TwoWaysToHelp />
+        </ScrollReveal>
+        <ScrollReveal>
+          <FaqAccordion />
+        </ScrollReveal>
+        <ScrollReveal>
+          <ClosingCta />
+        </ScrollReveal>
       </main>
       <SiteFooter />
     </>

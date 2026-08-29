@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
@@ -13,10 +13,24 @@ const NAV_LINKS = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full p-5">
-      <div className="mx-auto flex max-w-6xl items-center gap-1 rounded-[22px] bg-black/[0.06] p-1 pl-5 backdrop-blur-md">
+    <header
+      className={`fixed top-0 left-0 z-50 w-full transition-[padding] duration-300 ${scrolled ? "p-3" : "p-5"}`}
+    >
+      <div
+        className={`mx-auto flex max-w-6xl items-center gap-1 rounded-[22px] bg-black/[0.06] p-1 pl-5 backdrop-blur-md transition-shadow duration-300 ${
+          scrolled ? "shadow-lg shadow-black/10 bg-white/70" : ""
+        }`}
+      >
         <Link href="/" className="flex items-center py-2 text-lg font-semibold tracking-tight">
           Procurement Helps<span className="text-brand-green">.</span>
         </Link>
