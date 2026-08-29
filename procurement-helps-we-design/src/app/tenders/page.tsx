@@ -3,7 +3,6 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { TenderHero } from "@/components/sections/tenders/tender-hero";
 import { TenderServices } from "@/components/sections/tenders/tender-services";
-import { TenderPhoto } from "@/components/sections/tenders/tender-photo";
 import { Industries } from "@/components/sections/tenders/industries";
 import { PricingTable } from "@/components/sections/pricing-table";
 import { ClosingCta } from "@/components/sections/closing-cta";
@@ -47,9 +46,6 @@ export default function TendersPage() {
         <TenderHero />
         <ScrollReveal>
           <TenderServices />
-        </ScrollReveal>
-        <ScrollReveal>
-          <TenderPhoto />
         </ScrollReveal>
         <ScrollReveal>
           <Industries />

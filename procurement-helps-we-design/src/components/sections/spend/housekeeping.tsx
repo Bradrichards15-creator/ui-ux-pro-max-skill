@@ -1,14 +1,14 @@
-import { ArrowRight, CalendarClock, FileStack, Target } from "lucide-react";
+import { ArrowRight, Users, FileStack, Target } from "lucide-react";
 
 const CARDS = [
   {
-    title: "Renewal tracking",
-    text: "Contracts that auto-renew are where money quietly leaks, whether the rate's good or not. I'll help you set up a simple way to flag renewal dates before they catch you out.",
-    Icon: CalendarClock,
+    title: "Support, as and when",
+    text: "No need for a full-time procurement manager or a lengthy recruitment process - bring me in for support as and when you need it, for maximum flexibility to your organisation.",
+    Icon: Users,
   },
   {
     title: "Process & templates",
-    text: "No formal procurement function? I'll help you put a lightweight process in place - supplier onboarding, contract tracking, simple approval steps - so buying decisions aren't ad hoc.",
+    text: "No formal procurement function? I'll help you put a tailored process in place - supplier onboarding, contract tracking, simple approval steps - so buying decisions aren't ad hoc.",
     Icon: FileStack,
   },
   {
@@ -18,16 +18,16 @@ const CARDS = [
   },
 ];
 
-/** Housekeeping — "Happy with your suppliers?" section with 3 cards. */
+/** Housekeeping — "An extra pair of hands" section with 3 cards. */
 export function Housekeeping() {
   return (
     <section className="bg-background px-6 py-14 md:py-20">
       <div className="mx-auto max-w-5xl">
-        <h2 className="text-2xl font-medium md:text-3xl">Happy with your suppliers?</h2>
+        <h2 className="text-2xl font-medium md:text-3xl">An extra pair of hands</h2>
         <p className="mt-3 max-w-xl text-sm text-foreground/80">
           Spend Help isn&apos;t only about cutting costs - sometimes the numbers are fine, and
-          it&apos;s the process around them that&apos;s costing you time. If that&apos;s where
-          you&apos;re at, here&apos;s some housekeeping worth doing anyway.
+          it&apos;s having proper procurement support in place that&apos;s missing. Here&apos;s
+          how that can look.
         </p>
 
         <div className="mt-8 grid gap-6 md:grid-cols-3">
