@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { MagneticButton } from "@/components/magnetic-button";
 
 /** SpendHero — centered headline + intro paragraph. */
 export function SpendHero() {
@@ -12,10 +13,10 @@ export function SpendHero() {
           Supplier costs have a habit of creeping up. I&apos;ll review your existing spend
           and look at where there&apos;s room to negotiate.
         </p>
-        <a href="/contact" className="btn-pill mt-8 inline-flex gap-2">
+        <MagneticButton href="/contact" className="btn-pill mt-8 inline-flex gap-2">
           Talk about your spend
           <ArrowRight size={16} />
-        </a>
+        </MagneticButton>
       </div>
     </section>
   );

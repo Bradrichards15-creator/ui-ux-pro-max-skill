@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { MagneticButton } from "@/components/magnetic-button";
 
 /**
  * TenderHero — headline + intro paragraph on the left, Brad's photo on
@@ -18,10 +19,10 @@ export function TenderHero() {
               I&apos;ve scored thousands of tenders over the years, so I can look at your response
               from the other side of the table.
             </p>
-            <a href="/contact" className="btn-pill mt-8 inline-flex gap-2">
+            <MagneticButton href="/contact" className="btn-pill mt-8 inline-flex gap-2">
               Talk about your tender
               <ArrowRight size={16} />
-            </a>
+            </MagneticButton>
           </div>
 
           <div className="relative aspect-4/5 w-full overflow-hidden rounded-[22px] bg-white">

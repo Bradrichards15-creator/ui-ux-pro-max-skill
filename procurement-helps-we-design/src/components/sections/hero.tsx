@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { KineticHeading } from "@/components/kinetic-heading";
+import { MagneticButton } from "@/components/magnetic-button";
 
 /**
  * Hero — homepage headline, centered, imageless. Split-scale lines with
@@ -42,14 +43,15 @@ export function Hero() {
           too. I know what makes a bid stand out to the panel, and what makes a spend line
           worth questioning.
         </p>
-        <a
-          href="/contact"
-          className="kinetic-word btn-pill mt-8 inline-flex gap-2"
+        <span
+          className="kinetic-word mt-8 inline-block"
           style={{ animationDelay: "700ms" }}
         >
-          Get in touch
-          <ArrowRight size={16} />
-        </a>
+          <MagneticButton href="/contact" className="btn-pill gap-2">
+            Get in touch
+            <ArrowRight size={16} />
+          </MagneticButton>
+        </span>
       </div>
     </section>
   );
