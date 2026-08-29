@@ -1,60 +1,103 @@
-const FOOTER_LINKS = [
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Culture", href: "#" },
-  { label: "Blog", href: "#blog" },
-  { label: "Testimonials", href: "#work" },
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms & Conditions", href: "#" },
+"use client";
+
+import Link from "next/link";
+
+const COLUMNS = [
+  {
+    heading: "Services",
+    links: [
+      { label: "Tenders", href: "/tenders" },
+      { label: "Spend", href: "/spend" },
+      { label: "Guides", href: "/guides" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { label: "Blog", href: "/blog" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    heading: "Get in touch",
+    links: [
+      { label: "Email", href: "mailto:hello@procurementhelps.co.uk" },
+      { label: "Book a call", href: "/contact" },
+      { label: "LinkedIn", href: "https://linkedin.com" },
+    ],
+  },
+];
+
+const BOTTOM_LINKS = [
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+  { label: "Cookies", href: "/cookies" },
+  { label: "WhatsApp", href: "https://wa.me/00000000000" },
+  { label: "Instagram", href: "https://instagram.com" },
+  { label: "TikTok", href: "https://tiktok.com" },
+  { label: "Facebook", href: "https://facebook.com" },
 ];
 
 /**
- * SiteFooter — black, centered footer: intro line, "Get in Touch"
- * oversized heading, contact details + CTA, a two-column link list,
- * and a closing logo + registration-details row.
+ * SiteFooter — black footer with Services / Company / Get in touch columns,
+ * a newsletter signup, and a bottom row of legal + social links.
  */
 export function SiteFooter() {
   return (
-    <footer id="contact" className="bg-black px-6 py-14 text-center text-white md:py-20">
-      <div className="mx-auto max-w-3xl">
-        <p className="text-sm text-white/80">
-          [Studio] is a placeholder digital marketing agency helping brands grow with smart,
-          results-focused Branding, Web Design, SEO, PPC, and Video.
-        </p>
+    <footer className="bg-black px-6 py-14 text-white md:py-20">
+      <div className="mx-auto max-w-5xl">
+        <div className="grid gap-10 md:grid-cols-[1.2fr_repeat(3,1fr)]">
+          <div>
+            <span className="text-lg font-semibold">
+              Procurement Helps<span className="text-brand-green">.</span>
+            </span>
+            <p className="mt-4 max-w-xs text-sm text-white/70">
+              Get new posts and guides by email.
+            </p>
+            <form
+              className="mt-4 flex max-w-xs gap-2"
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <input
+                type="email"
+                required
+                placeholder="Your email"
+                className="w-full rounded-full border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 outline-none focus:border-brand-green"
+              />
+              <button
+                type="submit"
+                className="shrink-0 rounded-full bg-brand-green px-5 py-2.5 text-xs font-medium text-black transition hover:bg-white"
+              >
+                Sign up
+              </button>
+            </form>
+          </div>
 
-        <h3 className="mt-10 text-[13vw] leading-[0.9] font-medium tracking-tight md:text-6xl">
-          Get in Touch
-        </h3>
-
-        <div className="mt-6 space-y-1 text-sm">
-          <p>
-            <a href="mailto:hello@example.com" className="hover:text-brand-green">
-              hello@example.com
-            </a>
-          </p>
-          <p>
-            <a href="tel:0000000000" className="hover:text-brand-green">
-              00000 000000
-            </a>
-          </p>
-          <p className="text-white/60">1 Placeholder Square, Example City, EX4 3PL</p>
-        </div>
-        <a href="#contact" className="btn-pill mt-4">
-          Contact
-        </a>
-
-        <nav className="mt-10 columns-2 gap-4 text-left text-sm">
-          {FOOTER_LINKS.map((link) => (
-            <a key={link.label} href={link.href} className="block py-1.5 text-white/85 hover:text-brand-green">
-              {link.label}
-            </a>
+          {COLUMNS.map((col) => (
+            <div key={col.heading}>
+              <h4 className="text-xs font-semibold tracking-wide text-white/50 uppercase">
+                {col.heading}
+              </h4>
+              <nav className="mt-4 flex flex-col gap-2 text-sm">
+                {col.links.map((link) => (
+                  <Link key={link.label} href={link.href} className="text-white/85 hover:text-brand-green">
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
           ))}
-        </nav>
+        </div>
 
-        <div className="mt-10 flex items-center justify-between border-t border-white/10 pt-6">
-          <span className="text-lg font-semibold">Studio.</span>
-          <p className="text-[11px] text-white/50">Reg No. 00000000. Vat No. 000000000.</p>
+        <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/60 md:flex-row md:items-center md:justify-between">
+          <p>&copy; {new Date().getFullYear()} Procurement Helps. All rights reserved.</p>
+          <nav className="flex flex-wrap gap-x-5 gap-y-2">
+            {BOTTOM_LINKS.map((link) => (
+              <Link key={link.label} href={link.href} className="hover:text-brand-green">
+                {link.label}
+              </Link>
+            ))}
+          </nav>
         </div>
       </div>
     </footer>

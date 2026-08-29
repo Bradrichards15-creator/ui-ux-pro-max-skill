@@ -5,34 +5,29 @@ import { ChevronRight } from "lucide-react";
 
 const FAQS = [
   {
-    q: "What services does [Studio] offer?",
-    a: "Placeholder answer describing the range of services offered, matching the tone and rough length of the original agency copy.",
+    q: "How much does bid support cost?",
+    a: "It depends on what you need - a bid review and mock scoring is £125, response writing is £85 per question. Full pricing is on the Tenders page.",
   },
   {
-    q: "How does [Studio] build strategies for clients?",
-    a: "Placeholder answer describing the discovery and strategy-building process used with new clients.",
+    q: "How long does a bid review take?",
+    a: "Bid reviews and mock scoring can usually be turned around the same day. Full response writing is normally a two-day turnaround, though it varies depending on how busy things are - let me know your deadline and I'll tell you honestly whether it's workable.",
   },
   {
-    q: "What makes [Studio] different from other agencies?",
-    a: "Placeholder answer describing what differentiates the agency — focus areas, values, or working style.",
+    q: "What makes Procurement Helps different from an agency?",
+    a: "No agency mark-up, no account managers, no templates. It's just me, and every response is written specifically for your business and that tender.",
   },
   {
-    q: "Do you offer both organic and paid services?",
-    a: "Placeholder answer confirming the mix of services available, standalone or combined.",
+    q: "Do you only work with public sector bids?",
+    a: "Mainly, yes - public sector tenders are what I know best. But I've written plenty of proposals for private sector work too, so get in touch if that's what you need.",
   },
   {
-    q: "Can [Studio] help improve lead generation?",
-    a: "Placeholder answer describing how the agency approaches lead generation for clients.",
-  },
-  {
-    q: "Can [Studio] support long-term growth?",
-    a: "Placeholder answer describing the agency's approach to sustainable, long-term growth.",
+    q: "Where does AI actually fit in?",
+    a: "I use AI for the jobs that used to eat a whole afternoon - not for writing your answers. Every response is still built from your evidence, checked and signed off by me. If it reads like a template with the gaps filled in, it isn't from here.",
   },
 ];
 
 /**
- * FaqAccordion — right-aligned intro copy over a list of boxed accordion
- * rows with a rotating circular arrow icon, bottom-border dividers.
+ * FaqAccordion — homepage FAQ section with real Q&A content.
  */
 export function FaqAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -40,13 +35,7 @@ export function FaqAccordion() {
   return (
     <section className="bg-background px-6 py-14 md:py-20">
       <div className="mx-auto max-w-3xl">
-        <div className="text-right">
-          <h2 className="text-2xl font-medium">Frequently asked questions</h2>
-          <p className="mt-3 text-sm text-foreground/80">
-            [Placeholder] An independent studio founded in [Year], building brands, websites, and
-            marketing that improve the bottom line.
-          </p>
-        </div>
+        <h2 className="text-2xl font-medium md:text-3xl">Frequently asked questions</h2>
 
         <div className="mt-6 divide-y divide-black/15">
           {FAQS.map((faq, index) => {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { CookieBanner } from "@/components/cookie-banner";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -9,9 +10,9 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Studio | Design Agency (Placeholder)",
+  title: "Procurement Helps - Tender & Procurement Support",
   description:
-    "Placeholder marketing site rebuilding the layout system of a design-agency homepage with original copy and imagery.",
+    "Tender review, mock scoring and response writing from someone who has scored thousands of tenders - plus procurement support that's delivered millions in supplier savings and helped businesses tighten up how they buy. No agency fees, just me.",
 };
 
 export default function RootLayout({
@@ -26,6 +27,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}
+        <CookieBanner />
       </body>
     </html>
   );
