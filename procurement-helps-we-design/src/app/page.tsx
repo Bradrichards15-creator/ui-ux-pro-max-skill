@@ -3,7 +3,6 @@ import { SiteFooter } from "@/components/site-footer";
 import { Hero } from "@/components/sections/hero";
 import { ComparisonTable } from "@/components/sections/comparison-table";
 import { TwoWaysToHelp } from "@/components/sections/two-ways-to-help";
-import { GuidesBlog } from "@/components/sections/guides-blog";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { ClosingCta } from "@/components/sections/closing-cta";
 
@@ -15,7 +14,6 @@ export default function Home() {
         <Hero />
         <ComparisonTable />
         <TwoWaysToHelp />
-        <GuidesBlog />
         <FaqAccordion />
         <ClosingCta />
       </main>

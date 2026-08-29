@@ -8,15 +8,11 @@ const COLUMNS = [
     links: [
       { label: "Tenders", href: "/tenders" },
       { label: "Spend", href: "/spend" },
-      { label: "Guides", href: "/guides" },
     ],
   },
   {
     heading: "Company",
-    links: [
-      { label: "Blog", href: "/blog" },
-      { label: "Contact", href: "/contact" },
-    ],
+    links: [{ label: "Contact", href: "/contact" }],
   },
   {
     heading: "Get in touch",
@@ -52,7 +48,7 @@ export function SiteFooter() {
               Procurement Helps<span className="text-brand-green">.</span>
             </span>
             <p className="mt-4 max-w-xs text-sm text-white/70">
-              Get new posts and guides by email.
+              Get updates on tenders and procurement by email.
             </p>
             <form
               className="mt-4 flex max-w-xs gap-2"

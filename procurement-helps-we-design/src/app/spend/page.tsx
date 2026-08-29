@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SpendHero } from "@/components/sections/spend/spend-hero";
-import { SpendPhoto } from "@/components/sections/spend/spend-photo";
 import { PricingTable } from "@/components/sections/pricing-table";
 import { Housekeeping } from "@/components/sections/spend/housekeeping";
 
@@ -36,7 +35,6 @@ export default function SpendPage() {
       <SiteHeader />
       <main className="flex-1 overflow-hidden">
         <SpendHero />
-        <SpendPhoto />
         <PricingTable
           heading="How you're charged"
           rows={PRICING_ROWS}
