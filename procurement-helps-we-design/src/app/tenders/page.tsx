@@ -7,6 +7,7 @@ import { TenderPhoto } from "@/components/sections/tenders/tender-photo";
 import { Industries } from "@/components/sections/tenders/industries";
 import { PricingTable } from "@/components/sections/pricing-table";
 import { ClosingCta } from "@/components/sections/closing-cta";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export const metadata: Metadata = {
   title: "Tenders - Procurement Helps",
@@ -19,6 +20,7 @@ const PRICING_ROWS = [
     name: "Bid review & mock scoring",
     desc: "I'll stress-test your response and give you suggestions before you submit.",
     price: "£125",
+    tag: "Most common",
   },
   {
     name: "Response writing",
@@ -43,29 +45,41 @@ export default function TendersPage() {
       <SiteHeader />
       <main className="flex-1 overflow-hidden">
         <TenderHero />
-        <TenderServices />
-        <TenderPhoto />
-        <Industries />
-        <PricingTable
-          heading="Pricing"
-          subhead="Transparent, upfront pricing - no agency mark-up, no account managers, just me. Get in touch first and I'll confirm scope before anything's charged."
-          rows={PRICING_ROWS}
-        />
-        <section className="bg-background px-6 pb-14 md:pb-20">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm text-foreground/75">
-              If I don&apos;t think I&apos;m the right fit for your tender, I&apos;ll tell you
-              before we start - not after you&apos;ve paid. And if something changes partway
-              through and I can&apos;t deliver what we agreed, I&apos;ll refund the work I
-              haven&apos;t done.
-            </p>
-          </div>
-        </section>
-        <ClosingCta
-          heading="Talk about your tender"
-          label="Talk about your tender"
-          href="/contact"
-        />
+        <ScrollReveal>
+          <TenderServices />
+        </ScrollReveal>
+        <ScrollReveal>
+          <TenderPhoto />
+        </ScrollReveal>
+        <ScrollReveal>
+          <Industries />
+        </ScrollReveal>
+        <ScrollReveal>
+          <PricingTable
+            heading="Pricing"
+            subhead="Transparent, upfront pricing - no agency mark-up, no account managers, just me. Get in touch first and I'll confirm scope before anything's charged."
+            rows={PRICING_ROWS}
+          />
+        </ScrollReveal>
+        <ScrollReveal>
+          <section className="bg-background px-6 pb-14 md:pb-20">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm text-foreground/75">
+                If I don&apos;t think I&apos;m the right fit for your tender, I&apos;ll tell you
+                before we start - not after you&apos;ve paid. And if something changes partway
+                through and I can&apos;t deliver what we agreed, I&apos;ll refund the work I
+                haven&apos;t done.
+              </p>
+            </div>
+          </section>
+        </ScrollReveal>
+        <ScrollReveal>
+          <ClosingCta
+            heading="Talk about your tender"
+            label="Talk about your tender"
+            href="/contact"
+          />
+        </ScrollReveal>
       </main>
       <SiteFooter />
     </>

@@ -59,9 +59,11 @@ export function Industries() {
             ))}
           </ul>
 
-          <div className="rounded-[22px] bg-[#231F20] p-8 md:sticky md:top-32 md:self-start">
-            <h3 className="text-xl font-medium">{INDUSTRIES[active].name}</h3>
-            <p className="mt-3 text-sm text-white/70">{INDUSTRIES[active].desc}</p>
+          <div className="overflow-hidden rounded-[22px] bg-[#231F20] p-8 md:sticky md:top-32 md:self-start">
+            <div key={active} className="animate-industry-fade">
+              <h3 className="text-xl font-medium">{INDUSTRIES[active].name}</h3>
+              <p className="mt-3 text-sm text-white/70">{INDUSTRIES[active].desc}</p>
+            </div>
           </div>
         </div>
       </div>

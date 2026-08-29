@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SpendHero } from "@/components/sections/spend/spend-hero";
 import { PricingTable } from "@/components/sections/pricing-table";
 import { Housekeeping } from "@/components/sections/spend/housekeeping";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export const metadata: Metadata = {
   title: "Spend - Procurement Helps",
@@ -26,6 +27,7 @@ const PRICING_ROWS = [
     name: "Savings fee",
     desc: "A transparent number, agreed between us once the saving's confirmed.",
     price: "No saving, no fee",
+    tag: "No risk",
   },
 ];
 
@@ -35,12 +37,16 @@ export default function SpendPage() {
       <SiteHeader />
       <main className="flex-1 overflow-hidden">
         <SpendHero />
-        <PricingTable
-          heading="How you're charged"
-          rows={PRICING_ROWS}
-          note="Free to ask, no pressure either way - if I don't think there's anything worth digging into, I'll tell you upfront."
-        />
-        <Housekeeping />
+        <ScrollReveal>
+          <PricingTable
+            heading="How you're charged"
+            rows={PRICING_ROWS}
+            note="Free to ask, no pressure either way - if I don't think there's anything worth digging into, I'll tell you upfront."
+          />
+        </ScrollReveal>
+        <ScrollReveal>
+          <Housekeeping />
+        </ScrollReveal>
       </main>
       <SiteFooter />
     </>
