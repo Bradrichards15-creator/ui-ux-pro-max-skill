@@ -15,7 +15,7 @@ const COLUMNS = [
   {
     heading: "Get in touch",
     links: [
-      { label: "Email", href: "mailto:brad@procurementhelps.com" },
+      { label: "Email", href: "mailto:brad@procurementhelps.co.uk" },
       { label: "Book a call", href: "https://calendly.com/brad-procurementhelps" },
       { label: "LinkedIn", href: "https://www.linkedin.com/in/bradprocurementhelps/" },
     ],

@@ -13,8 +13,8 @@ export default function PrivacyPage() {
         This policy explains what personal data Procurement Helps (&quot;I&quot;, &quot;me&quot;)
         collects when you use this website, why, and what your rights are. Procurement Helps is
         operated by Brad Richards, contactable at{" "}
-        <a href="mailto:brad@procurementhelps.com" className="underline hover:text-brand-black">
-          brad@procurementhelps.com
+        <a href="mailto:brad@procurementhelps.co.uk" className="underline hover:text-brand-black">
+          brad@procurementhelps.co.uk
         </a>
         .
       </p>
@@ -55,8 +55,8 @@ export default function PrivacyPage() {
           Under UK GDPR, you have the right to ask what data I hold about you, to ask me to
           correct or delete it, and to withdraw consent to analytics cookies at any time. To
           exercise any of these, email{" "}
-          <a href="mailto:brad@procurementhelps.com" className="underline hover:text-brand-black">
-            brad@procurementhelps.com
+          <a href="mailto:brad@procurementhelps.co.uk" className="underline hover:text-brand-black">
+            brad@procurementhelps.co.uk
           </a>
           . If you&apos;re not satisfied with how I&apos;ve handled your data, you can complain to
           the UK Information Commissioner&apos;s Office (ICO).

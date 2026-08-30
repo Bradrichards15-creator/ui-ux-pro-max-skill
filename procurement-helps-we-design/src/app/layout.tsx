@@ -27,7 +27,7 @@ const STRUCTURED_DATA = {
   description:
     "Tender review, mock scoring and response writing from someone who has scored thousands of tenders - plus procurement support that's delivered millions in supplier savings.",
   url: "https://procurementhelps.co.uk",
-  email: "brad@procurementhelps.com",
+  email: "brad@procurementhelps.co.uk",
   telephone: "+447958145110",
   founder: {
     "@type": "Person",
