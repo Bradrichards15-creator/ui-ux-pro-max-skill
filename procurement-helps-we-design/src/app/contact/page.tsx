@@ -23,6 +23,26 @@ export default function ContactPage() {
         <BioBlock />
       </main>
       <SiteFooter />
+
+      {/*
+        Hidden static replica of the "Leave a few details" form, present only
+        so Netlify's build-time HTML scanner can detect and register it.
+        Field names must match exactly what GetInTouch's fetch POST sends.
+        Never shown or interacted with - the real UI is the step-by-step
+        form in get-in-touch.tsx.
+      */}
+      <form
+        name="contact"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        hidden
+      >
+        <input type="tel" name="phone" />
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <textarea name="message" />
+        <input type="text" name="bot-field" />
+      </form>
     </>
   );
 }

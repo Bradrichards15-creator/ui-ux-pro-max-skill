@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, MessageCircle, Pencil } from "lucide-react";
+import { ArrowLeft, ArrowRight, MessageCircle, Pencil } from "lucide-react";
 
 const WHATSAPP_NUMBER = "447958145110";
 
@@ -35,10 +35,114 @@ function WhatsappTopicPicker() {
   );
 }
 
-function DetailsForm() {
-  const [sent, setSent] = useState(false);
+type FormState = {
+  phone: string;
+  name: string;
+  email: string;
+  message: string;
+};
 
-  if (sent) {
+const EMPTY_FORM: FormState = { phone: "", name: "", email: "", message: "" };
+
+type Step = {
+  key: keyof FormState;
+  question: string;
+  hint: string;
+  required: boolean;
+  type: "tel" | "text" | "email" | "textarea";
+  placeholder: string;
+};
+
+const STEPS: Step[] = [
+  {
+    key: "phone",
+    question: "What's the best number to reach you on?",
+    hint: "The only thing I actually need from you.",
+    required: true,
+    type: "tel",
+    placeholder: "07xxx xxxxxx",
+  },
+  {
+    key: "name",
+    question: "And your name?",
+    hint: "Optional - but nice to know who I'm calling.",
+    required: false,
+    type: "text",
+    placeholder: "Your name",
+  },
+  {
+    key: "email",
+    question: "An email address, if you'd like a reply that way too?",
+    hint: "Optional.",
+    required: false,
+    type: "email",
+    placeholder: "you@company.com",
+  },
+  {
+    key: "message",
+    question: "What's going on?",
+    hint: "A line or two is plenty - optional.",
+    required: false,
+    type: "textarea",
+    placeholder: "e.g. Tender closing Friday, could use a second pair of eyes",
+  },
+];
+
+function encodeForm(data: Record<string, string>) {
+  return Object.keys(data)
+    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+    .join("&");
+}
+
+/**
+ * DetailsForm — one question per step (phone, name, email, message)
+ * instead of a flat field list, with Back/Skip/Next controls. Submits
+ * to Netlify Forms via a fetch POST; the matching static form (for
+ * Netlify's build-time form detector) lives in app/contact/page.tsx.
+ */
+function DetailsForm() {
+  const [stepIndex, setStepIndex] = useState(0);
+  const [data, setData] = useState<FormState>(EMPTY_FORM);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  const step = STEPS[stepIndex];
+  const isLastStep = stepIndex === STEPS.length - 1;
+  const value = data[step.key];
+  const canAdvance = !step.required || value.trim().length > 0;
+
+  function update(v: string) {
+    setData((d) => ({ ...d, [step.key]: v }));
+  }
+
+  function goNext() {
+    if (!canAdvance) return;
+    if (isLastStep) {
+      submit();
+    } else {
+      setStepIndex((i) => i + 1);
+    }
+  }
+
+  function goBack() {
+    setStepIndex((i) => Math.max(0, i - 1));
+  }
+
+  async function submit() {
+    setStatus("sending");
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encodeForm({ "form-name": "contact", ...data, "bot-field": "" }),
+      });
+      if (!res.ok) throw new Error("Form submission failed");
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "sent") {
     return (
       <div className="rounded-[22px] bg-white p-8">
         <p className="text-sm font-semibold">Thanks - I&apos;ll be in touch shortly.</p>
@@ -46,44 +150,121 @@ function DetailsForm() {
     );
   }
 
-  return (
-    <div className="rounded-[22px] bg-white p-8">
-      <p className="text-sm font-semibold">Leave a few details</p>
-      <form
-        className="mt-4 flex flex-col gap-3"
-        onSubmit={(e) => {
-          e.preventDefault();
-          setSent(true);
-        }}
-      >
-        <input
-          type="tel"
-          required
-          placeholder="Phone number*"
-          className="w-full rounded-full border border-black/15 bg-white px-4 py-3 text-sm outline-none focus:border-black"
-        />
-        <input
-          type="text"
-          placeholder="Name"
-          className="w-full rounded-full border border-black/15 bg-white px-4 py-3 text-sm outline-none focus:border-black"
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full rounded-full border border-black/15 bg-white px-4 py-3 text-sm outline-none focus:border-black"
-        />
-        <textarea
-          placeholder="What's going on? (a line or two)"
-          rows={3}
-          className="w-full rounded-2xl border border-black/15 bg-white px-4 py-3 text-sm outline-none focus:border-black"
-        />
-        <p className="text-xs text-muted-foreground">
-          * Only required field - everything else is optional.
+  if (status === "error") {
+    return (
+      <div className="rounded-[22px] bg-white p-8">
+        <p className="text-sm font-semibold">That didn&apos;t send - sorry about that.</p>
+        <p className="mt-2 text-sm text-foreground/70">
+          Try again, or reach me directly at{" "}
+          <a href="mailto:brad@procurementhelps.co.uk" className="underline hover:text-black">
+            brad@procurementhelps.co.uk
+          </a>{" "}
+          or on{" "}
+          <a
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            target="_blank"
+            rel="noreferrer"
+            className="underline hover:text-black"
+          >
+            WhatsApp
+          </a>
+          .
         </p>
-        <button type="submit" className="btn-pill gap-2 self-start">
-          Send
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="btn-pill mt-5 gap-2"
+        >
+          Try again
           <ArrowRight size={14} />
         </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-[22px] bg-white p-8">
+      <div className="flex items-center gap-1.5" aria-hidden>
+        {STEPS.map((s, i) => (
+          <span
+            key={s.key}
+            className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${
+              i <= stepIndex ? "bg-brand-green" : "bg-black/10"
+            }`}
+          />
+        ))}
+      </div>
+
+      <form
+        key={step.key}
+        className="animate-step-fade mt-6"
+        onSubmit={(e) => {
+          e.preventDefault();
+          goNext();
+        }}
+      >
+        <label htmlFor={step.key} className="text-sm font-semibold">
+          {step.question}
+        </label>
+        <p className="mt-1 text-xs text-muted-foreground">{step.hint}</p>
+
+        {step.type === "textarea" ? (
+          <textarea
+            id={step.key}
+            value={value}
+            onChange={(e) => update(e.target.value)}
+            placeholder={step.placeholder}
+            rows={3}
+            autoFocus
+            className="mt-4 w-full rounded-2xl border border-black/15 bg-white px-4 py-3 text-sm outline-none focus:border-black"
+          />
+        ) : (
+          <input
+            id={step.key}
+            type={step.type}
+            value={value}
+            onChange={(e) => update(e.target.value)}
+            placeholder={step.placeholder}
+            required={step.required}
+            autoFocus
+            className="mt-4 w-full rounded-full border border-black/15 bg-white px-4 py-3 text-sm outline-none focus:border-black"
+          />
+        )}
+
+        <div className="mt-5 flex items-center justify-between gap-3">
+          {stepIndex > 0 ? (
+            <button
+              type="button"
+              onClick={goBack}
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground/60 hover:text-foreground"
+            >
+              <ArrowLeft size={14} />
+              Back
+            </button>
+          ) : (
+            <span />
+          )}
+
+          <div className="flex items-center gap-3">
+            {!step.required && !isLastStep && (
+              <button
+                type="button"
+                onClick={() => setStepIndex((i) => i + 1)}
+                className="text-sm font-medium text-foreground/60 hover:text-foreground"
+              >
+                Skip
+              </button>
+            )}
+            <button
+              type="submit"
+              disabled={!canAdvance || status === "sending"}
+              className="btn-pill gap-2 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {status === "sending" ? "Sending..." : isLastStep ? "Send" : "Next"}
+              <ArrowRight size={14} />
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );
@@ -91,7 +272,7 @@ function DetailsForm() {
 
 /**
  * GetInTouch — method chooser (WhatsApp vs "leave details"), revealing
- * either the WhatsApp topic picker or the details form.
+ * either the WhatsApp topic picker or the step-by-step details form.
  */
 export function GetInTouch() {
   const [method, setMethod] = useState<Method>(null);
