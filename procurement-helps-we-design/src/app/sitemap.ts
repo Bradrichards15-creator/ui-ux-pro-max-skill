@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://procurementhelps.co.uk";
 
+export const dynamic = "force-static";
+
 const ROUTES = ["", "/tenders", "/spend", "/contact", "/privacy", "/terms", "/cookies"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
