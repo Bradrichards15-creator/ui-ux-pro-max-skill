@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SpendHero } from "@/components/sections/spend/spend-hero";
+import { SpendProcess } from "@/components/sections/spend/spend-process";
 import { PricingTable } from "@/components/sections/pricing-table";
 import { Housekeeping } from "@/components/sections/spend/housekeeping";
 import { ScrollReveal } from "@/components/scroll-reveal";
@@ -37,6 +38,9 @@ export default function SpendPage() {
       <SiteHeader />
       <main className="flex-1 overflow-hidden">
         <SpendHero />
+        <ScrollReveal>
+          <SpendProcess />
+        </ScrollReveal>
         <ScrollReveal>
           <PricingTable
             heading="How you're charged"
