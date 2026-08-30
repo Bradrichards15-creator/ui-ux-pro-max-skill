@@ -22,8 +22,8 @@ export default function PrivacyPage() {
       <div>
         <h2 className="text-base font-semibold text-foreground">What I collect</h2>
         <p className="mt-2">
-          When you use the contact form, the WhatsApp links, or the newsletter sign-up, I collect
-          whatever you choose to give me - typically your name, phone number, email address, and
+          When you use the contact form or the WhatsApp links, I collect whatever you choose to
+          give me - typically your name, phone number, email address, and
           the details of your enquiry. If you accept cookies via the cookie banner, I also collect
           basic analytics data about how you use the site (pages visited, general location,
           device type). If you reject cookies, no analytics data is collected.
