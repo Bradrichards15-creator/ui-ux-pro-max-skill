@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "procurement-helps-cookie-choice";
+export const COOKIE_STORAGE_KEY = "procurement-helps-cookie-choice";
+const STORAGE_KEY = COOKIE_STORAGE_KEY;
 
 /**
  * CookieBanner — bottom-fixed bar shown once (persisted via localStorage)
@@ -32,6 +33,9 @@ export function CookieBanner() {
     } catch {
       // ignore storage errors (private mode etc.)
     }
+    // Let <Analytics /> react immediately if the choice happens after mount,
+    // rather than only on the next page load.
+    window.dispatchEvent(new CustomEvent("cookie-consent-changed", { detail: value }));
     setVisible(false);
   }
 
