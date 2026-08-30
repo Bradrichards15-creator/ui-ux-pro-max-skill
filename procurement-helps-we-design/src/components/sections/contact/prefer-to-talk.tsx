@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 
 const CHANNELS = [
-  { label: "Email", href: "mailto:hello@procurementhelps.co.uk" },
+  { label: "Email", href: "mailto:brad@procurementhelps.co.uk" },
   { label: "WhatsApp", href: "https://wa.me/447958145110" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/bradprocurementhelps/" },
   { label: "Instagram", href: "https://www.instagram.com/bradprcurementhelps/" },
@@ -22,9 +22,10 @@ export function PreferToTalk() {
             Book a 20-minute conversation and tell me what you&apos;re working on. There&apos;s
             no need to prepare anything beforehand.
           </p>
-          {/* TODO: swap /contact for your real booking link (e.g. Calendly) */}
           <a
-            href="/contact"
+            href="https://calendly.com/brad-procurementhelps"
+            target="_blank"
+            rel="noreferrer"
             className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand-green"
           >
             Book a 20-minute call

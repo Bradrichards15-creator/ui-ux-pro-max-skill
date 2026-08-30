@@ -44,19 +44,22 @@ export function SiteHeader() {
         </nav>
 
         <div className="ml-auto flex items-center gap-1">
-          {/* TODO: swap /contact for your real booking link (e.g. Calendly) */}
-          <Link
-            href="/contact"
+          <a
+            href="https://calendly.com/brad-procurementhelps"
+            target="_blank"
+            rel="noreferrer"
             className="hidden rounded-full bg-brand-green px-6 py-3 text-xs font-medium transition hover:bg-black hover:text-white md:inline-flex"
           >
             Book a call
-          </Link>
-          <Link
-            href="/contact"
+          </a>
+          <a
+            href="https://calendly.com/brad-procurementhelps"
+            target="_blank"
+            rel="noreferrer"
             className="rounded-full bg-brand-green px-5 py-2.5 text-xs font-medium md:hidden"
           >
             Book a call
-          </Link>
+          </a>
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}

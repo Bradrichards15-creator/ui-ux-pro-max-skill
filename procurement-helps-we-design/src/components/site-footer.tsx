@@ -17,10 +17,8 @@ const COLUMNS = [
   {
     heading: "Get in touch",
     links: [
-      { label: "Email", href: "mailto:hello@procurementhelps.co.uk" },
-      // TODO: swap for your real public Calendly link once you have it
-      // (the one you gave is the internal editor URL, not a public booking page)
-      { label: "Book a call", href: "/contact" },
+      { label: "Email", href: "mailto:brad@procurementhelps.co.uk" },
+      { label: "Book a call", href: "https://calendly.com/brad-procurementhelps" },
       { label: "LinkedIn", href: "https://www.linkedin.com/in/bradprocurementhelps/" },
     ],
   },
@@ -77,11 +75,23 @@ export function SiteFooter() {
                 {col.heading}
               </h4>
               <nav className="mt-4 flex flex-col gap-2 text-sm">
-                {col.links.map((link) => (
-                  <Link key={link.label} href={link.href} className="text-white/85 hover:text-brand-green">
-                    {link.label}
-                  </Link>
-                ))}
+                {col.links.map((link) =>
+                  link.href.startsWith("http") ? (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-white/85 hover:text-brand-green"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link key={link.label} href={link.href} className="text-white/85 hover:text-brand-green">
+                      {link.label}
+                    </Link>
+                  ),
+                )}
               </nav>
             </div>
           ))}
@@ -90,11 +100,23 @@ export function SiteFooter() {
         <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/60 md:flex-row md:items-center md:justify-between">
           <p>&copy; {new Date().getFullYear()} Procurement Helps. All rights reserved.</p>
           <nav className="flex flex-wrap gap-x-5 gap-y-2">
-            {BOTTOM_LINKS.map((link) => (
-              <Link key={link.label} href={link.href} className="hover:text-brand-green">
-                {link.label}
-              </Link>
-            ))}
+            {BOTTOM_LINKS.map((link) =>
+              link.href.startsWith("http") ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-brand-green"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link key={link.label} href={link.href} className="hover:text-brand-green">
+                  {link.label}
+                </Link>
+              ),
+            )}
           </nav>
         </div>
       </div>
