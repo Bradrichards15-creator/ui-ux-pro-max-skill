@@ -18,8 +18,10 @@ const COLUMNS = [
     heading: "Get in touch",
     links: [
       { label: "Email", href: "mailto:hello@procurementhelps.co.uk" },
+      // TODO: swap for your real public Calendly link once you have it
+      // (the one you gave is the internal editor URL, not a public booking page)
       { label: "Book a call", href: "/contact" },
-      { label: "LinkedIn", href: "https://linkedin.com" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/bradprocurementhelps/" },
     ],
   },
 ];
@@ -28,10 +30,10 @@ const BOTTOM_LINKS = [
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
   { label: "Cookies", href: "/cookies" },
-  { label: "WhatsApp", href: "https://wa.me/00000000000" },
-  { label: "Instagram", href: "https://instagram.com" },
-  { label: "TikTok", href: "https://tiktok.com" },
-  { label: "Facebook", href: "https://facebook.com" },
+  { label: "WhatsApp", href: "https://wa.me/447958145110" },
+  { label: "Instagram", href: "https://www.instagram.com/bradprcurementhelps/" },
+  { label: "TikTok", href: "https://www.tiktok.com/@brad.procurementhelps?lang=en" },
+  { label: "Facebook", href: "https://www.facebook.com/?locale=en_GB&checkpoint_src=1501092823525282" },
 ];
 
 /**

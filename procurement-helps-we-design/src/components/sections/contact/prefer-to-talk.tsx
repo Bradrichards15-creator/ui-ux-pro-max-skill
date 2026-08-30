@@ -2,11 +2,11 @@ import { ArrowRight } from "lucide-react";
 
 const CHANNELS = [
   { label: "Email", href: "mailto:hello@procurementhelps.co.uk" },
-  { label: "WhatsApp", href: "https://wa.me/00000000000" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "Instagram", href: "https://instagram.com" },
-  { label: "TikTok", href: "https://tiktok.com" },
-  { label: "Facebook", href: "https://facebook.com" },
+  { label: "WhatsApp", href: "https://wa.me/447958145110" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/bradprocurementhelps/" },
+  { label: "Instagram", href: "https://www.instagram.com/bradprcurementhelps/" },
+  { label: "TikTok", href: "https://www.tiktok.com/@brad.procurementhelps?lang=en" },
+  { label: "Facebook", href: "https://www.facebook.com/?locale=en_GB&checkpoint_src=1501092823525282" },
 ];
 
 /** PreferToTalk — booking box + list of other channels. */

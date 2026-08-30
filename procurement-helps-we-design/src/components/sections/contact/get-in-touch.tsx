@@ -3,8 +3,7 @@
 import { useState } from "react";
 import { ArrowRight, MessageCircle, Pencil } from "lucide-react";
 
-// TODO: swap in the real WhatsApp business number.
-const WHATSAPP_NUMBER = "00000000000";
+const WHATSAPP_NUMBER = "447958145110";
 
 const TOPICS = [
   { label: "I've got a tender coming up", message: "Hi, I've got a tender coming up." },
