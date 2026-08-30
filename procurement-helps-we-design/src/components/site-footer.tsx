@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 
 const COLUMNS = [
@@ -48,25 +46,8 @@ export function SiteFooter() {
               Procurement Helps<span className="text-brand-green">.</span>
             </span>
             <p className="mt-4 max-w-xs text-sm text-white/70">
-              Get updates on tenders and procurement by email.
+              Tender and procurement support - no agency fees, just me.
             </p>
-            <form
-              className="mt-4 flex max-w-xs gap-2"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <input
-                type="email"
-                required
-                placeholder="Your email"
-                className="w-full rounded-full border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 outline-none focus:border-brand-green"
-              />
-              <button
-                type="submit"
-                className="shrink-0 rounded-full bg-brand-green px-5 py-2.5 text-xs font-medium text-black transition hover:bg-white"
-              >
-                Sign up
-              </button>
-            </form>
           </div>
 
           {COLUMNS.map((col) => (
