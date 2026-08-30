@@ -8,8 +8,9 @@ import { MagneticButton } from "@/components/magnetic-button";
  */
 export function TenderHero() {
   return (
-    <section className="bg-background px-6 pt-32 pb-14 md:pt-44 md:pb-20">
-      <div className="mx-auto max-w-6xl">
+    <section className="relative overflow-hidden bg-background px-6 pt-32 pb-14 md:pt-44 md:pb-20">
+      <div className="tenders-glow-bg" />
+      <div className="relative z-10 mx-auto max-w-6xl">
         <div className="grid gap-10 md:grid-cols-[1.05fr_0.95fr] md:items-center">
           <div>
             <h1 className="text-[9vw] leading-[1.08] font-semibold tracking-tight md:text-[3rem]">

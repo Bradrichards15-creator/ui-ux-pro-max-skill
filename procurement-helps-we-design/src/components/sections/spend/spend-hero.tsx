@@ -4,8 +4,11 @@ import { MagneticButton } from "@/components/magnetic-button";
 /** SpendHero — centered headline + intro paragraph. */
 export function SpendHero() {
   return (
-    <section className="bg-background px-6 pt-32 pb-14 md:pt-44 md:pb-20">
-      <div className="mx-auto max-w-3xl text-center">
+    <section className="relative overflow-hidden bg-background px-6 pt-32 pb-14 md:pt-44 md:pb-20">
+      <div className="spend-mesh-bg">
+        <div className="spend-mesh-layer" />
+      </div>
+      <div className="relative z-10 mx-auto max-w-3xl text-center">
         <h1 className="text-[9vw] leading-[1.08] font-semibold tracking-tight md:text-[3rem]">
           Spend and procurement, looked at properly.
         </h1>

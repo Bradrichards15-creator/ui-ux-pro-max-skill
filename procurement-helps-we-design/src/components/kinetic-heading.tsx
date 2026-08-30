@@ -35,7 +35,7 @@ export function KineticHeading({
       {lines.map((line, li) => (
         <span
           key={li}
-          className={`block overflow-hidden ${line.size ?? baseSize}`}
+          className={`block overflow-hidden pb-[0.18em] ${line.size ?? baseSize}`}
         >
           {line.words.map((w, wi) => {
             const isObj = typeof w !== "string";
