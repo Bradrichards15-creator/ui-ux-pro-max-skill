@@ -1,8 +1,8 @@
 /** ContactHero — centered H1, subhead, and a chat-bubble preview. */
 export function ContactHero() {
   return (
-    <section className="bg-background px-6 pt-32 pb-10 md:pt-44">
-      <div className="mx-auto max-w-2xl text-center">
+    <section className="bg-background px-6 pt-32 pb-14 md:pt-44 md:pb-20">
+      <div className="mx-auto max-w-3xl text-center">
         <h1 className="text-[9vw] leading-[1.08] font-semibold tracking-tight md:text-[3rem]">
           Tell me what you&apos;re working on
         </h1>

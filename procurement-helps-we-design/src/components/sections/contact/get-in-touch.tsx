@@ -102,7 +102,7 @@ export function GetInTouch() {
       <div className="mx-auto max-w-3xl">
         <p className="text-sm font-semibold">How would you rather get in touch?</p>
 
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+        <div className="mt-4 grid gap-6 sm:grid-cols-2">
           <button
             type="button"
             onClick={() => setMethod("whatsapp")}

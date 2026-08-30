@@ -9,10 +9,10 @@ export default function NotFound() {
     <>
       <SiteHeader />
       <main className="flex-1 overflow-hidden">
-        <section className="relative overflow-hidden bg-background px-6 pt-32 pb-20 md:pt-44 md:pb-28">
+        <section className="relative overflow-hidden bg-background px-6 pt-32 pb-14 md:pt-44 md:pb-20">
           <div className="hero-glow-bg" />
           <div className="hero-grid-bg" />
-          <div className="relative z-10 mx-auto max-w-2xl text-center">
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
             <span className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
               404
             </span>

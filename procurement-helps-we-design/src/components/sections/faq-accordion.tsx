@@ -37,7 +37,7 @@ export function FaqAccordion() {
       <div className="mx-auto max-w-3xl">
         <h2 className="text-2xl font-medium md:text-3xl">Frequently asked questions</h2>
 
-        <div className="mt-6 divide-y divide-black/15">
+        <div className="mt-8 divide-y divide-black/15">
           {FAQS.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
