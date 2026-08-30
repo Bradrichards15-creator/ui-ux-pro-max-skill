@@ -4,11 +4,9 @@ import { useEffect, useState } from "react";
 import Script from "next/script";
 import { COOKIE_STORAGE_KEY } from "@/components/cookie-banner";
 
-// Set NEXT_PUBLIC_GA_ID in Netlify's environment variables (Site
-// settings -> Environment variables) to your GA4 Measurement ID, e.g.
-// G-XXXXXXXXXX. Analytics only loads once that's set AND the visitor
-// has accepted cookies - never before, per the Cookie Policy.
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+// GA4 Measurement ID. Analytics only actually loads once the visitor
+// accepts the cookie banner - never before, per the Cookie Policy.
+const GA_ID = "G-7S14FGD8QZ";
 
 /**
  * Analytics — loads Google Analytics (GA4) only if the visitor has
