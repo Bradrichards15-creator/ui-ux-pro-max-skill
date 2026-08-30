@@ -31,7 +31,7 @@ const BOTTOM_LINKS = [
   { label: "WhatsApp", href: "https://wa.me/447958145110" },
   { label: "Instagram", href: "https://www.instagram.com/bradprcurementhelps/" },
   { label: "TikTok", href: "https://www.tiktok.com/@brad.procurementhelps?lang=en" },
-  { label: "Facebook", href: "https://www.facebook.com/?locale=en_GB&checkpoint_src=1501092823525282" },
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61593502111094" },
 ];
 
 /**

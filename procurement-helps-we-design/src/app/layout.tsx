@@ -39,6 +39,7 @@ const STRUCTURED_DATA = {
     "https://www.linkedin.com/in/bradprocurementhelps/",
     "https://www.instagram.com/bradprcurementhelps/",
     "https://www.tiktok.com/@brad.procurementhelps",
+    "https://www.facebook.com/profile.php?id=61593502111094",
   ],
 };
 

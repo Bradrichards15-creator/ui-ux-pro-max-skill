@@ -6,7 +6,7 @@ const CHANNELS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/bradprocurementhelps/" },
   { label: "Instagram", href: "https://www.instagram.com/bradprcurementhelps/" },
   { label: "TikTok", href: "https://www.tiktok.com/@brad.procurementhelps?lang=en" },
-  { label: "Facebook", href: "https://www.facebook.com/?locale=en_GB&checkpoint_src=1501092823525282" },
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61593502111094" },
 ];
 
 /** PreferToTalk — booking box + list of other channels. */
