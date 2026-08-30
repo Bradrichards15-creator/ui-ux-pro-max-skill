@@ -56,8 +56,8 @@ export default function CookiesPage() {
         <h2 className="text-base font-semibold text-foreground">Contact</h2>
         <p className="mt-2">
           Questions about this policy can be sent to{" "}
-          <a href="mailto:brad@procurementhelps.co.uk" className="underline hover:text-brand-black">
-            brad@procurementhelps.co.uk
+          <a href="mailto:brad@procurementhelps.com" className="underline hover:text-brand-black">
+            brad@procurementhelps.com
           </a>
           .
         </p>

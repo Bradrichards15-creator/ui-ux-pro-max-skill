@@ -156,8 +156,8 @@ function DetailsForm() {
         <p className="text-sm font-semibold">That didn&apos;t send - sorry about that.</p>
         <p className="mt-2 text-sm text-foreground/70">
           Try again, or reach me directly at{" "}
-          <a href="mailto:brad@procurementhelps.co.uk" className="underline hover:text-black">
-            brad@procurementhelps.co.uk
+          <a href="mailto:brad@procurementhelps.com" className="underline hover:text-black">
+            brad@procurementhelps.com
           </a>{" "}
           or on{" "}
           <a

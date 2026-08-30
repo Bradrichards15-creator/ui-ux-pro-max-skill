@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 
 const CHANNELS = [
-  { label: "Email", href: "mailto:brad@procurementhelps.co.uk" },
+  { label: "Email", href: "mailto:brad@procurementhelps.com" },
   { label: "WhatsApp", href: "https://wa.me/447958145110" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/bradprocurementhelps/" },
   { label: "Instagram", href: "https://www.instagram.com/bradprcurementhelps/" },
